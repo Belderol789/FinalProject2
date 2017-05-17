@@ -18,6 +18,8 @@ class MyEventsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.register(StackTableViewCell.cellNib, forCellReuseIdentifier: StackTableViewCell.cellIdentifier)
+            tableView.allowsSelection = false
+            tableView.separatorStyle = .none
             tableView.delegate = self
             tableView.dataSource = self
             
@@ -61,47 +63,45 @@ class MyEventsViewController: UIViewController {
 
 extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return events.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: StackTableViewCell.cellIdentifier, for: indexPath) as? StackTableViewCell else {return UITableViewCell()}
-        let newEvent = events[indexPath.row]
-        
-        
-        if !cell.cellExist {
-            cell.open.setTitle("Hello", for: .normal)
-            cell.aboutLabel.text = newEvent.eventAbout
-            cell.stuffView.backgroundColor = newEvent.eventColor
-            cell.openView.backgroundColor = newEvent.eventColor
-            cell.open.tag = t_count
-            cell.open.addTarget(self, action: #selector(cellOpened(sender:)), for: .touchUpInside)
-            t_count += 1
-            cell.placeLabel.text = newEvent.eventPlace
-            cell.hostLabel.text = newEvent.eventHost
-            cell.dateLabel.text = String(describing: newEvent.eventDate)
-        }
-
-        UIView.animate(withDuration: 0, animations: {
-            cell.contentView.layoutIfNeeded()
-        })
-        
-        
-        return cell
-        
-        
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == button_tag {
-            return 300
+            return 320
         } else {
             return 60
         }
     }
     
-    func cellOpened(sender: UIButton){
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return events.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: StackTableViewCell.cellIdentifier, for: indexPath) as! StackTableViewCell
+        let event = events[indexPath.row]
+        
+        if !cell.cellExist {
+            cell.aboutLabel.text = event.eventAbout
+            cell.hostLabel.text = event.eventHost
+            cell.open.setTitle(event.eventName, for: .normal)
+            cell.openView.backgroundColor = event.eventColor
+            cell.stuffView.backgroundColor = event.eventColor
+            cell.open.tag = t_count
+            cell.open.addTarget(self, action: #selector(cellOpened(sender:)), for: .touchUpInside)
+            t_count += 1
+            cell.cellExist = true
+        }
+        
+        
+        
+        UIView.animate(withDuration: 0) {
+            cell.contentView.layoutIfNeeded()
+        }
+        
+        return cell
+    }
+    
+    func cellOpened(sender:UIButton) {
         self.tableView.beginUpdates()
         
         let previousCellTag = button_tag
@@ -119,16 +119,15 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
         
         if sender.tag != previousCellTag {
             button_tag = sender.tag
+            
             lastCell = tableView.cellForRow(at: IndexPath(row: button_tag, section: 0)) as! StackTableViewCell
-            self.lastCell.animate(duration: 0.5, c: {
+            self.lastCell.animate(duration: 0.2, c: {
                 self.view.layoutIfNeeded()
             })
+            
         }
-        
-        
         self.tableView.endUpdates()
     }
-    
     
     
     
