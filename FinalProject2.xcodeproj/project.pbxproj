@@ -20,6 +20,8 @@
 		524185F91ECC249C005882E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 524185F71ECC249C005882E0 /* LaunchScreen.storyboard */; };
 		524186041ECC2AC0005882E0 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524186031ECC2AC0005882E0 /* CollectionViewCell.swift */; };
 		524186071ECC2B01005882E0 /* CustomFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524186061ECC2B01005882E0 /* CustomFlowLayout.swift */; };
+		524186091ECC3012005882E0 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524186081ECC3012005882E0 /* Events.swift */; };
+		5241860B1ECC3926005882E0 /* ChangeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5241860A1ECC3926005882E0 /* ChangeColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		524185FA1ECC249C005882E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		524186031ECC2AC0005882E0 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		524186061ECC2B01005882E0 /* CustomFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFlowLayout.swift; sourceTree = "<group>"; };
+		524186081ECC3012005882E0 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		5241860A1ECC3926005882E0 /* ChangeColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,8 @@
 			isa = PBXGroup;
 			children = (
 				3D398E1E1ECC2C5B002E7BC7 /* ListenToAPI.swift */,
+				524186081ECC3012005882E0 /* Events.swift */,
+				5241860A1ECC3926005882E0 /* ChangeColor.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -216,7 +222,9 @@
 				524185EF1ECC249C005882E0 /* AppDelegate.swift in Sources */,
 				524186071ECC2B01005882E0 /* CustomFlowLayout.swift in Sources */,
 				3D398E201ECC2C5B002E7BC7 /* LoginViewController.swift in Sources */,
+				5241860B1ECC3926005882E0 /* ChangeColor.swift in Sources */,
 				3D398E181ECC2C21002E7BC7 /* MyEventsTableViewCell.swift in Sources */,
+				524186091ECC3012005882E0 /* Events.swift in Sources */,
 				3D398E1A1ECC2C21002E7BC7 /* EventsTableViewCell.swift in Sources */,
 				524186041ECC2AC0005882E0 /* CollectionViewCell.swift in Sources */,
 			);

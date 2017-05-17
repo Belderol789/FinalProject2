@@ -11,6 +11,8 @@ import UIKit
 class MainViewController: UIViewController {
     
     var categories : [String] = ["Food", "Worklife-Balance", "Sports!", "Going out tonight", "Photography", "#Trending"]
+    
+    var backgroundColors : [UIColor] = [UIColor.red,UIColor.blue, UIColor.green, UIColor.yellow, UIColor.orange, UIColor.purple ]
 
     @IBOutlet weak var collectionView: UICollectionView!{
         didSet{
@@ -48,6 +50,7 @@ extension MainViewController : UICollectionViewDataSource, UICollectionViewDeleg
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
        cell.categoryLabel.text = categories[indexPath.row]
+        cell.backgroundColor = backgroundColors[indexPath.row]
         
         return cell
         
