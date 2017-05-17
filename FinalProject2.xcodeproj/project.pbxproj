@@ -24,6 +24,8 @@
 		524186071ECC2B01005882E0 /* CustomFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524186061ECC2B01005882E0 /* CustomFlowLayout.swift */; };
 		524186091ECC3012005882E0 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524186081ECC3012005882E0 /* Events.swift */; };
 		5241860B1ECC3926005882E0 /* ChangeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5241860A1ECC3926005882E0 /* ChangeColor.swift */; };
+		524186101ECC4429005882E0 /* StackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5241860E1ECC4429005882E0 /* StackTableViewCell.swift */; };
+		524186111ECC4429005882E0 /* StackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5241860F1ECC4429005882E0 /* StackTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		524186061ECC2B01005882E0 /* CustomFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFlowLayout.swift; sourceTree = "<group>"; };
 		524186081ECC3012005882E0 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		5241860A1ECC3926005882E0 /* ChangeColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeColor.swift; sourceTree = "<group>"; };
+		5241860E1ECC4429005882E0 /* StackTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackTableViewCell.swift; sourceTree = "<group>"; };
+		5241860F1ECC4429005882E0 /* StackTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StackTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,8 @@
 		3D398E1B1ECC2C34002E7BC7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5241860F1ECC4429005882E0 /* StackTableViewCell.xib */,
+				5241860E1ECC4429005882E0 /* StackTableViewCell.swift */,
 				3D398E131ECC2C21002E7BC7 /* MyEventsTableViewCell.xib */,
 				3D398E141ECC2C21002E7BC7 /* MyEventsTableViewCell.swift */,
 				3D398E151ECC2C21002E7BC7 /* EventsTableViewCell.xib */,
@@ -212,6 +218,7 @@
 				3D398E171ECC2C21002E7BC7 /* MyEventsTableViewCell.xib in Resources */,
 				524185F91ECC249C005882E0 /* LaunchScreen.storyboard in Resources */,
 				524185F61ECC249C005882E0 /* Assets.xcassets in Resources */,
+				524186111ECC4429005882E0 /* StackTableViewCell.xib in Resources */,
 				524185F41ECC249C005882E0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,6 +241,7 @@
 				524186091ECC3012005882E0 /* Events.swift in Sources */,
 				3D398E1A1ECC2C21002E7BC7 /* EventsTableViewCell.swift in Sources */,
 				524186041ECC2AC0005882E0 /* CollectionViewCell.swift in Sources */,
+				524186101ECC4429005882E0 /* StackTableViewCell.swift in Sources */,
 				3D398E261ECC3879002E7BC7 /* EventsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

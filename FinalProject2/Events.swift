@@ -12,15 +12,17 @@ class Event {
     
     var eventName : String = ""
     var eventPlace : String = ""
-    var eventDate : Date
+    var eventDate : String = ""
     var eventHost : String = ""
+    var eventAbout : String = ""
     var eventColor : UIColor
 
-    init(name : String, place : String, date : Date, host : String, color : UIColor) {
+    init(name : String, place : String, date : String, host : String, about : String, color : UIColor) {
         eventName = name
         eventPlace = place
         eventDate = date
         eventHost = host
+        eventAbout = about
         eventColor = color
       
     }

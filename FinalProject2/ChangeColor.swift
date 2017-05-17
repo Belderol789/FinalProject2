@@ -10,9 +10,8 @@ import UIKit
 
 class Color {
     
-    func color (uiColor : UIColor) {
-        
-    }
     
+    
+  
     
 }
