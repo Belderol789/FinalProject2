@@ -1,17 +1,17 @@
 //
-//  ViewController.swift
-//  FinalProject2
+//  MainViewController.swift
+//  Group2
 //
-//  Created by Kemuel Clyde Belderol on 17/05/2017.
-//  Copyright © 2017 Burst. All rights reserved.
+//  Created by Obiet Panggrahito on 16/05/2017.
+//  Copyright © 2017 Obiet Panggrahito. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
-
-    var categories : [String] = ["Food", "Worklife-Balance", "Sports!", "Going out tonight", "Photography", "#Trending"]
+class MainViewController: UIViewController {
     
+    var categories : [String] = ["Food", "Worklife-Balance", "Sports!", "Going out tonight", "Photography", "#Trending"]
+
     @IBOutlet weak var collectionView: UICollectionView!{
         didSet{
             collectionView.delegate = self
@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         
     }
     
@@ -33,13 +33,6 @@ class ViewController: UIViewController {
         collectionView.backgroundColor = .white
         
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-
-
 }
 
 extension MainViewController : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -54,11 +47,10 @@ extension MainViewController : UICollectionViewDataSource, UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
-        cell.categoryLabel.text = categories[indexPath.row]
+       cell.categoryLabel.text = categories[indexPath.row]
         
         return cell
         
     }
 }
-
 
