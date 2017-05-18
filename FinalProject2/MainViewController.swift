@@ -20,8 +20,8 @@ class MainViewController: UIViewController {
     
     var backgroundColors : [UIColor] = [UIColor.red,UIColor.blue, UIColor.green, UIColor.yellow, UIColor.orange, UIColor.purple ]
     var collectionViewLayout: CustomImageFlowLayout!
-    
     var chosenCategories : [String] = []
+    var buttonPressed : Bool = false
     
     @IBOutlet weak var collectionView: UICollectionView!{
         didSet{
@@ -103,7 +103,8 @@ class MainViewController: UIViewController {
     
 }
 
-extension MainViewController : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
+extension MainViewController : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -113,27 +114,26 @@ extension MainViewController : UICollectionViewDataSource, UICollectionViewDeleg
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        if let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell {
-            self.chosenCategories.append(cell.categoryLabel.text!)
-            
-        }
-        
-        
-        
-    }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
-        cell.categoryLabel.text = categories[indexPath.row]
-        
-        cell.backgroundColor = backgroundColors[indexPath.row]
-        //cell.isUserInteractionEnabled = true
+        var categoryImage : [UIImage] = [UserInterfaceDesign.imageOfCanvas3(pressed: buttonPressed), UserInterfaceDesign.imageOfCanvas4(pressed: buttonPressed), UserInterfaceDesign.imageOfCanvas5(pressed: buttonPressed), UserInterfaceDesign.imageOfCanvas6(pressed: buttonPressed), UserInterfaceDesign.imageOfCanvas7(pressed: buttonPressed), UserInterfaceDesign.imageOfCanvas8(pressed: buttonPressed)]
+    
+        cell.imageView.image = categoryImage[indexPath.row]
+        cell.isUserInteractionEnabled = true
         
         return cell
         
+    }
+}
+
+extension MainViewController : UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell
+        buttonPressed = true
+        cell?.imageView.setNeedsDisplay()
     }
 }
 

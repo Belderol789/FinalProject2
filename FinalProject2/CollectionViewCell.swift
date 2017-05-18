@@ -10,10 +10,9 @@ import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        categoryLabel.text = nil
     }
 }

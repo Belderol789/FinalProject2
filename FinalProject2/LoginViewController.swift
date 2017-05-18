@@ -29,9 +29,9 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         checkIfSomeoneSignedIn()
         
-        
-        print(UserDefaults.standard.value(forKeyPath: "AUTH_TOKEN")!)
-
+        if UserDefaults.standard.value(forKeyPath: "AUTH_TOKEN") != nil {
+            print(UserDefaults.standard.value(forKeyPath: "AUTH_TOKEN")!)
+        }
         
     }
     
