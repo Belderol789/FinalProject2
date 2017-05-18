@@ -13,7 +13,10 @@ class MainViewController: UIViewController {
     var categories : [String] = ["Food", "Worklife-Balance", "Sports!", "Going out tonight", "Photography", "#Trending"]
     
     var backgroundColors : [UIColor] = [UIColor.red,UIColor.blue, UIColor.green, UIColor.yellow, UIColor.orange, UIColor.purple ]
-
+    var collectionViewLayout: CustomImageFlowLayout!
+    
+    var chosenCategories : [String] = []
+    
     @IBOutlet weak var collectionView: UICollectionView!{
         didSet{
             collectionView.delegate = self
@@ -21,11 +24,11 @@ class MainViewController: UIViewController {
         }
     }
     
-    var collectionViewLayout: CustomImageFlowLayout!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
     }
     
@@ -37,7 +40,7 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+extension MainViewController : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -46,11 +49,24 @@ extension MainViewController : UICollectionViewDataSource, UICollectionViewDeleg
         return categories.count
         
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell {
+            self.chosenCategories.append(cell.categoryLabel.text!)
+            
+        }
+        
+        
+        
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
-       cell.categoryLabel.text = categories[indexPath.row]
+        cell.categoryLabel.text = categories[indexPath.row]
         cell.backgroundColor = backgroundColors[indexPath.row]
+        //cell.isUserInteractionEnabled = true
         
         return cell
         
