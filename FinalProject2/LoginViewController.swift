@@ -9,6 +9,8 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    
+    var userID : Int = 0
 
     @IBOutlet weak var mascotIcon: UIImageView! {
         didSet {
@@ -52,10 +54,10 @@ class LoginViewController: UIViewController {
 
     func loginButtonTapped() {
         
-        guard
-            let username = emailTextField.text,
-            let password =  passwordTextField.text
-            else { return }
+        
+            let username = "abc@gmail.com"
+            let password =  "12345678"
+        
         
         let url = URL(string: "http://192.168.1.16:3000/api/v1/sessions")
         var urlRequest = URLRequest(url: url!)
@@ -102,6 +104,9 @@ class LoginViewController: UIViewController {
                         
                         
                         UserDefaults.standard.setValue(validJSON["remember_token"], forKey: "AUTH_TOKEN")
+                        UserDefaults.standard.setValue(validJSON["id"], forKey: "USER_ID")
+                        
+                        self.userID = UserDefaults.standard.value(forKey: "USER_ID") as! Int
                         UserDefaults.standard.synchronize()
                         
                         DispatchQueue.main.async {
@@ -125,6 +130,8 @@ class LoginViewController: UIViewController {
     
     func displayClaims(){
         let controller = storyboard?.instantiateViewController(withIdentifier: "MainViewController") as? MainViewController
+        
+        controller?.currentUserID = userID
         
         present(controller!, animated: true, completion: nil)
     }

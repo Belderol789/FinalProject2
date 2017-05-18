@@ -10,6 +10,8 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    var currentUserID : Int = 0
+    var userToken : String = ""
     var category : String = ""
     var categoryID : String = ""
     
@@ -22,6 +24,14 @@ class MainViewController: UIViewController {
     var collectionViewLayout: CustomImageFlowLayout!
     var chosenCategories : [String] = []
     var buttonPressed : Bool = false
+    
+    var params : [[String:Any]] = [[:]]
+    
+    @IBOutlet weak var doneButton: UIButton! {
+        didSet {
+            doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
+        }
+    }
     
     @IBOutlet weak var collectionView: UICollectionView!{
         didSet{
@@ -36,7 +46,9 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         setupCollectionView()
+        self.userToken = UserDefaults.standard.string(forKey: "AUTH_TOKEN")!
         getCategories()
+        
     }
     
     func setupCollectionView() {
@@ -48,59 +60,134 @@ class MainViewController: UIViewController {
     
     func getCategories() {
         
-            let url = URL(string: "http://192.168.1.16:3000/api/v1/categories")
+        let url = URL(string: "http://192.168.1.16:3000/api/v1/categories?remember_token=\(self.userToken)")
+        var urlRequest = URLRequest(url: url!)
+        
+        urlRequest.httpMethod = "GET"
+        
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-type")
+        
+        let urlSession = URLSession(configuration: URLSessionConfiguration.default)
+        let dataTask = urlSession.dataTask(with: urlRequest) { (data, response, error) in
             
-            var urlRequest = URLRequest(url: url!)
-            urlRequest.httpMethod = "GET"
-            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-type")
             
-            let urlSession = URLSession(configuration: URLSessionConfiguration.default)
-            
-            let dataTask = urlSession.dataTask(with: urlRequest) { (data, response, error) in
-                
-                
-                if let validError = error {
-                    print(validError.localizedDescription)
-                }
-                
-                
-                if let httpResponse = response as? HTTPURLResponse {
-                    
-                    if httpResponse.statusCode == 200 {
-                        
-                        do {
-                            let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-                            
-                            
-                            guard let validJSON = jsonResponse as? [[String:Any]] else { return }
-                            
-                            for each in validJSON {
-                                let id = each["id"] as? Int
-                                let name = each["name"] as? String
-                                
-                                self.categories.append(name!)
-                                self.categoryIDs.append(id!)
-                                
-                            }
-                            //self.claims = validJSON
-                            DispatchQueue.main.async {
-                                self.collectionView.reloadData()
-                            }
-                            
-                        } catch let jsonError as NSError {
-                            
-                        }
-                        
-                    }
-                }
-                
+            if let validError = error {
+                print(validError.localizedDescription)
             }
             
-            dataTask.resume()
             
-            
+            if let httpResponse = response as? HTTPURLResponse {
+                
+                if httpResponse.statusCode == 200 {
+                    do {
+                        let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                        
+                        
+                        guard let validJSON = jsonResponse as? [[String:Any]] else { return }
+                        
+                        for each in validJSON {
+                            let id = each["id"] as? Int
+                            let name = each["name"] as? String
+                            
+                            self.categories.append(name!)
+                            self.categoryIDs.append(id!)
+                            
+                        }
+                        //self.claims = validJSON
+                        DispatchQueue.main.async {
+                            self.collectionView.reloadData()
+                        }
+                        
+                    } catch let jsonError as NSError {
+                        print(jsonError)
+                    }
+                    
+                }
+            }
         }
+        
+        dataTask.resume()
+       
+    }
     
+    
+    func doneButtonTapped () {
+        
+        guard
+            let choosenCategories : [Int] =  self.chosenCategoriesIDs
+            else { return }
+        
+        let url = URL(string: "http://192.168.1.16:3000/api/v1/user_categories?remember_token=\(self.userToken)")
+        var urlRequest = URLRequest(url: url!)
+        
+        urlRequest.httpMethod = "POST"
+        
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-type")
+        
+        if choosenCategories.count == 0 {
+            print("choose up to 3 categories")
+        }
+        else if choosenCategories.count == 1 {
+            self.params = [
+                ["category_id" : choosenCategories[0],
+                 "user_id" : UserDefaults.standard.value(forKey: "USER_ID") ?? 0]
+            ]
+        }
+        else if choosenCategories.count == 2 {
+            self.params = [
+                ["category_id" : choosenCategories[0],
+                 "user_id" : UserDefaults.standard.value(forKey: "USER_ID") ?? 0],
+                ["category_id" : choosenCategories[1],
+                 "user_id" : UserDefaults.standard.value(forKey: "USER_ID") ?? 0]
+            ]
+        }
+        else {
+            self.params = [
+
+                ["category_id" : choosenCategories[0],
+                 "user_id" : UserDefaults.standard.value(forKey: "USER_ID") ?? 0],
+                ["category_id" : choosenCategories[1],
+                 "user_id" : UserDefaults.standard.value(forKey: "USER_ID") ?? 0],
+                ["category_id" : choosenCategories[2],
+                 "user_id" : UserDefaults.standard.value(forKey: "USER_ID") ?? 0]
+            ]
+        }
+        
+        var data: Data?
+        do {
+            data = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+            
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        
+        urlRequest.httpBody = data
+        
+        
+        let urlSession = URLSession(configuration: URLSessionConfiguration.default)
+        
+        let dataTask = urlSession.dataTask(with: urlRequest) { (data, response, error) in
+            
+            
+            if let validError = error {
+                print(validError.localizedDescription)
+            }
+            
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                
+                if httpResponse.statusCode == 200 {
+                    
+                    DispatchQueue.main.async {
+                        print("Data sent!")
+                    }
+                    
+                }
+            }
+        }
+        
+        dataTask.resume()
+    }
 }
 
 extension MainViewController : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -117,7 +204,7 @@ extension MainViewController : UICollectionViewDataSource, UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
-        var categoryImage : [UIImage] = [UserInterfaceDesign.imageOfCanvas3(pressed: buttonPressed), UserInterfaceDesign.imageOfCanvas4(pressed: buttonPressed), UserInterfaceDesign.imageOfCanvas5(pressed: buttonPressed), UserInterfaceDesign.imageOfCanvas6(pressed: buttonPressed), UserInterfaceDesign.imageOfCanvas7(pressed: buttonPressed), UserInterfaceDesign.imageOfCanvas8(pressed: buttonPressed)]
+        var categoryImage : [UIImage] = [UserInterfaceDesign.imageOfCanvas4(pressed: buttonPressed), UserInterfaceDesign.imageOfCanvas5(pressed: buttonPressed), UserInterfaceDesign.imageOfCanvas3(pressed: buttonPressed), UserInterfaceDesign.imageOfCanvas6(pressed: buttonPressed), UserInterfaceDesign.imageOfCanvas7(pressed: buttonPressed), UserInterfaceDesign.imageOfCanvas8(pressed: buttonPressed)]
     
         cell.imageView.image = categoryImage[indexPath.row]
         cell.isUserInteractionEnabled = true
@@ -137,6 +224,7 @@ extension MainViewController : UICollectionViewDelegate {
         
         if self.chosenCategoriesIDs.count < 3 {
             self.chosenCategoriesIDs.append(categoryIDs[indexPath.row])
+            
         }
         
         
