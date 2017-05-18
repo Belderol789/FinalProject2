@@ -268,19 +268,21 @@
                                             <rect key="frame" x="0.0" y="0.0" width="181" height="181"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h44-Cc-cdN">
-                                                    <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="saT-7f-zh6">
+                                                    <rect key="frame" x="0.0" y="0.0" width="181" height="181"/>
+                                                </imageView>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" red="0.68820076340000003" green="1" blue="0.74534278740000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="saT-7f-zh6" secondAttribute="bottom" id="294-Tt-mJf"/>
+                                            <constraint firstItem="saT-7f-zh6" firstAttribute="leading" secondItem="LrJ-Oo-QTd" secondAttribute="leading" id="6GB-PD-tcf"/>
+                                            <constraint firstItem="saT-7f-zh6" firstAttribute="top" secondItem="LrJ-Oo-QTd" secondAttribute="top" id="DNL-4K-VgB"/>
+                                            <constraint firstAttribute="trailing" secondItem="saT-7f-zh6" secondAttribute="trailing" id="GqC-hv-ZLo"/>
+                                        </constraints>
                                         <size key="customSize" width="181" height="181"/>
                                         <connections>
-                                            <outlet property="categoryLabel" destination="h44-Cc-cdN" id="KI7-ef-0Tb"/>
+                                            <outlet property="imageView" destination="saT-7f-zh6" id="4hm-ep-IsB"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
