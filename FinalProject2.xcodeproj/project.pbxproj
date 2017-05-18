@@ -27,6 +27,7 @@
 		5241860B1ECC3926005882E0 /* ChangeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5241860A1ECC3926005882E0 /* ChangeColor.swift */; };
 		524186101ECC4429005882E0 /* StackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5241860E1ECC4429005882E0 /* StackTableViewCell.swift */; };
 		524186111ECC4429005882E0 /* StackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5241860F1ECC4429005882E0 /* StackTableViewCell.xib */; };
+		52F672ED1ECD6E7E00AA9167 /* KemStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52F672EC1ECD6E7E00AA9167 /* KemStoryboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		5241860A1ECC3926005882E0 /* ChangeColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeColor.swift; sourceTree = "<group>"; };
 		5241860E1ECC4429005882E0 /* StackTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackTableViewCell.swift; sourceTree = "<group>"; };
 		5241860F1ECC4429005882E0 /* StackTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StackTableViewCell.xib; sourceTree = "<group>"; };
+		52F672EC1ECD6E7E00AA9167 /* KemStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = KemStoryboard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 			children = (
 				3D398E271ECD55CE002E7BC7 /* UserInterfaceDesign.swift */,
 				524185F21ECC249C005882E0 /* Main.storyboard */,
+				52F672EC1ECD6E7E00AA9167 /* KemStoryboard.storyboard */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				524185F91ECC249C005882E0 /* LaunchScreen.storyboard in Resources */,
 				524185F61ECC249C005882E0 /* Assets.xcassets in Resources */,
 				524186111ECC4429005882E0 /* StackTableViewCell.xib in Resources */,
+				52F672ED1ECD6E7E00AA9167 /* KemStoryboard.storyboard in Resources */,
 				524185F41ECC249C005882E0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
