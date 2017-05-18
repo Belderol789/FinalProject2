@@ -25,6 +25,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCollectionView()
 
         
     }
@@ -53,7 +54,10 @@ extension MainViewController : UICollectionViewDataSource, UICollectionViewDeleg
         cell.backgroundColor = backgroundColors[indexPath.row]
         
         return cell
-        
     }
+    
+    
 }
+
+
 
