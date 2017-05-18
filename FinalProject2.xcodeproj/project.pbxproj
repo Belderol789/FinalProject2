@@ -28,6 +28,7 @@
 		524186101ECC4429005882E0 /* StackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5241860E1ECC4429005882E0 /* StackTableViewCell.swift */; };
 		524186111ECC4429005882E0 /* StackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5241860F1ECC4429005882E0 /* StackTableViewCell.xib */; };
 		52F672ED1ECD6E7E00AA9167 /* KemStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52F672EC1ECD6E7E00AA9167 /* KemStoryboard.storyboard */; };
+		52F672EF1ECD73A500AA9167 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F672EE1ECD73A500AA9167 /* TutorialViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		5241860E1ECC4429005882E0 /* StackTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackTableViewCell.swift; sourceTree = "<group>"; };
 		5241860F1ECC4429005882E0 /* StackTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StackTableViewCell.xib; sourceTree = "<group>"; };
 		52F672EC1ECD6E7E00AA9167 /* KemStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = KemStoryboard.storyboard; sourceTree = "<group>"; };
+		52F672EE1ECD73A500AA9167 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 				3D398E251ECC3879002E7BC7 /* EventsViewController.swift */,
 				3D398E1C1ECC2C5B002E7BC7 /* MainViewController.swift */,
 				3D398E1D1ECC2C5B002E7BC7 /* LoginViewController.swift */,
+				52F672EE1ECD73A500AA9167 /* TutorialViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				3D398E281ECD55CE002E7BC7 /* UserInterfaceDesign.swift in Sources */,
 				3D398E241ECC385E002E7BC7 /* MyEventsViewController.swift in Sources */,
 				3D398E201ECC2C5B002E7BC7 /* LoginViewController.swift in Sources */,
+				52F672EF1ECD73A500AA9167 /* TutorialViewController.swift in Sources */,
 				5241860B1ECC3926005882E0 /* ChangeColor.swift in Sources */,
 				3D398E181ECC2C21002E7BC7 /* MyEventsTableViewCell.swift in Sources */,
 				524186091ECC3012005882E0 /* Events.swift in Sources */,

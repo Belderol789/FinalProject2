@@ -27,7 +27,26 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkIfSomeoneSignedIn()
+        
+        
+        print(UserDefaults.standard.value(forKeyPath: "AUTH_TOKEN")!)
 
+        
+    }
+    
+    
+    func checkIfSomeoneSignedIn() {
+        
+        if UserDefaults.standard.value(forKeyPath: "AUTH_TOKEN") != nil {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let goToMainPage = storyboard.instantiateViewController(withIdentifier: "MainViewController")
+            present(goToMainPage, animated: true, completion: nil)
+            
+        } else {
+            return
+        }
         
     }
 
@@ -82,7 +101,7 @@ class LoginViewController: UIViewController {
                         guard let validJSON = jsonResponse as? [String:Any] else { return }
                         
                         
-                        UserDefaults.standard.setValue(validJSON["private_token"], forKey: "AUTH_TOKEN")
+                        UserDefaults.standard.setValue(validJSON["remember_token"], forKey: "AUTH_TOKEN")
                         UserDefaults.standard.synchronize()
                         
                         DispatchQueue.main.async {
