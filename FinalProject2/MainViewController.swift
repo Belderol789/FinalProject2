@@ -16,7 +16,7 @@ class MainViewController: UIViewController {
     var categories : [String] = []
     var categoryIDs : [Int] = []
     
-    var testCategories : [Any] = []
+    var chosenCategoriesIDs : [Int] = []
     
     var backgroundColors : [UIColor] = [UIColor.red,UIColor.blue, UIColor.green, UIColor.yellow, UIColor.orange, UIColor.purple ]
     var collectionViewLayout: CustomImageFlowLayout!
@@ -134,6 +134,13 @@ extension MainViewController : UICollectionViewDelegate {
         let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell
         buttonPressed = true
         cell?.imageView.setNeedsDisplay()
+        
+        if self.chosenCategoriesIDs.count < 3 {
+            self.chosenCategoriesIDs.append(categoryIDs[indexPath.row])
+        }
+        
+        
+        
     }
 }
 
