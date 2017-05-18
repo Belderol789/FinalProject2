@@ -10,7 +10,13 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    var categories : [String] = ["Food", "Worklife-Balance", "Sports!", "Going out tonight", "Photography", "#Trending"]
+    var category : String = ""
+    var categoryID : String = ""
+    
+    var categories : [String] = []
+    var categoryIDs : [Int] = []
+    
+    var testCategories : [Any] = []
     
     var backgroundColors : [UIColor] = [UIColor.red,UIColor.blue, UIColor.green, UIColor.yellow, UIColor.orange, UIColor.purple ]
     var collectionViewLayout: CustomImageFlowLayout!
@@ -30,6 +36,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         setupCollectionView()
+        getCategories()
     }
     
     func setupCollectionView() {
@@ -38,6 +45,62 @@ class MainViewController: UIViewController {
         collectionView.backgroundColor = .white
         
     }
+    
+    func getCategories() {
+        
+            let url = URL(string: "http://192.168.1.16:3000/api/v1/categories")
+            
+            var urlRequest = URLRequest(url: url!)
+            urlRequest.httpMethod = "GET"
+            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-type")
+            
+            let urlSession = URLSession(configuration: URLSessionConfiguration.default)
+            
+            let dataTask = urlSession.dataTask(with: urlRequest) { (data, response, error) in
+                
+                
+                if let validError = error {
+                    print(validError.localizedDescription)
+                }
+                
+                
+                if let httpResponse = response as? HTTPURLResponse {
+                    
+                    if httpResponse.statusCode == 200 {
+                        
+                        do {
+                            let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                            
+                            
+                            guard let validJSON = jsonResponse as? [[String:Any]] else { return }
+                            
+                            for each in validJSON {
+                                let id = each["id"] as? Int
+                                let name = each["name"] as? String
+                                
+                                self.categories.append(name!)
+                                self.categoryIDs.append(id!)
+                                
+                            }
+                            //self.claims = validJSON
+                            DispatchQueue.main.async {
+                                self.collectionView.reloadData()
+                            }
+                            
+                        } catch let jsonError as NSError {
+                            
+                        }
+                        
+                    }
+                }
+                
+            }
+            
+            dataTask.resume()
+            
+            
+        }
+    
 }
 
 extension MainViewController : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
@@ -65,6 +128,7 @@ extension MainViewController : UICollectionViewDataSource, UICollectionViewDeleg
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
         cell.categoryLabel.text = categories[indexPath.row]
+        
         cell.backgroundColor = backgroundColors[indexPath.row]
         //cell.isUserInteractionEnabled = true
         

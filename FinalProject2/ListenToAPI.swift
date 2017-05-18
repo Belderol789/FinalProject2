@@ -14,7 +14,7 @@ class BlogAPI {
         
         if let jsonData = try? JSONSerialization.data(withJSONObject: dictionary, options: []) {
             
-            let url = NSURL(string: "http://192.168.1.50:3000/api/v1/\(id)")!
+            let url = NSURL(string: "http://192.168.1.16:3000/api/v1/\(id)")!
             let request = NSMutableURLRequest(url: url as URL)
             request.httpMethod = method
             

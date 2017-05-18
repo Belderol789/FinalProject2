@@ -58,6 +58,7 @@ class MyEventsViewController: UIViewController {
     func addEvents() {
         events.append(Event(name: "Dinner", place: "Pedas pedas", date: "Tomorrow", host: "Changhui", about: "Anyone want to go eat?", color: .red))
         events.append(Event(name: "Football", place: "xxxx", date: "Today", host: "Ad", about: "Looking for a good game", color: .blue))
+        
     }
     
 }
