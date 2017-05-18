@@ -38,7 +38,7 @@ class LoginViewController: UIViewController {
             let password =  passwordTextField.text
             else { return }
         
-        let url = URL(string: "http://192.168.1.50:3000/api/v1/sessions")
+        let url = URL(string: "http://192.168.1.16:3000/api/v1/sessions")
         var urlRequest = URLRequest(url: url!)
         
         urlRequest.httpMethod = "POST"
