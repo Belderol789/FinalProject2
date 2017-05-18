@@ -28,7 +28,6 @@ class CustomImageFlowLayout: UICollectionViewFlowLayout {
         }
         get {
             let itemWidth = (self.collectionView!.frame.width/2)
-           // let itemHeight = ((self.collectionView?.frame.height)!/3)
             return CGSize(width: itemWidth, height: itemWidth)
         }
     }

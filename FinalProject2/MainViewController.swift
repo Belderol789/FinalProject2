@@ -29,7 +29,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        setupCollectionView()
     }
     
     func setupCollectionView() {
