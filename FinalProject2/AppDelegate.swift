@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = initController
             
         }else{
-            let loginController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginVC")
+            let loginController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
             window?.rootViewController = loginController
         }
         self.window?.makeKeyAndVisible()
