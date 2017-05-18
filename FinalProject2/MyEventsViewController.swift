@@ -130,6 +130,4 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    
-    
 }
