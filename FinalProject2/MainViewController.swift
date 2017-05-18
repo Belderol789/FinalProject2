@@ -13,7 +13,8 @@ class MainViewController: UIViewController {
     var currentUserID : Int = 0
     var userToken : String = ""
     var category : String = ""
-    var categoryID : String = ""
+    var categoryID : Int = 0
+
     
     var categories : [String] = []
     var categoryIDs : [Int] = []
@@ -177,6 +178,7 @@ class MainViewController: UIViewController {
             if let httpResponse = response as? HTTPURLResponse {
                 
                 if httpResponse.statusCode == 200 {
+                
                     
                     DispatchQueue.main.async {
                         print("Data sent!")

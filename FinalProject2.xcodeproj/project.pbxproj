@@ -18,6 +18,7 @@
 		3D398E261ECC3879002E7BC7 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D398E251ECC3879002E7BC7 /* EventsViewController.swift */; };
 		3D398E281ECD55CE002E7BC7 /* UserInterfaceDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D398E271ECD55CE002E7BC7 /* UserInterfaceDesign.swift */; };
 		3D398E2E1ECD85DE002E7BC7 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D398E2D1ECD85DE002E7BC7 /* CustomTextField.swift */; };
+		3D398E301ECDC96B002E7BC7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D398E2F1ECDC96B002E7BC7 /* GoogleService-Info.plist */; };
 		524185EF1ECC249C005882E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524185EE1ECC249C005882E0 /* AppDelegate.swift */; };
 		524185F41ECC249C005882E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 524185F21ECC249C005882E0 /* Main.storyboard */; };
 		524185F61ECC249C005882E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 524185F51ECC249C005882E0 /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 		524186111ECC4429005882E0 /* StackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5241860F1ECC4429005882E0 /* StackTableViewCell.xib */; };
 		52F672ED1ECD6E7E00AA9167 /* KemStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52F672EC1ECD6E7E00AA9167 /* KemStoryboard.storyboard */; };
 		52F672EF1ECD73A500AA9167 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F672EE1ECD73A500AA9167 /* TutorialViewController.swift */; };
+		D59B8864260E96709567AF9C /* Pods_FinalProject2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BDDCAB651D9C4262747EB9E /* Pods_FinalProject2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,7 @@
 		3D398E251ECC3879002E7BC7 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		3D398E271ECD55CE002E7BC7 /* UserInterfaceDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInterfaceDesign.swift; sourceTree = "<group>"; };
 		3D398E2D1ECD85DE002E7BC7 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		3D398E2F1ECDC96B002E7BC7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		524185EB1ECC249C005882E0 /* FinalProject2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProject2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		524185EE1ECC249C005882E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		524185F31ECC249C005882E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -58,6 +61,9 @@
 		5241860F1ECC4429005882E0 /* StackTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StackTableViewCell.xib; sourceTree = "<group>"; };
 		52F672EC1ECD6E7E00AA9167 /* KemStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = KemStoryboard.storyboard; sourceTree = "<group>"; };
 		52F672EE1ECD73A500AA9167 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		59AE5578E1FD17021E3B24CC /* Pods-FinalProject2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalProject2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FinalProject2/Pods-FinalProject2.debug.xcconfig"; sourceTree = "<group>"; };
+		773F01DE1B4B0891E880737E /* Pods-FinalProject2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalProject2.release.xcconfig"; path = "Pods/Target Support Files/Pods-FinalProject2/Pods-FinalProject2.release.xcconfig"; sourceTree = "<group>"; };
+		9BDDCAB651D9C4262747EB9E /* Pods_FinalProject2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinalProject2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,12 +71,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D59B8864260E96709567AF9C /* Pods_FinalProject2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		340114CEED1341BAC53CADD5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9BDDCAB651D9C4262747EB9E /* Pods_FinalProject2.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3D398E1B1ECC2C34002E7BC7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +115,8 @@
 			children = (
 				524185ED1ECC249C005882E0 /* FinalProject2 */,
 				524185EC1ECC249C005882E0 /* Products */,
+				EB7B9BBD802BA083A04B91A6 /* Pods */,
+				340114CEED1341BAC53CADD5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,6 +148,7 @@
 				524185EE1ECC249C005882E0 /* AppDelegate.swift */,
 				524185F71ECC249C005882E0 /* LaunchScreen.storyboard */,
 				524185FA1ECC249C005882E0 /* Info.plist */,
+				3D398E2F1ECDC96B002E7BC7 /* GoogleService-Info.plist */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -166,6 +184,15 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		EB7B9BBD802BA083A04B91A6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				59AE5578E1FD17021E3B24CC /* Pods-FinalProject2.debug.xcconfig */,
+				773F01DE1B4B0891E880737E /* Pods-FinalProject2.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -173,9 +200,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 524185FD1ECC249C005882E0 /* Build configuration list for PBXNativeTarget "FinalProject2" */;
 			buildPhases = (
+				FF41FD36780C8414B9BCE3EA /* [CP] Check Pods Manifest.lock */,
 				524185E71ECC249C005882E0 /* Sources */,
 				524185E81ECC249C005882E0 /* Frameworks */,
 				524185E91ECC249C005882E0 /* Resources */,
+				275C65BC636D4C10A72E435C /* [CP] Embed Pods Frameworks */,
+				F8333FD1EDD302732C35ED95 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -198,7 +228,7 @@
 				TargetAttributes = {
 					524185EA1ECC249C005882E0 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = XUN95V9WDZ;
+						DevelopmentTeam = ZQ547JDPVM;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -227,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D398E191ECC2C21002E7BC7 /* EventsTableViewCell.xib in Resources */,
+				3D398E301ECDC96B002E7BC7 /* GoogleService-Info.plist in Resources */,
 				3D398E171ECC2C21002E7BC7 /* MyEventsTableViewCell.xib in Resources */,
 				524185F91ECC249C005882E0 /* LaunchScreen.storyboard in Resources */,
 				524185F61ECC249C005882E0 /* Assets.xcassets in Resources */,
@@ -237,6 +268,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		275C65BC636D4C10A72E435C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FinalProject2/Pods-FinalProject2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8333FD1EDD302732C35ED95 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FinalProject2/Pods-FinalProject2-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF41FD36780C8414B9BCE3EA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		524185E71ECC249C005882E0 /* Sources */ = {
@@ -379,9 +458,10 @@
 		};
 		524185FE1ECC249C005882E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59AE5578E1FD17021E3B24CC /* Pods-FinalProject2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = XUN95V9WDZ;
+				DEVELOPMENT_TEAM = ZQ547JDPVM;
 				INFOPLIST_FILE = FinalProject2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Burst.FinalProject2;
@@ -392,9 +472,10 @@
 		};
 		524185FF1ECC249C005882E0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 773F01DE1B4B0891E880737E /* Pods-FinalProject2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = XUN95V9WDZ;
+				DEVELOPMENT_TEAM = ZQ547JDPVM;
 				INFOPLIST_FILE = FinalProject2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Burst.FinalProject2;
