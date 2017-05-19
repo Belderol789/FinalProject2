@@ -17,8 +17,9 @@ class Event {
     var eventDesc : String = ""
     var eventColor : UIColor = .white
     var categoryID : Int = 0
+    var categoryLogo : UIImage?
     
-    init(name : String, venue : String, date : String, host : String, desc : String, color : UIColor, id: Int) {
+    init(name : String, venue : String, date : String, host : String, desc : String, color : UIColor, id: Int, logo : UIImage) {
         eventName = name
         eventVenue = venue
         eventDate = date
@@ -26,6 +27,7 @@ class Event {
         eventDesc = desc
         eventColor = color
         categoryID = id
+        categoryLogo = logo
         
     }
     

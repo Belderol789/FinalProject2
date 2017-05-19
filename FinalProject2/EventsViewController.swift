@@ -111,9 +111,9 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if isExpanded == true && selectedIndex == indexPath {
-            return 320
+            return 360
         } else {
-            return 75
+            return 70
         }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -139,7 +139,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
         switch (segmentedControl.selectedSegmentIndex) {
         case 0:
             let allEvent = firstEvents[indexPath.row]
-            cell.aboutLabel.text = allEvent.eventDesc
+            cell.aboutTextView.text = allEvent.eventDesc
             cell.hostLabel.text = allEvent.eventHost
             cell.nameLabel.text = allEvent.eventName
             cell.dateLabel.text = allEvent.eventDate
@@ -149,7 +149,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             break
         case 1:
             let allEvent = secondEvents[indexPath.row]
-            cell.aboutLabel.text = allEvent.eventDesc
+            cell.aboutTextView.text = allEvent.eventDesc
             cell.hostLabel.text = allEvent.eventHost
             cell.nameLabel.text = allEvent.eventName
             cell.dateLabel.text = allEvent.eventDate
@@ -158,7 +158,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             break
         case 2:
             let allEvent = thirdEvents[indexPath.row]
-            cell.aboutLabel.text = allEvent.eventDesc
+            cell.aboutTextView.text = allEvent.eventDesc
             cell.hostLabel.text = allEvent.eventHost
             cell.nameLabel.text = allEvent.eventName
             cell.dateLabel.text = allEvent.eventDate
