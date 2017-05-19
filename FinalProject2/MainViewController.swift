@@ -15,16 +15,20 @@ class MainViewController: UIViewController {
     var category : String = ""
     var categoryID : Int = 0
 
-    
     var categories : [String] = []
     var categoryIDs : [Int] = []
-    
     var chosenCategoriesIDs : [Int] = []
     
     var backgroundColors : [UIColor] = [UIColor.red,UIColor.blue, UIColor.green, UIColor.yellow, UIColor.orange, UIColor.purple ]
     var collectionViewLayout: CustomImageFlowLayout!
     var chosenCategories : [String] = []
-    var buttonPressed : Bool = false
+
+    var button1Pressed : Bool = false
+    var button2Pressed : Bool = false
+    var button3Pressed : Bool = false
+    var button4Pressed : Bool = false
+    var button5Pressed : Bool = false
+    var button6Pressed : Bool = false
     
     var params : [[String:Any]] = [[:]]
     
@@ -204,7 +208,7 @@ extension MainViewController : UICollectionViewDataSource, UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
-        var categoryImage : [UIImage] = [UserInterfaceDesign.imageOfFoodCategory(pressed: buttonPressed), UserInterfaceDesign.imageOfSportCategory(pressed: buttonPressed), UserInterfaceDesign.imageOfEntertainmentCategory(pressed: buttonPressed), UserInterfaceDesign.imageOfArtCategory(pressed: buttonPressed), UserInterfaceDesign.imageOfVacationCategory(pressed: buttonPressed), UserInterfaceDesign.imageOfDiscussionCategory(pressed: buttonPressed)]
+        var categoryImage : [UIImage] = [UserInterfaceDesign.imageOfFoodCategory(pressed: button1Pressed), UserInterfaceDesign.imageOfSportCategory(pressed: button2Pressed), UserInterfaceDesign.imageOfEntertainmentCategory(pressed: button3Pressed), UserInterfaceDesign.imageOfArtCategory(pressed: button4Pressed), UserInterfaceDesign.imageOfVacationCategory(pressed: button5Pressed), UserInterfaceDesign.imageOfDiscussionCategory(pressed: button6Pressed)]
     
         cell.imageView.image = categoryImage[indexPath.row]
         cell.isUserInteractionEnabled = true
@@ -218,8 +222,17 @@ extension MainViewController : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        switch indexPath.row {
+        case 0 : button1Pressed = !button1Pressed
+        case 1 : button2Pressed = !button2Pressed
+        case 2 : button3Pressed = !button3Pressed
+        case 3 : button4Pressed = !button4Pressed
+        case 4 : button5Pressed = !button5Pressed
+        case 5 : button6Pressed = !button6Pressed
+        default : break
+        }
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
-        buttonPressed = !buttonPressed
         cell.imageView.setNeedsDisplay()
         
         if self.chosenCategoriesIDs.count < 3 {
