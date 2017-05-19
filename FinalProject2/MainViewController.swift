@@ -242,7 +242,6 @@ extension MainViewController : UICollectionViewDelegate {
             self.chosenCategoriesIDs.append(categoryIDs[indexPath.row])
         }
         
-        print("Cell tapped")
         collectionView.reloadItems(at: [indexPath])
     }
 }
