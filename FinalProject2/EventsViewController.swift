@@ -34,7 +34,20 @@ class EventsViewController: UIViewController {
         
         tableView.reloadData()
     }
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var myEventsBarButton: UIButton! {
+        didSet {
+            let controller = storyboard?.instantiateViewController(withIdentifier: "MyEventsViewController") as? MyEventsViewController
+            present(controller!, animated: true, completion: nil)
+        }
+    }
+    
+    @IBOutlet weak var EventsBarButton: UIButton! {
+        didSet {
+            
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()

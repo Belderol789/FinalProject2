@@ -43,28 +43,6 @@
                                     <constraint firstAttribute="height" constant="667" id="XlS-Lv-rDf"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WTi-55-vv3">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
-                                <subviews>
-                                    <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m9U-3y-Fcm">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="375" id="Gte-hc-uKa"/>
-                                        </constraints>
-                                        <items>
-                                            <tabBarItem tag="1" title="My Events" image="calendar-event" id="WAC-kh-qVt"/>
-                                            <tabBarItem tag="2" title="Events" image="calendar" id="7YR-A6-GUc"/>
-                                        </items>
-                                    </tabBar>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="UuO-JQ-ozh"/>
-                                    <constraint firstAttribute="bottom" secondItem="m9U-3y-Fcm" secondAttribute="bottom" id="dnB-fK-MuK"/>
-                                    <constraint firstItem="m9U-3y-Fcm" firstAttribute="leading" secondItem="WTi-55-vv3" secondAttribute="leading" id="kvV-HA-YC6"/>
-                                    <constraint firstItem="m9U-3y-Fcm" firstAttribute="top" secondItem="WTi-55-vv3" secondAttribute="top" id="mtw-nU-MDK"/>
-                                </constraints>
-                            </stackView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bNl-HD-l0C">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                 <constraints>
@@ -77,22 +55,39 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nti-wB-blx">
+                                <rect key="frame" x="0.0" y="617" width="187.5" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="187.5" id="1Em-Sv-gPz"/>
+                                </constraints>
+                                <state key="normal" title="My Events"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yf8-VR-tki">
+                                <rect key="frame" x="187.5" y="617" width="187.5" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="187.5" id="C0n-NY-4Vu"/>
+                                </constraints>
+                                <state key="normal" title="Events"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="eQJ-mF-z41" firstAttribute="top" secondItem="yf8-VR-tki" secondAttribute="bottom" id="1ZH-VN-0Ne"/>
+                            <constraint firstItem="Nti-wB-blx" firstAttribute="leading" secondItem="ast-jO-pfG" secondAttribute="trailing" constant="5" id="2Me-4d-zcg"/>
                             <constraint firstItem="6R9-I0-Dc0" firstAttribute="leading" secondItem="NKB-YS-Hxc" secondAttribute="leading" id="3Vu-l2-fYn"/>
                             <constraint firstItem="6R9-I0-Dc0" firstAttribute="top" secondItem="bNl-HD-l0C" secondAttribute="bottom" id="3XT-6t-LKl"/>
-                            <constraint firstAttribute="trailing" secondItem="WTi-55-vv3" secondAttribute="trailing" id="8Df-oE-wjf"/>
+                            <constraint firstItem="Nti-wB-blx" firstAttribute="top" secondItem="6R9-I0-Dc0" secondAttribute="bottom" id="4Ww-SC-OLN"/>
                             <constraint firstItem="6R9-I0-Dc0" firstAttribute="top" secondItem="NKB-YS-Hxc" secondAttribute="top" constant="64" id="9qN-Mz-Os0"/>
                             <constraint firstItem="bNl-HD-l0C" firstAttribute="leading" secondItem="ast-jO-pfG" secondAttribute="trailing" constant="5" id="BPk-4w-Ohj"/>
-                            <constraint firstItem="WTi-55-vv3" firstAttribute="leading" secondItem="ast-jO-pfG" secondAttribute="trailing" constant="5" id="JNt-VL-BkI"/>
+                            <constraint firstItem="eQJ-mF-z41" firstAttribute="top" secondItem="Nti-wB-blx" secondAttribute="bottom" id="JCz-D8-91k"/>
                             <constraint firstItem="ast-jO-pfG" firstAttribute="top" secondItem="NKB-YS-Hxc" secondAttribute="top" id="KlA-me-VAx"/>
+                            <constraint firstItem="yf8-VR-tki" firstAttribute="top" secondItem="6R9-I0-Dc0" secondAttribute="bottom" id="Lo6-ZY-uut"/>
                             <constraint firstAttribute="trailing" secondItem="6R9-I0-Dc0" secondAttribute="trailing" id="Rsj-4L-w1U"/>
                             <constraint firstAttribute="bottom" secondItem="6R9-I0-Dc0" secondAttribute="bottom" constant="50" id="VED-bz-zBw"/>
                             <constraint firstItem="bNl-HD-l0C" firstAttribute="top" secondItem="NKB-YS-Hxc" secondAttribute="top" id="c6L-wf-iWM"/>
+                            <constraint firstItem="yf8-VR-tki" firstAttribute="leading" secondItem="Nti-wB-blx" secondAttribute="trailing" id="coX-84-gPc"/>
                             <constraint firstAttribute="bottom" secondItem="ast-jO-pfG" secondAttribute="bottom" id="lwK-l8-kvE"/>
-                            <constraint firstItem="eQJ-mF-z41" firstAttribute="top" secondItem="WTi-55-vv3" secondAttribute="bottom" id="nAv-Js-fD1"/>
                             <constraint firstItem="ast-jO-pfG" firstAttribute="leading" secondItem="NKB-YS-Hxc" secondAttribute="leading" constant="-270" id="tZd-4d-4aj"/>
                         </constraints>
                         <connections>
@@ -100,11 +95,12 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="EventsBarButton" destination="yf8-VR-tki" id="99A-Uj-VJV"/>
                         <outlet property="addBarButton" destination="MxC-UN-6ns" id="qlD-ea-ZYt"/>
                         <outlet property="menuBarButton" destination="3TN-J0-RXU" id="wl8-Of-mD2"/>
                         <outlet property="menuView" destination="ast-jO-pfG" id="zqu-xx-LV7"/>
                         <outlet property="menuViewLeadingSpaceConstraint" destination="tZd-4d-4aj" id="muQ-W1-06i"/>
-                        <outlet property="tabBar" destination="m9U-3y-Fcm" id="0mz-xJ-xXP"/>
+                        <outlet property="myEventsBarButton" destination="Nti-wB-blx" id="iYd-xA-SLZ"/>
                         <outlet property="tableView" destination="6R9-I0-Dc0" id="bbF-SB-MLD"/>
                     </connections>
                 </viewController>
@@ -115,7 +111,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1218" y="-1270"/>
+            <point key="canvasLocation" x="1216.8" y="-1270.6146926536733"/>
         </scene>
         <!--Add Event View Controller-->
         <scene sceneID="0gp-FG-w1B">
@@ -164,40 +160,64 @@
                                 </prototypes>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Nl-D6-Y4O">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="375" id="BN7-eU-zFD"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="Events" id="dj7-pw-eaz">
-                                        <barButtonItem key="leftBarButtonItem" image="back" id="SxL-Uq-dHV"/>
+                                    <navigationItem id="dj7-pw-eaz">
+                                        <nil key="title"/>
+                                        <view key="titleView" contentMode="scaleToFill" id="v4z-FG-xzq">
+                                            <rect key="frame" x="54" y="18" width="267" height="48"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="aKz-2H-Fi2">
+                                                    <rect key="frame" x="8" y="8" width="251" height="29"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <segments>
+                                                        <segment title="First"/>
+                                                        <segment title="Second"/>
+                                                        <segment title="Third"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="segmentedControlTapped:" destination="9Q1-rr-fu4" eventType="valueChanged" id="pXF-I3-hTg"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mAz-0q-30E">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CxH-86-gFZ">
+                                <rect key="frame" x="0.0" y="617" width="187.5" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="vBD-7T-Zve"/>
+                                    <constraint firstAttribute="width" constant="187.5" id="Lrf-w6-uOg"/>
                                 </constraints>
-                                <items>
-                                    <tabBarItem tag="1" title="My Events" image="calendar-event" id="6ip-j3-clj"/>
-                                    <tabBarItem tag="2" title="Events" image="calendar" id="8pT-Vs-sDx"/>
-                                </items>
-                            </tabBar>
+                                <state key="normal" title="My Events"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R0n-56-gcz">
+                                <rect key="frame" x="187.5" y="617" width="187.5" height="50"/>
+                                <state key="normal" title="Events"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="tj5-tg-FYA" firstAttribute="top" secondItem="CxH-86-gFZ" secondAttribute="bottom" id="0lF-oC-BEB"/>
+                            <constraint firstItem="R0n-56-gcz" firstAttribute="leading" secondItem="CxH-86-gFZ" secondAttribute="trailing" id="4nv-MB-0bS"/>
                             <constraint firstItem="PNE-6H-M4M" firstAttribute="leading" secondItem="ETU-RR-SLj" secondAttribute="leading" id="55f-ZF-5Ji"/>
                             <constraint firstItem="7Nl-D6-Y4O" firstAttribute="leading" secondItem="ETU-RR-SLj" secondAttribute="leading" id="5rP-5a-Pwm"/>
                             <constraint firstItem="tj5-tg-FYA" firstAttribute="top" secondItem="PNE-6H-M4M" secondAttribute="bottom" constant="50" id="60X-4L-3IE"/>
-                            <constraint firstItem="7Nl-D6-Y4O" firstAttribute="top" secondItem="nIH-MR-eSR" secondAttribute="bottom" id="8rl-pz-orw"/>
-                            <constraint firstItem="tj5-tg-FYA" firstAttribute="top" secondItem="mAz-0q-30E" secondAttribute="bottom" id="MOP-Mv-SBY"/>
+                            <constraint firstItem="R0n-56-gcz" firstAttribute="leading" secondItem="CxH-86-gFZ" secondAttribute="trailing" id="72V-j1-0UU"/>
+                            <constraint firstItem="7Nl-D6-Y4O" firstAttribute="top" secondItem="nIH-MR-eSR" secondAttribute="bottom" constant="-20" id="8rl-pz-orw"/>
+                            <constraint firstAttribute="trailing" secondItem="R0n-56-gcz" secondAttribute="trailing" id="9iO-Ko-6H4"/>
+                            <constraint firstItem="R0n-56-gcz" firstAttribute="top" secondItem="PNE-6H-M4M" secondAttribute="bottom" id="A2S-k2-Hz8"/>
+                            <constraint firstItem="CxH-86-gFZ" firstAttribute="leading" secondItem="ETU-RR-SLj" secondAttribute="leading" id="Jfv-hN-j0g"/>
+                            <constraint firstItem="tj5-tg-FYA" firstAttribute="top" secondItem="R0n-56-gcz" secondAttribute="bottom" id="P6n-lG-0fQ"/>
                             <constraint firstAttribute="trailing" secondItem="PNE-6H-M4M" secondAttribute="trailing" id="d10-8B-FXb"/>
                             <constraint firstItem="PNE-6H-M4M" firstAttribute="top" secondItem="ETU-RR-SLj" secondAttribute="top" constant="64" id="eEo-nf-rHG"/>
-                            <constraint firstItem="mAz-0q-30E" firstAttribute="top" secondItem="PNE-6H-M4M" secondAttribute="bottom" id="hiV-hu-Drw"/>
+                            <constraint firstItem="CxH-86-gFZ" firstAttribute="top" secondItem="PNE-6H-M4M" secondAttribute="bottom" id="kpS-T0-TSO"/>
                             <constraint firstItem="PNE-6H-M4M" firstAttribute="top" secondItem="7Nl-D6-Y4O" secondAttribute="bottom" id="lll-BV-q5c"/>
-                            <constraint firstItem="mAz-0q-30E" firstAttribute="leading" secondItem="ETU-RR-SLj" secondAttribute="leading" id="wPm-os-Sej"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kJx-9R-Jfp">
@@ -220,13 +240,15 @@
                         </view>
                     </navigationItem>
                     <connections>
+                        <outlet property="EventsBarButton" destination="R0n-56-gcz" id="bL3-gJ-ifC"/>
+                        <outlet property="myEventsBarButton" destination="CxH-86-gFZ" id="8NP-oy-nSR"/>
                         <outlet property="segmentedControl" destination="koW-Aw-HHH" id="f72-4T-0I6"/>
                         <outlet property="tableView" destination="PNE-6H-M4M" id="7de-KK-aCT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xko-hz-QE1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1218" y="-615"/>
+            <point key="canvasLocation" x="1216.8" y="-615.74212893553226"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="n2T-fe-qVC">
@@ -343,12 +365,26 @@
             </objects>
             <point key="canvasLocation" x="1918" y="121"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="tGQ-Rs-xVF">
+            <objects>
+                <viewController id="0Tv-Kl-9AF" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qTm-9u-YDp"/>
+                        <viewControllerLayoutGuide type="bottom" id="B3M-cV-HSy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8zc-fe-YJB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="agl-hc-4HX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
         <image name="add" width="24" height="24"/>
-        <image name="back" width="24" height="24"/>
-        <image name="calendar" width="24" height="24"/>
-        <image name="calendar-event" width="24" height="24"/>
         <image name="menu" width="24" height="24"/>
     </resources>
 </document>

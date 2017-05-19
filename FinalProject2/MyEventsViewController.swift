@@ -22,12 +22,10 @@ class MyEventsViewController: UIViewController {
             tableView.separatorStyle = .none
             tableView.delegate = self
             tableView.dataSource = self
-<<<<<<< HEAD
-=======
             tableView.isUserInteractionEnabled = true
             tableView.allowsSelection = true
             
->>>>>>> da6fd4d2e60b1658778e206bede16d72ddb53033
+            
         }
     }
     
@@ -44,7 +42,7 @@ class MyEventsViewController: UIViewController {
             menuBarButton.action = #selector(menuBarButtonTapped)
         }
     }
-
+    
     @IBOutlet weak var menuViewLeadingSpaceConstraint: NSLayoutConstraint!
     @IBOutlet weak var menuView: UIView! {
         didSet {
@@ -53,50 +51,50 @@ class MyEventsViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var tabBar: UITabBar! {
-        didSet {
-            tabBar.target(forAction: #selector(tabBarTapped), withSender: UITabBar())
-        }
-    }
-    
     @IBAction func swipeLeft(_ recognizer: UISwipeGestureRecognizer) {
         switch recognizer.direction {
         case UISwipeGestureRecognizerDirection.left:
-            NSLog("left swipe")
-            menuBarButtonTapped()
+            if menuViewShowing {
+                menuBarButtonTapped()
+            }
         default:
-            NSLog("wrong swipe")
+            if !menuViewShowing {
+                menuBarButtonTapped()
+            }
         }
     }
     
+    @IBOutlet weak var myEventsBarButton: UIButton! {
+        didSet {
+            
+        }
+    }
+    
+    @IBOutlet weak var EventsBarButton: UIButton! {
+        didSet {
+            let controller = storyboard?.instantiateViewController(withIdentifier: "EventsViewController") as? EventsViewController
+            present(controller!, animated: true, completion: nil)
+        }
+    }
+    
+    
     var menuViewShowing = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        swipeRecognizer()
+        addEvents()
+    }
     
+    func swipeRecognizer () {
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft(_ :)))
         swipeLeft.direction = .left
         self.view.addGestureRecognizer(swipeLeft)
-        
-        addEvents()
-    }
-
-    func addBarButtonTapped () {
-        
     }
     
-    func tabBarTapped (tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
-        switch item.tag {
-            
-        case 1:
-            let controller = storyboard?.instantiateViewController(withIdentifier: "MyEventsViewController") as! MyEventsViewController
-            present(controller, animated: true, completion: nil)
-        case 2:
-            let controller = storyboard?.instantiateViewController(withIdentifier: "EventsViewController") as! EventsViewController
-            present(controller, animated: true, completion: nil)
-        default:
-            break
-        }
+    func addBarButtonTapped () {
+        
     }
     
     func menuBarButtonTapped () {
@@ -159,12 +157,12 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: StackTableViewCell.cellIdentifier, for: indexPath) as! StackTableViewCell
         let event = events[indexPath.row]
         
-     
-            cell.aboutLabel.text = event.eventDesc
-            cell.hostLabel.text = event.eventHost
-            cell.nameLabel.text = event.eventName
-            cell.nameLabel.backgroundColor = event.eventColor
-
+        
+        cell.aboutLabel.text = event.eventDesc
+        cell.hostLabel.text = event.eventHost
+        cell.nameLabel.text = event.eventName
+        cell.nameLabel.backgroundColor = event.eventColor
+        
         
         UIView.animate(withDuration: 0.3) {
             cell.contentView.layoutIfNeeded()
@@ -179,7 +177,7 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
         tableView.reloadRows(at: [rowIndex], with: .fade)
         
         
-       
+        
         tableView.scrollToRow(at: rowIndex, at: .bottom, animated: true)
     }
     
