@@ -11,21 +11,36 @@ import UIKit
 class Event {
     
     var eventName : String = ""
-    var eventPlace : String = ""
+    var eventVenue : String = ""
     var eventDate : String = ""
     var eventHost : String = ""
-    var eventAbout : String = ""
-    var eventColor : UIColor
-
-    init(name : String, place : String, date : String, host : String, about : String, color : UIColor) {
+    var eventDesc : String = ""
+    var eventColor : UIColor = .white
+    var categoryID : Int = 0
+    
+    init(name : String, venue : String, date : String, host : String, desc : String, color : UIColor, id: Int) {
         eventName = name
-        eventPlace = place
+        eventVenue = venue
         eventDate = date
         eventHost = host
-        eventAbout = about
+        eventDesc = desc
         eventColor = color
-      
+        categoryID = id
+        
     }
+    
+    init(dict : [String : Any]) {
+        eventName = dict["name"] as? String ?? "Default Name"
+        if let contact = dict["host"] as? [String : Any] {
+            eventHost = contact["fullname"] as? String ?? ""
+        }
+        eventVenue = dict["venue"] as? String ?? "Default Venue"
+        eventDate = dict["event_time"] as? String ?? "Default Time"
+        eventDesc = dict["description"] as? String ?? "Default Description"
+        categoryID = dict["category_id"] as? Int ?? 100
+        
+    }
+    
     
     
 }

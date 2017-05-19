@@ -12,9 +12,8 @@ import UIKit
 class MyEventsViewController: UIViewController {
     
     var events : [Event] = []
-    var t_count: Int = 0
-    var lastCell : StackTableViewCell = StackTableViewCell()
-    var button_tag : Int = -1
+    var selectedIndex : IndexPath?
+    var isExpanded : Bool = false
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -23,6 +22,8 @@ class MyEventsViewController: UIViewController {
             tableView.separatorStyle = .none
             tableView.delegate = self
             tableView.dataSource = self
+            tableView.isUserInteractionEnabled = true
+            tableView.allowsSelection = true
             
         }
     }
@@ -56,8 +57,8 @@ class MyEventsViewController: UIViewController {
     }
     
     func addEvents() {
-        events.append(Event(name: "Dinner", place: "Pedas pedas", date: "Tomorrow", host: "Changhui", about: "Anyone want to go eat?", color: UserInterfaceDesign.foodCategory))
-        events.append(Event(name: "Football", place: "xxxx", date: "Today", host: "Ad", about: "Looking for a good game", color: UserInterfaceDesign.sportCategory))
+        events.append(Event(name: "Dinner", venue: "Pedas pedas", date: "Tomorrow", host: "Changhui", desc: "Anyone want to go eat?", color: UserInterfaceDesign.foodCategory, id: 0))
+        events.append(Event(name: "Football", venue: "xxxx", date: "Today", host: "Ad", desc: "Looking for a good game", color: UserInterfaceDesign.sportCategory, id: 1))
         
     }
     
@@ -66,10 +67,10 @@ class MyEventsViewController: UIViewController {
 extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == button_tag {
+        if isExpanded == true && selectedIndex == indexPath {
             return 320
         } else {
-            return 60
+            return 75
         }
     }
     
@@ -82,51 +83,36 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: StackTableViewCell.cellIdentifier, for: indexPath) as! StackTableViewCell
         let event = events[indexPath.row]
         
-        if !cell.cellExist {
-            cell.aboutLabel.text = event.eventAbout
+     
+            cell.aboutLabel.text = event.eventDesc
             cell.hostLabel.text = event.eventHost
-            cell.open.setTitle(event.eventName, for: .normal)
-            cell.openView.backgroundColor = event.eventColor
-            cell.stuffView.backgroundColor = event.eventColor
-            cell.open.tag = t_count
-            cell.open.addTarget(self, action: #selector(cellOpened(sender:)), for: .touchUpInside)
-            t_count += 1
-            cell.cellExist = true
-        }
+            cell.nameLabel.text = event.eventName
+            cell.nameLabel.backgroundColor = event.eventColor
+
         
-        UIView.animate(withDuration: 0) {
+        UIView.animate(withDuration: 0.3) {
             cell.contentView.layoutIfNeeded()
         }
         
         return cell
     }
     
-    func cellOpened(sender:UIButton) {
-        self.tableView.beginUpdates()
+    func cellOpened() {
+        isExpanded = !isExpanded
+        guard let rowIndex = selectedIndex else {return}
+        tableView.reloadRows(at: [rowIndex], with: .fade)
         
-        let previousCellTag = button_tag
         
-        if lastCell.cellExist {
-            self.lastCell.animate(duration: 0.2, c: {
-                self.view.layoutIfNeeded()
-            })
-            
-            if sender.tag == button_tag {
-                button_tag = -1
-                lastCell = StackTableViewCell()
-            }
-        }
-        
-        if sender.tag != previousCellTag {
-            button_tag = sender.tag
-            
-            lastCell = tableView.cellForRow(at: IndexPath(row: button_tag, section: 0)) as! StackTableViewCell
-            self.lastCell.animate(duration: 0.2, c: {
-                self.view.layoutIfNeeded()
-            })
-        }
-        self.tableView.endUpdates()
+       
+        tableView.scrollToRow(at: rowIndex, at: .bottom, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedIndex = indexPath
+        cellOpened()
+        
+    }
+    
     
     
     
