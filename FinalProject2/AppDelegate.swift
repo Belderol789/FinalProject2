@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
 //        self.window?.makeKeyAndVisible()
         
-        FIRApp.configure()
+        FirebaseApp.configure()
         return true
     }
 
