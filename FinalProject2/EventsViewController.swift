@@ -9,23 +9,35 @@
 import UIKit
 
 class EventsViewController: UIViewController {
-
+    
+    
     var userToken : String = ""
     var params : [[String:Any]] = [[:]]
+    var firstEvents : [Event] = []
+    var secondEvents : [Event] = []
+    var thirdEvents : [Event] = []
+    var isExpanded : Bool = false
+    var selectedIndex : IndexPath?
     
     var categories : [String] = []
     var categoryIDs : [Int] = []
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
-            
+            tableView.register(StackTableViewCell.cellNib, forCellReuseIdentifier: StackTableViewCell.cellIdentifier)
+            self.tableView.delegate = self
+            self.tableView.dataSource = self
         }
     }
     
-    @IBOutlet weak var segmentedControl: UISegmentedControl! {
-        didSet {
-            
-        }
+    @IBAction func segmentedControlTapped(_ sender: Any) {
+        
+        tableView.reloadData()
+    }
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -60,21 +72,23 @@ class EventsViewController: UIViewController {
                         let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
                         
                         
-                        guard let validJSON = jsonResponse as? [[[String:Any]]] else { return }
+                        guard let validJSON = jsonResponse as? [[String:Any]] else { return }
                         
                         for each in validJSON {
-                            for every in each {
-                                let id = every["id"] as? Int
-                                let name = every["name"] as? String
-                                
+                            
+                            let newEvent = Event(dict: each)
+                            
+                            if newEvent.categoryID == 1 {
+                                self.firstEvents.append(newEvent)
+                            } else if newEvent.categoryID == 2 {
+                                self.secondEvents.append(newEvent)
+                            } else {
+                                self.thirdEvents.append(newEvent)
                             }
                             
                             
-                            //let eventName = each["name"] as? [[String : Any]]
-                            
                             
                         }
-                        //self.claims = validJSON
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
                         }
@@ -92,3 +106,92 @@ class EventsViewController: UIViewController {
     }
     
 }
+
+extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if isExpanded == true && selectedIndex == indexPath {
+            return 320
+        } else {
+            return 75
+        }
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        var numberOfEvents = 0
+        
+        switch (segmentedControl.selectedSegmentIndex) {
+        case 0:
+            numberOfEvents = firstEvents.count
+        case 1:
+            numberOfEvents = secondEvents.count
+        case 2:
+            numberOfEvents = thirdEvents.count
+        default:
+            break
+        }
+        
+        return numberOfEvents
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: StackTableViewCell.cellIdentifier, for: indexPath) as? StackTableViewCell else {return UITableViewCell()}
+        switch (segmentedControl.selectedSegmentIndex) {
+        case 0:
+            let allEvent = firstEvents[indexPath.row]
+            cell.aboutLabel.text = allEvent.eventDesc
+            cell.hostLabel.text = allEvent.eventHost
+            cell.nameLabel.text = allEvent.eventName
+            cell.dateLabel.text = allEvent.eventDate
+            cell.placeLabel.text = allEvent.eventVenue
+            cell.nameLabel.backgroundColor = .blue
+            
+            break
+        case 1:
+            let allEvent = secondEvents[indexPath.row]
+            cell.aboutLabel.text = allEvent.eventDesc
+            cell.hostLabel.text = allEvent.eventHost
+            cell.nameLabel.text = allEvent.eventName
+            cell.dateLabel.text = allEvent.eventDate
+            cell.placeLabel.text = allEvent.eventVenue
+            cell.nameLabel.backgroundColor = .red
+            break
+        case 2:
+            let allEvent = thirdEvents[indexPath.row]
+            cell.aboutLabel.text = allEvent.eventDesc
+            cell.hostLabel.text = allEvent.eventHost
+            cell.nameLabel.text = allEvent.eventName
+            cell.dateLabel.text = allEvent.eventDate
+            cell.placeLabel.text = allEvent.eventVenue
+            cell.nameLabel.backgroundColor = .green
+            
+            break
+        default:
+            break
+        }
+        
+        return cell
+    }
+    
+    func cellOpened() {
+        isExpanded = !isExpanded
+        guard let rowIndex = selectedIndex else {return}
+        tableView.reloadRows(at: [rowIndex], with: .fade)
+        tableView.scrollToRow(at: rowIndex, at: .bottom, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedIndex = indexPath
+        cellOpened()
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+}
+
