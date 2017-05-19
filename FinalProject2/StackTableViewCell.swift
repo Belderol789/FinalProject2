@@ -11,17 +11,51 @@ import UIKit
 class StackTableViewCell: UITableViewCell {
     var cellExist: Bool = false
     
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var placeLabel: UILabel!
-    @IBOutlet weak var hostLabel: UILabel!
-    @IBOutlet weak var aboutLabel: UITextView!
-    @IBOutlet weak var open: UIButton!
+    @IBOutlet weak var dateLabel: UILabel!{
+        didSet{
+            dateLabel.layer.cornerRadius = 10
+            dateLabel.layer.masksToBounds = true
+        }
+    }
+    @IBOutlet weak var placeLabel: UILabel!{
+        didSet{
+            placeLabel.layer.cornerRadius = 10
+            placeLabel.layer.masksToBounds = true
+        }
+    }
+    @IBOutlet weak var hostLabel: UILabel!{
+        didSet{
+            hostLabel.layer.cornerRadius = 10
+            hostLabel.layer.masksToBounds = true
+        }
+    }
+    @IBOutlet weak var aboutLabel: UITextView!{
+        didSet{
+            aboutLabel.layer.cornerRadius = 10
+            aboutLabel.layer.masksToBounds = true
+        }
+    }
+    @IBOutlet weak var open: UIButton!{
+        didSet{
+            open.setTitleColor(.white, for: .normal)
+        }
+    }
     
-    @IBOutlet weak var openView: UIView!
+    @IBOutlet weak var openView: UIView!{
+        didSet{
+            openView.layer.cornerRadius = 10
+            openView.layer.masksToBounds = true
+            openView.layer.borderColor = UIColor.white.cgColor
+            openView.layer.borderWidth = 1
+        }
+    }
     @IBOutlet weak var stuffView: UIView!{
         didSet{
+            stuffView.layer.cornerRadius = 10
+            stuffView.layer.masksToBounds = true
             stuffView.isHidden = true
             stuffView.alpha = 0
+            stuffView.backgroundColor = UIColor.lightGray
         }
     }
     

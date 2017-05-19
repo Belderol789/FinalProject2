@@ -27,6 +27,7 @@ class MainViewController: UIViewController {
     var buttonPressed : Bool = false
     
     var params : [[String:Any]] = [[:]]
+   
     
     @IBOutlet weak var doneButton: UIButton! {
         didSet {
@@ -49,6 +50,8 @@ class MainViewController: UIViewController {
         setupCollectionView()
         self.userToken = UserDefaults.standard.string(forKey: "AUTH_TOKEN")!
         getCategories()
+        
+        
         
     }
     
