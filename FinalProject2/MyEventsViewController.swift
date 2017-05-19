@@ -23,7 +23,6 @@ class MyEventsViewController: UIViewController {
             tableView.separatorStyle = .none
             tableView.delegate = self
             tableView.dataSource = self
-            
         }
     }
     
@@ -41,9 +40,39 @@ class MyEventsViewController: UIViewController {
         }
     }
 
+    @IBOutlet weak var menuViewLeadingSpaceConstraint: NSLayoutConstraint!
+    @IBOutlet weak var menuView: UIView! {
+        didSet {
+            menuView.layer.shadowOpacity = 1
+            menuView.layer.shadowRadius = 4
+        }
+    }
+    
+    @IBOutlet weak var tabBar: UITabBar! {
+        didSet {
+            tabBar.target(forAction: #selector(tabBarTapped), withSender: UITabBar())
+        }
+    }
+    
+    @IBAction func swipeLeft(_ recognizer: UISwipeGestureRecognizer) {
+        switch recognizer.direction {
+        case UISwipeGestureRecognizerDirection.left:
+            NSLog("left swipe")
+            menuBarButtonTapped()
+        default:
+            NSLog("wrong swipe")
+        }
+    }
+    
+    var menuViewShowing = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft(_ :)))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
+        
         addEvents()
     }
 
@@ -51,8 +80,51 @@ class MyEventsViewController: UIViewController {
         
     }
     
+    func tabBarTapped (tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
+        switch item.tag {
+            
+        case 1:
+            let controller = storyboard?.instantiateViewController(withIdentifier: "MyEventsViewController") as! MyEventsViewController
+            present(controller, animated: true, completion: nil)
+        case 2:
+            let controller = storyboard?.instantiateViewController(withIdentifier: "EventsViewController") as! EventsViewController
+            present(controller, animated: true, completion: nil)
+        default:
+            break
+        }
+    }
+    
     func menuBarButtonTapped () {
         
+        if menuViewShowing {
+            menuViewLeadingSpaceConstraint.constant = -270
+            
+            UIView.animate(withDuration: 0.15, animations: {
+                self.view.layoutIfNeeded()
+                self.tableView.frame = self.tableView.frame.applying(CGAffineTransform(translationX: 0, y: 0))
+            })
+            tableView.isUserInteractionEnabled = true
+        }
+        else {
+            menuViewLeadingSpaceConstraint.constant = 0
+            
+            UIView.animate(withDuration: 0.15, animations: {
+                self.view.layoutIfNeeded()
+                self.tableView.frame = self.tableView.frame.applying(CGAffineTransform(translationX: 270, y: 0))
+            })
+            tableView.isUserInteractionEnabled = false
+        }
+        
+        menuViewShowing = !menuViewShowing
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        if menuViewShowing {
+            menuViewLeadingSpaceConstraint.constant = -270
+            tableView.isUserInteractionEnabled = true
+            menuViewShowing = !menuViewShowing
+        }
     }
     
     func addEvents() {
