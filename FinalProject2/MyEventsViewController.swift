@@ -94,8 +94,6 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.cellExist = true
         }
         
-        
-        
         UIView.animate(withDuration: 0) {
             cell.contentView.layoutIfNeeded()
         }
@@ -126,7 +124,6 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
             self.lastCell.animate(duration: 0.2, c: {
                 self.view.layoutIfNeeded()
             })
-            
         }
         self.tableView.endUpdates()
     }
