@@ -19,6 +19,7 @@
 		3D398E281ECD55CE002E7BC7 /* UserInterfaceDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D398E271ECD55CE002E7BC7 /* UserInterfaceDesign.swift */; };
 		3D398E2E1ECD85DE002E7BC7 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D398E2D1ECD85DE002E7BC7 /* CustomTextField.swift */; };
 		3D398E301ECDC96B002E7BC7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D398E2F1ECDC96B002E7BC7 /* GoogleService-Info.plist */; };
+		3D3F37431ECE90E700219D4C /* ButtonImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F37421ECE90E700219D4C /* ButtonImageView.swift */; };
 		524185EF1ECC249C005882E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524185EE1ECC249C005882E0 /* AppDelegate.swift */; };
 		524185F41ECC249C005882E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 524185F21ECC249C005882E0 /* Main.storyboard */; };
 		524185F61ECC249C005882E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 524185F51ECC249C005882E0 /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		3D398E271ECD55CE002E7BC7 /* UserInterfaceDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInterfaceDesign.swift; sourceTree = "<group>"; };
 		3D398E2D1ECD85DE002E7BC7 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		3D398E2F1ECDC96B002E7BC7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3D3F37421ECE90E700219D4C /* ButtonImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonImageView.swift; sourceTree = "<group>"; };
 		524185EB1ECC249C005882E0 /* FinalProject2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProject2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		524185EE1ECC249C005882E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		524185F31ECC249C005882E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 		3D398E221ECC2C73002E7BC7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				3D3F37421ECE90E700219D4C /* ButtonImageView.swift */,
 				3D398E1E1ECC2C5B002E7BC7 /* ListenToAPI.swift */,
 				524186081ECC3012005882E0 /* Events.swift */,
 				5241860A1ECC3926005882E0 /* ChangeColor.swift */,
@@ -325,6 +328,7 @@
 				3D398E1F1ECC2C5B002E7BC7 /* MainViewController.swift in Sources */,
 				3D398E211ECC2C5B002E7BC7 /* ListenToAPI.swift in Sources */,
 				524185EF1ECC249C005882E0 /* AppDelegate.swift in Sources */,
+				3D3F37431ECE90E700219D4C /* ButtonImageView.swift in Sources */,
 				524186071ECC2B01005882E0 /* CustomFlowLayout.swift in Sources */,
 				3D398E2E1ECD85DE002E7BC7 /* CustomTextField.swift in Sources */,
 				3D398E281ECD55CE002E7BC7 /* UserInterfaceDesign.swift in Sources */,

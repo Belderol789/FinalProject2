@@ -64,7 +64,7 @@ class MainViewController: UIViewController {
     
     func getCategories() {
         
-        let url = URL(string: "http://192.168.1.16:3000/api/v1/categories?remember_token=\(self.userToken)")
+        let url = URL(string: "http://192.168.1.116:3000/api/v1/categories?remember_token=\(self.userToken)")
         var urlRequest = URLRequest(url: url!)
         
         urlRequest.httpMethod = "GET"
@@ -121,7 +121,7 @@ class MainViewController: UIViewController {
             let choosenCategories : [Int] =  self.chosenCategoriesIDs
             else { return }
         
-        let url = URL(string: "http://192.168.1.16:3000/api/v1/user_categories?remember_token=\(self.userToken)")
+        let url = URL(string: "http://192.168.1.116:3000/api/v1/user_categories?remember_token=\(self.userToken)")
         var urlRequest = URLRequest(url: url!)
         
         urlRequest.httpMethod = "POST"
@@ -186,11 +186,9 @@ class MainViewController: UIViewController {
                     DispatchQueue.main.async {
                         print("Data sent!")
                     }
-                    
                 }
             }
         }
-        
         dataTask.resume()
     }
 }
@@ -209,11 +207,11 @@ extension MainViewController : UICollectionViewDataSource, UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
-        var categoryImage : [UIImage] = [UserInterfaceDesign.imageOfCanvas4(pressed: buttonPressed), UserInterfaceDesign.imageOfCanvas5(pressed: buttonPressed), UserInterfaceDesign.imageOfCanvas3(pressed: buttonPressed), UserInterfaceDesign.imageOfCanvas6(pressed: buttonPressed), UserInterfaceDesign.imageOfCanvas7(pressed: buttonPressed), UserInterfaceDesign.imageOfCanvas8(pressed: buttonPressed)]
+        var categoryImage : [UIImage] = [UserInterfaceDesign.imageOfFoodCategory(pressed: buttonPressed), UserInterfaceDesign.imageOfSportCategory(pressed: buttonPressed), UserInterfaceDesign.imageOfEntertainmentCategory(pressed: buttonPressed), UserInterfaceDesign.imageOfArtCategory(pressed: buttonPressed), UserInterfaceDesign.imageOfVacationCategory(pressed: buttonPressed), UserInterfaceDesign.imageOfDiscussionCategory(pressed: buttonPressed)]
     
         cell.imageView.image = categoryImage[indexPath.row]
         cell.isUserInteractionEnabled = true
-        
+    
         return cell
         
     }
@@ -223,17 +221,16 @@ extension MainViewController : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell
-        buttonPressed = true
-        cell?.imageView.setNeedsDisplay()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
+        buttonPressed = !buttonPressed
+        cell.imageView.setNeedsDisplay()
         
         if self.chosenCategoriesIDs.count < 3 {
             self.chosenCategoriesIDs.append(categoryIDs[indexPath.row])
-            
         }
         
-        
-        
+        print("Cell tapped")
+        collectionView.reloadItems(at: [indexPath])
     }
 }
 

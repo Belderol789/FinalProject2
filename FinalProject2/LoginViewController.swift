@@ -59,7 +59,7 @@ class LoginViewController: UIViewController {
             let password =  "12345678"
         
         
-        let url = URL(string: "http://192.168.1.16:3000/api/v1/sessions")
+        let url = URL(string: "http://192.168.1.116:3000/api/v1/sessions")
         var urlRequest = URLRequest(url: url!)
         
         urlRequest.httpMethod = "POST"
