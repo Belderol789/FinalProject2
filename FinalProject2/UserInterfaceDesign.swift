@@ -1159,15 +1159,15 @@ public class UserInterfaceDesign : NSObject {
 
     }
 
-    public dynamic class func drawCustomTextField(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 370, height: 40), resizing: ResizingBehavior = .aspectFit, pressed: Bool = true, textFieldText: String = "Default") {
+    public dynamic class func drawCustomTextField(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 349, height: 40), resizing: ResizingBehavior = .aspectFit, pressed: Bool = true, textFieldText: String = "Default") {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()!
         
         //// Resize to Target Frame
         context.saveGState()
-        let resizedFrame: CGRect = resizing.apply(rect: CGRect(x: 0, y: 0, width: 370, height: 40), target: targetFrame)
+        let resizedFrame: CGRect = resizing.apply(rect: CGRect(x: 0, y: 0, width: 349, height: 40), target: targetFrame)
         context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
-        context.scaleBy(x: resizedFrame.width / 370, y: resizedFrame.height / 40)
+        context.scaleBy(x: resizedFrame.width / 349, y: resizedFrame.height / 40)
 
 
         //// Color Declarations
@@ -1176,15 +1176,15 @@ public class UserInterfaceDesign : NSObject {
 
         //// Bezier Drawing
         let bezierPath = UIBezierPath()
-        bezierPath.move(to: CGPoint(x: 9.5, y: 36.5))
-        bezierPath.addLine(to: CGPoint(x: 359.5, y: 36.5))
+        bezierPath.move(to: CGPoint(x: -0.5, y: 36.5))
+        bezierPath.addLine(to: CGPoint(x: 349.5, y: 36.5))
         grey.setStroke()
         bezierPath.lineWidth = 3
         bezierPath.stroke()
 
 
         //// Text Drawing
-        let textRect = CGRect(x: 10, y: 15, width: 105, height: 15)
+        let textRect = CGRect(x: 0, y: 15, width: 105, height: 15)
         let textStyle = NSMutableParagraphStyle()
         textStyle.alignment = .left
         let textFontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 16), NSForegroundColorAttributeName: grey, NSParagraphStyleAttributeName: textStyle]
@@ -1199,22 +1199,22 @@ public class UserInterfaceDesign : NSObject {
         if (pressed) {
             //// Group
             //// Rectangle Drawing
-            let rectanglePath = UIBezierPath(rect: CGRect(x: 10, y: 15, width: 347, height: 24))
+            let rectanglePath = UIBezierPath(rect: CGRect(x: 0, y: 15, width: 347, height: 24))
             white.setFill()
             rectanglePath.fill()
 
 
             //// Bezier 2 Drawing
             let bezier2Path = UIBezierPath()
-            bezier2Path.move(to: CGPoint(x: 9.5, y: 36.5))
-            bezier2Path.addLine(to: CGPoint(x: 359.5, y: 36.5))
+            bezier2Path.move(to: CGPoint(x: -0.5, y: 36.5))
+            bezier2Path.addLine(to: CGPoint(x: 349.5, y: 36.5))
             grey.setStroke()
             bezier2Path.lineWidth = 3
             bezier2Path.stroke()
 
 
             //// Text 2 Drawing
-            let text2Rect = CGRect(x: 10, y: 0, width: 105, height: 15)
+            let text2Rect = CGRect(x: 0, y: 0, width: 105, height: 15)
             let text2Style = NSMutableParagraphStyle()
             text2Style.alignment = .left
             let text2FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: UIFont.smallSystemFontSize), NSForegroundColorAttributeName: grey, NSParagraphStyleAttributeName: text2Style]
@@ -1988,7 +1988,7 @@ public class UserInterfaceDesign : NSObject {
     }
 
     public dynamic class func imageOfCustomTextField(pressed: Bool = true, textFieldText: String = "Default") -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: 370, height: 40), false, 0)
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 349, height: 40), false, 0)
             UserInterfaceDesign.drawCustomTextField(pressed: pressed, textFieldText: textFieldText)
 
         let imageOfCustomTextField = UIGraphicsGetImageFromCurrentImageContext()!
