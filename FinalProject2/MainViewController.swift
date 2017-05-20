@@ -36,6 +36,9 @@ class MainViewController: UIViewController {
     @IBOutlet weak var doneButton: UIButton! {
         didSet {
             doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
+            doneButton.layer.masksToBounds = true
+            doneButton.layer.cornerRadius = 20
+            
         }
     }
     
@@ -50,7 +53,6 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupCollectionView()
         self.userToken = UserDefaults.standard.string(forKey: "AUTH_TOKEN")!
         getCategories()
@@ -103,6 +105,11 @@ class MainViewController: UIViewController {
                         }
                         //self.claims = validJSON
                         DispatchQueue.main.async {
+                            if self.categories.count == 3 {
+                                UIView.animate(withDuration: 0.3, animations: {
+                                    self.doneButton.alpha = 1
+                                })
+                            }
                             self.collectionView.reloadData()
                         }
                         

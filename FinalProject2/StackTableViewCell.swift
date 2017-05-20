@@ -11,6 +11,10 @@ import UIKit
 class StackTableViewCell: UITableViewCell {
     var cellExist: Bool = false
     
+    @IBOutlet weak var labelPlace: UILabel!
+    @IBOutlet weak var labelDateAndTime: UILabel!
+    @IBOutlet weak var labelHostedBy: UILabel!
+    
     @IBOutlet weak var dateLabel: UILabel!{
         didSet{
             dateLabel.layer.cornerRadius = 10
@@ -29,17 +33,31 @@ class StackTableViewCell: UITableViewCell {
             hostLabel.layer.masksToBounds = true
         }
     }
-    @IBOutlet weak var aboutLabel: UITextView!{
+    @IBOutlet weak var aboutTextView: UITextView!{
         didSet{
-            aboutLabel.layer.cornerRadius = 10
-            aboutLabel.layer.masksToBounds = true
+            aboutTextView.layer.cornerRadius = 10
+            aboutTextView.layer.masksToBounds = true
+        }
+    }
+    @IBOutlet weak var titleView: UIView!
+    @IBOutlet weak var profileImageView: UIImageView!{
+        didSet {
+            profileImageView.layer.cornerRadius = profileImageView.frame.width/2
+            profileImageView.layer.masksToBounds = true
+        }
+    }
+    
+    @IBOutlet weak var iconImageView: UIImageView!{
+        didSet{
+            iconImageView.layer.cornerRadius = iconImageView.frame.width/2
+            iconImageView.layer.masksToBounds = true
         }
     }
    
+    @IBOutlet weak var detailView: UIView!
+    
     @IBOutlet weak var nameLabel: UILabel!{
         didSet{
-            nameLabel.layer.cornerRadius = 10
-            nameLabel.layer.masksToBounds = true
             nameLabel.textColor = .white
         }
     }
