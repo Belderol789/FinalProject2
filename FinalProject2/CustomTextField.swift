@@ -13,45 +13,55 @@ class CustomTextField: UITextField {
     
     var placeholderText = "default"
     var isPressed = false
+    var keyboardYLocation = CGFloat()
+    var textFieldYLocation = CGFloat()
+    var yTransformation = CGFloat()
+    
+    var superviewWentUp = false
     
     override func awakeFromNib() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardShown), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         self.delegate = self
     }
-
+    
     override func draw(_ rect: CGRect) {
-//        UserInterfaceDesign.drawTextField(frame: self.bounds, resizing: .stretch, pressed: isPressed, textFieldText: placeholderText, textFieldWidth: 343)
+        UserInterfaceDesign.drawCustomTextField(frame: self.bounds, resizing: .aspectFit, pressed: isPressed, textFieldText: placeholderText)
     }
-
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         isPressed = true
         self.setNeedsDisplay()
     }
     
-    func moveTextField (_ textField : UITextField, moveDistance : Int, up : Bool) {
-        let moveDuration = 0.3
-        let movement : CGFloat = CGFloat( up ? moveDistance : -moveDistance)
+    func keyboardShown(notification: NSNotification, textField: UITextField) {
+        let info = notification.userInfo!
+        let keyboardFrame = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        UIView.beginAnimations("animateTextField", context: nil)
-        UIView.setAnimationBeginsFromCurrentState(true)
-        UIView.setAnimationDuration(moveDuration)
-        self.frame = self.frame.offsetBy(dx: 0, dy: movement)
-        UIView.commitAnimations()
+        keyboardYLocation = keyboardFrame.origin.y
+        textFieldYLocation = textField.frame.origin.y
+        yTransformation = keyboardYLocation - textFieldYLocation - 60 //height of textField is 55
+        
+        if textFieldYLocation > keyboardYLocation {
+            superview?.frame = (superview?.frame.applying(CGAffineTransform(translationX: 0, y: yTransformation)))!
+            superviewWentUp = !superviewWentUp
+        }
     }
 }
 
 extension CustomTextField: UITextFieldDelegate {
-   
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         superview?.endEditing(true)
         return false
     }
-        
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        moveTextField(textField, moveDistance: -250, up: true)
-    }
-        
+    
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
-        moveTextField(textField, moveDistance: -250, up: false)
+        
+        if superviewWentUp {
+            superview?.frame = (superview?.frame.applying(CGAffineTransform(translationX: 0, y: -(yTransformation))))!
+            superviewWentUp = !superviewWentUp
+        }
+        
         if textField.text == "" {
             isPressed = false
             self.setNeedsDisplay()

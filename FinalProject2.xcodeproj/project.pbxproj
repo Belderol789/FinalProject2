@@ -21,6 +21,9 @@
 		3D398E301ECDC96B002E7BC7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D398E2F1ECDC96B002E7BC7 /* GoogleService-Info.plist */; };
 		3D3F37451ECEADCF00219D4C /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F37441ECEADCF00219D4C /* Models.swift */; };
 		3D3F37471ECEDA5B00219D4C /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F37461ECEDA5B00219D4C /* AddEventViewController.swift */; };
+		3D3F37491ECF1AFA00219D4C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3F37481ECF1AFA00219D4C /* MapKit.framework */; };
+		3D3F374B1ECF1B0800219D4C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3F374A1ECF1B0800219D4C /* CoreLocation.framework */; };
+		3D3F374D1ECF1C1500219D4C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F374C1ECF1C1500219D4C /* MapViewController.swift */; };
 		524185EF1ECC249C005882E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524185EE1ECC249C005882E0 /* AppDelegate.swift */; };
 		524185F41ECC249C005882E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 524185F21ECC249C005882E0 /* Main.storyboard */; };
 		524185F61ECC249C005882E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 524185F51ECC249C005882E0 /* Assets.xcassets */; };
@@ -51,6 +54,9 @@
 		3D398E2F1ECDC96B002E7BC7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D3F37441ECEADCF00219D4C /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		3D3F37461ECEDA5B00219D4C /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		3D3F37481ECF1AFA00219D4C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		3D3F374A1ECF1B0800219D4C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3D3F374C1ECF1C1500219D4C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		524185EB1ECC249C005882E0 /* FinalProject2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProject2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		524185EE1ECC249C005882E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		524185F31ECC249C005882E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -75,6 +81,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D3F374B1ECF1B0800219D4C /* CoreLocation.framework in Frameworks */,
+				3D3F37491ECF1AFA00219D4C /* MapKit.framework in Frameworks */,
 				D59B8864260E96709567AF9C /* Pods_FinalProject2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +93,8 @@
 		340114CEED1341BAC53CADD5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3D3F374A1ECF1B0800219D4C /* CoreLocation.framework */,
+				3D3F37481ECF1AFA00219D4C /* MapKit.framework */,
 				9BDDCAB651D9C4262747EB9E /* Pods_FinalProject2.framework */,
 			);
 			name = Frameworks;
@@ -160,6 +170,7 @@
 		524186011ECC2A8A005882E0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3D3F374C1ECF1C1500219D4C /* MapViewController.swift */,
 				3D398E231ECC385E002E7BC7 /* MyEventsViewController.swift */,
 				3D3F37461ECEDA5B00219D4C /* AddEventViewController.swift */,
 				3D398E251ECC3879002E7BC7 /* EventsViewController.swift */,
@@ -335,6 +346,7 @@
 				524186071ECC2B01005882E0 /* CustomFlowLayout.swift in Sources */,
 				3D398E2E1ECD85DE002E7BC7 /* CustomTextField.swift in Sources */,
 				3D398E281ECD55CE002E7BC7 /* UserInterfaceDesign.swift in Sources */,
+				3D3F374D1ECF1C1500219D4C /* MapViewController.swift in Sources */,
 				3D3F37471ECEDA5B00219D4C /* AddEventViewController.swift in Sources */,
 				3D398E241ECC385E002E7BC7 /* MyEventsViewController.swift in Sources */,
 				3D398E201ECC2C5B002E7BC7 /* LoginViewController.swift in Sources */,
