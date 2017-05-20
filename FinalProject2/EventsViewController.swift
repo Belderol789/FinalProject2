@@ -16,6 +16,8 @@ class EventsViewController: UIViewController {
     var firstEvents : [Event] = []
     var secondEvents : [Event] = []
     var thirdEvents : [Event] = []
+    var fourthEvents : [Event] = []
+    var eventID : Int = 0
     var isExpanded : Bool = false
     var selectedIndex : IndexPath?
     
@@ -95,15 +97,15 @@ class EventsViewController: UIViewController {
                             
                             let newEvent = Event(dict: each)
                             
-                            if newEvent.categoryID == 1 {
+                            if newEvent.categoryID == self.categoryIDs[0] {
                                 self.firstEvents.append(newEvent)
-                            } else if newEvent.categoryID == 2 {
+                            } else if newEvent.categoryID == self.categoryIDs[1] {
                                 self.secondEvents.append(newEvent)
                             } else {
                                 self.thirdEvents.append(newEvent)
                             }
                             
-                            
+                            self.eventID = newEvent.categoryID
                             
                         }
                         DispatchQueue.main.async {
@@ -137,11 +139,11 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
         var numberOfEvents = 0
         
         switch (segmentedControl.selectedSegmentIndex) {
-        case 0:
-            numberOfEvents = firstEvents.count
         case 1:
-            numberOfEvents = secondEvents.count
+           numberOfEvents = firstEvents.count
         case 2:
+            numberOfEvents = secondEvents.count
+        case 3:
             numberOfEvents = thirdEvents.count
         default:
             break
@@ -153,6 +155,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StackTableViewCell.cellIdentifier, for: indexPath) as? StackTableViewCell else {return UITableViewCell()}
+        
         switch (segmentedControl.selectedSegmentIndex) {
         case 0:
             let allEvent = firstEvents[indexPath.row]
@@ -161,7 +164,9 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.nameLabel.text = allEvent.eventName
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
-            cell.nameLabel.backgroundColor = .blue
+            cell.detailView.backgroundColor = UserInterfaceDesign.artCategory
+            cell.titleView.backgroundColor = UserInterfaceDesign.artCategory
+            cell.iconImageView.image = allEvent.categoryLogo
             
             break
         case 1:
@@ -169,18 +174,22 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.aboutTextView.text = allEvent.eventDesc
             cell.hostLabel.text = allEvent.eventHost
             cell.nameLabel.text = allEvent.eventName
+            cell.titleView.backgroundColor = UserInterfaceDesign.discussionCategory
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
-            cell.nameLabel.backgroundColor = .red
+            cell.detailView.backgroundColor = UserInterfaceDesign.discussionCategory
+            cell.iconImageView.image = allEvent.categoryLogo
             break
         case 2:
             let allEvent = thirdEvents[indexPath.row]
             cell.aboutTextView.text = allEvent.eventDesc
             cell.hostLabel.text = allEvent.eventHost
             cell.nameLabel.text = allEvent.eventName
+            cell.titleView.backgroundColor = UserInterfaceDesign.foodCategory
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
-            cell.nameLabel.backgroundColor = .green
+            cell.detailView.backgroundColor = UserInterfaceDesign.foodCategory
+            cell.iconImageView.image = allEvent.categoryLogo
             
             break
         default:

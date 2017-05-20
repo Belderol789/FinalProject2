@@ -196,11 +196,19 @@ class MainViewController: UIViewController {
                     
                     DispatchQueue.main.async {
                         print("Data sent!")
+                        self.goToEventsPage()
                     }
                 }
             }
         }
         dataTask.resume()
+    }
+    
+    func goToEventsPage() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let eventsPage = storyboard.instantiateViewController(withIdentifier: "MyEventsViewController") as! MyEventsViewController
+        eventsPage.arrayOfCategories = chosenCategoriesIDs
+        present(eventsPage, animated: true, completion: nil)
     }
 }
 
@@ -218,7 +226,7 @@ extension MainViewController : UICollectionViewDataSource, UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
-        var categoryImage : [UIImage] = [UserInterfaceDesign.imageOfFoodCategory(pressed: button1Pressed), UserInterfaceDesign.imageOfSportCategory(pressed: button2Pressed), UserInterfaceDesign.imageOfEntertainmentCategory(pressed: button3Pressed), UserInterfaceDesign.imageOfArtCategory(pressed: button4Pressed), UserInterfaceDesign.imageOfVacationCategory(pressed: button5Pressed), UserInterfaceDesign.imageOfDiscussionCategory(pressed: button6Pressed)]
+        var categoryImage : [UIImage] = [UserInterfaceDesign.imageOfFoodCategory(pressed: button1Pressed), UserInterfaceDesign.imageOfSportCategory(pressed: button2Pressed), UserInterfaceDesign.imageOfEntertainmentCategory(pressed: button3Pressed), UserInterfaceDesign.imageOfDiscussionCategory(pressed: button4Pressed), UserInterfaceDesign.imageOfVacationCategory(pressed: button5Pressed), UserInterfaceDesign.imageOfArtCategory(pressed: button6Pressed)]
     
         cell.imageView.image = categoryImage[indexPath.row]
         cell.isUserInteractionEnabled = true
