@@ -45,14 +45,12 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="187.5" id="GEK-ao-lOx"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ds1-Ee-JM6">
                                 <rect key="frame" x="187.5" y="617" width="187.5" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="187.5" id="tBo-85-dRG"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
                             </button>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u8j-CW-PCZ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
@@ -152,14 +150,12 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="187.5" id="Qog-Ke-r5b"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zge-OW-TSe">
                                 <rect key="frame" x="187.5" y="617" width="187.5" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="187.5" id="ksv-cs-RnX"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
                             </button>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ejp-Vu-st0">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
@@ -210,7 +206,7 @@
                         </view>
                     </navigationItem>
                     <connections>
-                        <outlet property="EventsBarButton" destination="zge-OW-TSe" id="hN7-mm-qmh"/>
+                        <outlet property="eventsBarButton" destination="zge-OW-TSe" id="f6s-fa-O3x"/>
                         <outlet property="myEventsBarButton" destination="05u-Nt-zBN" id="eIT-dk-seX"/>
                         <outlet property="segmentedControl" destination="koW-Aw-HHH" id="vYH-hl-i5C"/>
                         <outlet property="tableView" destination="PNE-6H-M4M" id="7de-KK-aCT"/>

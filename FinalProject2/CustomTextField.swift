@@ -39,7 +39,7 @@ class CustomTextField: UITextField {
         
         keyboardYLocation = keyboardFrame.origin.y
         textFieldYLocation = textField.frame.origin.y
-        yTransformation = keyboardYLocation - textFieldYLocation - 60 //height of textField is 55
+        yTransformation = keyboardYLocation - textFieldYLocation - 45 //height of textField is 40
         
         if textFieldYLocation > keyboardYLocation {
             superview?.frame = (superview?.frame.applying(CGAffineTransform(translationX: 0, y: yTransformation)))!

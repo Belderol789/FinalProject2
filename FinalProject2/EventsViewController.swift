@@ -38,13 +38,14 @@ class EventsViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var myEventsBarButton: UIButton! {
         didSet {
+            myEventsBarButton.setBackgroundImage(UserInterfaceDesign.imageOfMyEvents(pressed: false), for: .normal)
             myEventsBarButton.addTarget(self, action: #selector(myEventsBarButtonTapped), for: .touchUpInside)
         }
     }
     
-    @IBOutlet weak var EventsBarButton: UIButton! {
+    @IBOutlet weak var eventsBarButton: UIButton! {
         didSet {
-            
+            eventsBarButton.setBackgroundImage(UserInterfaceDesign.imageOfEvents(pressed: true), for: .normal)
         }
     }
     
@@ -60,8 +61,7 @@ class EventsViewController: UIViewController {
     }
     
     func myEventsBarButtonTapped () {
-        let controller = storyboard?.instantiateViewController(withIdentifier: "MyEventsViewController") as? MyEventsViewController
-        present(controller!, animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     func getMyCategories() {

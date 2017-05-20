@@ -66,12 +66,13 @@ class MyEventsViewController: UIViewController {
     
     @IBOutlet weak var myEventsBarButton: UIButton! {
         didSet {
-            
+            myEventsBarButton.setBackgroundImage(UserInterfaceDesign.imageOfMyEvents(pressed: true), for: .normal)
         }
     }
     
     @IBOutlet weak var eventsBarButton: UIButton! {
         didSet {
+            eventsBarButton.setBackgroundImage(UserInterfaceDesign.imageOfEvents(pressed: false), for: .normal)
             eventsBarButton.addTarget(self, action: #selector(eventsBarButtonTapped), for: .touchUpInside)
         }
     }
@@ -87,13 +88,8 @@ class MyEventsViewController: UIViewController {
     }
     
     func eventsBarButtonTapped () {
-//        if superclass == EventsViewController() {
-//            dismiss(animated: true, completion: nil)
-//        }
-//        else {
             let controller = storyboard?.instantiateViewController(withIdentifier: "EventsViewController") as? EventsViewController
             present(controller!, animated: true, completion: nil)
-//        }
     }
     
     func swipeRecognizer () {
