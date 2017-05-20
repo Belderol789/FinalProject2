@@ -25,7 +25,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var passwordTextField: CustomTextField! {
         didSet {
-            emailTextField.placeholderText = "Password"
+            passwordTextField.placeholderText = "Password"
         }
     }
     
