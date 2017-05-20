@@ -64,7 +64,6 @@ class MainViewController: UIViewController {
     func setupCollectionView() {
         collectionViewLayout = CustomImageFlowLayout()
         collectionView.collectionViewLayout = collectionViewLayout
-        collectionView.backgroundColor = .white
         
     }
     
@@ -241,10 +240,16 @@ extension MainViewController : UICollectionViewDataSource, UICollectionViewDeleg
 extension MainViewController : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.doneButton.alpha = 1
-            
-        })
+        
+        if self.chosenCategoriesIDs.count > 0 {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.doneButton.alpha = 1
+            })
+        } else {
+            self.doneButton.alpha = 0
+        }
+        
+        
         
         switch indexPath.row {
         case 0 : button1Pressed = !button1Pressed
