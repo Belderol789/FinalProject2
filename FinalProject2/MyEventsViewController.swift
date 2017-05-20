@@ -12,6 +12,7 @@ import UIKit
 class MyEventsViewController: UIViewController {
     
     var events : [Event] = []
+    var arrayOfCategories : [Int] = []
     var selectedIndex : IndexPath?
     var isExpanded : Bool = false
     
@@ -89,6 +90,7 @@ class MyEventsViewController: UIViewController {
     
     func eventsBarButtonTapped () {
             let controller = storyboard?.instantiateViewController(withIdentifier: "EventsViewController") as? EventsViewController
+            controller?.categoryIDs = self.arrayOfCategories
             present(controller!, animated: true, completion: nil)
     }
     
