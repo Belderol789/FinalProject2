@@ -17,8 +17,18 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var mascotIcon: UIImageView! 
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var emailTextField: CustomTextField! {
+        didSet {
+            emailTextField.placeholderText = "Email"
+        }
+    }
+    
+    @IBOutlet weak var passwordTextField: CustomTextField! {
+        didSet {
+            emailTextField.placeholderText = "Password"
+        }
+    }
+    
     @IBOutlet weak var loginButton: UIButton! {
         didSet {
             loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
