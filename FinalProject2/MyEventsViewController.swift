@@ -70,10 +70,9 @@ class MyEventsViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var EventsBarButton: UIButton! {
+    @IBOutlet weak var eventsBarButton: UIButton! {
         didSet {
-            let controller = storyboard?.instantiateViewController(withIdentifier: "EventsViewController") as? EventsViewController
-            present(controller!, animated: true, completion: nil)
+            eventsBarButton.addTarget(self, action: #selector(eventsBarButtonTapped), for: .touchUpInside)
         }
     }
     
@@ -85,6 +84,11 @@ class MyEventsViewController: UIViewController {
         
         swipeRecognizer()
         addEvents()
+    }
+    
+    func eventsBarButtonTapped () {
+        let controller = storyboard?.instantiateViewController(withIdentifier: "EventsViewController") as? EventsViewController
+        present(controller!, animated: true, completion: nil)
     }
     
     func swipeRecognizer () {

@@ -76,9 +76,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <outlet property="mapView" destination="HT2-ng-Mzt" id="oQy-6B-Zyb"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2LI-Ne-z9g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

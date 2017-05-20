@@ -38,8 +38,7 @@ class EventsViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var myEventsBarButton: UIButton! {
         didSet {
-            let controller = storyboard?.instantiateViewController(withIdentifier: "MyEventsViewController") as? MyEventsViewController
-            present(controller!, animated: true, completion: nil)
+            myEventsBarButton.addTarget(self, action: #selector(myEventsBarButtonTapped), for: .touchUpInside)
         }
     }
     
@@ -58,6 +57,11 @@ class EventsViewController: UIViewController {
         
         self.userToken = UserDefaults.standard.string(forKey: "AUTH_TOKEN")!
         getMyCategories()
+    }
+    
+    func myEventsBarButtonTapped () {
+        let controller = storyboard?.instantiateViewController(withIdentifier: "MyEventsViewController") as? MyEventsViewController
+        present(controller!, animated: true, completion: nil)
     }
     
     func getMyCategories() {
