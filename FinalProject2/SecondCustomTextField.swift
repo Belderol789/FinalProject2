@@ -1,15 +1,15 @@
 //
-//  customTextField.swift
-//  TryPaintCode
+//  SecondCustomTextField.swift
+//  FinalProject2
 //
-//  Created by Obiet Panggrahito on 14/05/2017.
-//  Copyright © 2017 Obiet Panggrahito. All rights reserved.
+//  Created by Obiet Panggrahito on 20/05/2017.
+//  Copyright © 2017 Burst. All rights reserved.
 //
 
 import UIKit
 
 @IBDesignable
-class CustomTextField: UITextField {
+class SecondCustomTextField: UITextField {
     
     var placeholderText = "default"
     var isPressed = false
@@ -48,7 +48,7 @@ class CustomTextField: UITextField {
     }
 }
 
-extension CustomTextField: UITextFieldDelegate {
+extension SecondCustomTextField: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         superview?.endEditing(true)
