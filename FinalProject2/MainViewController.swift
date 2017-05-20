@@ -14,7 +14,7 @@ class MainViewController: UIViewController {
     var userToken : String = ""
     var category : String = ""
     var categoryID : Int = 0
-
+    
     var categories : [String] = []
     var categoryIDs : [Int] = []
     var chosenCategoriesIDs : [Int] = []
@@ -22,7 +22,7 @@ class MainViewController: UIViewController {
     var backgroundColors : [UIColor] = [UIColor.red,UIColor.blue, UIColor.green, UIColor.yellow, UIColor.orange, UIColor.purple ]
     var collectionViewLayout: CustomImageFlowLayout!
     var chosenCategories : [String] = []
-
+    
     var button1Pressed : Bool = false
     var button2Pressed : Bool = false
     var button3Pressed : Bool = false
@@ -31,7 +31,7 @@ class MainViewController: UIViewController {
     var button6Pressed : Bool = false
     
     var params : [[String:Any]] = [[:]]
-   
+    
     
     @IBOutlet weak var doneButton: UIButton! {
         didSet {
@@ -105,11 +105,7 @@ class MainViewController: UIViewController {
                         }
                         //self.claims = validJSON
                         DispatchQueue.main.async {
-                            if self.categories.count == 3 {
-                                UIView.animate(withDuration: 0.3, animations: {
-                                    self.doneButton.alpha = 1
-                                })
-                            }
+                            
                             self.collectionView.reloadData()
                         }
                         
@@ -122,7 +118,7 @@ class MainViewController: UIViewController {
         }
         
         dataTask.resume()
-       
+        
     }
     
     
@@ -143,22 +139,29 @@ class MainViewController: UIViewController {
             print("choose up to 3 categories")
         }
         else if choosenCategories.count == 1 {
+            
+          
+            
             self.params = [
                 ["category_id" : choosenCategories[0],
                  "user_id" : UserDefaults.standard.value(forKey: "USER_ID") ?? 0]
             ]
+            UserDefaults.standard.setValue(choosenCategories, forKey: "CATEGORY_ID")
         }
         else if choosenCategories.count == 2 {
+            
             self.params = [
                 ["category_id" : choosenCategories[0],
                  "user_id" : UserDefaults.standard.value(forKey: "USER_ID") ?? 0],
                 ["category_id" : choosenCategories[1],
                  "user_id" : UserDefaults.standard.value(forKey: "USER_ID") ?? 0]
             ]
+            UserDefaults.standard.setValue(choosenCategories, forKey: "CATEGORY_ID")
         }
         else {
+            
             self.params = [
-
+                
                 ["category_id" : choosenCategories[0],
                  "user_id" : UserDefaults.standard.value(forKey: "USER_ID") ?? 0],
                 ["category_id" : choosenCategories[1],
@@ -166,6 +169,7 @@ class MainViewController: UIViewController {
                 ["category_id" : choosenCategories[2],
                  "user_id" : UserDefaults.standard.value(forKey: "USER_ID") ?? 0]
             ]
+            UserDefaults.standard.setValue(choosenCategories, forKey: "CATEGORY_ID")
         }
         
         var data: Data?
@@ -190,13 +194,17 @@ class MainViewController: UIViewController {
             
             
             if let httpResponse = response as? HTTPURLResponse {
+                print(httpResponse.statusCode)
                 
-                if httpResponse.statusCode == 200 {
-                
+                if httpResponse.statusCode == 200 || httpResponse.statusCode == 204 {
                     
                     DispatchQueue.main.async {
                         print("Data sent!")
-                        self.goToEventsPage()
+                        
+                        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                        let eventsPage = storyboard.instantiateViewController(withIdentifier: "MyEventsViewController") as! MyEventsViewController
+                        eventsPage.arrayOfCategories = choosenCategories
+                        self.present(eventsPage, animated: true, completion: nil)
                     }
                 }
             }
@@ -204,12 +212,6 @@ class MainViewController: UIViewController {
         dataTask.resume()
     }
     
-    func goToEventsPage() {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let eventsPage = storyboard.instantiateViewController(withIdentifier: "MyEventsViewController") as! MyEventsViewController
-        eventsPage.arrayOfCategories = chosenCategoriesIDs
-        present(eventsPage, animated: true, completion: nil)
-    }
 }
 
 extension MainViewController : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -227,10 +229,10 @@ extension MainViewController : UICollectionViewDataSource, UICollectionViewDeleg
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
         var categoryImage : [UIImage] = [UserInterfaceDesign.imageOfFoodCategory(pressed: button1Pressed), UserInterfaceDesign.imageOfSportCategory(pressed: button2Pressed), UserInterfaceDesign.imageOfEntertainmentCategory(pressed: button3Pressed), UserInterfaceDesign.imageOfDiscussionCategory(pressed: button4Pressed), UserInterfaceDesign.imageOfVacationCategory(pressed: button5Pressed), UserInterfaceDesign.imageOfArtCategory(pressed: button6Pressed)]
-    
+        
         cell.imageView.image = categoryImage[indexPath.row]
         cell.isUserInteractionEnabled = true
-    
+        
         return cell
         
     }
@@ -239,6 +241,10 @@ extension MainViewController : UICollectionViewDataSource, UICollectionViewDeleg
 extension MainViewController : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.doneButton.alpha = 1
+            
+        })
         
         switch indexPath.row {
         case 0 : button1Pressed = !button1Pressed
