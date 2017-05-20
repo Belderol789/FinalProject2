@@ -8,13 +8,8 @@ target 'FinalProject2' do
   # Pods for FinalProject2
 
 pod 'Firebase/Core'
-    pod 'Firebase/Database'
-    pod 'Firebase/Auth'
-    pod 'Firebase/Storage'
-    pod 'GoogleSignIn'
-    pod 'FBSDKCoreKit'
-    pod 'FBSDKLoginKit'
-    pod 'FBSDKShareKit'
+pod 'Firebase/Storage'
+
 
 
 end
