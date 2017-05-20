@@ -188,6 +188,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
             
             
             if let httpResponse = response as? HTTPURLResponse {
+                print("Login:\(httpResponse.statusCode)")
                 
                 if httpResponse.statusCode == 200 {
                     

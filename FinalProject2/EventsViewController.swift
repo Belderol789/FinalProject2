@@ -85,6 +85,7 @@ class EventsViewController: UIViewController {
             
             
             if let httpResponse = response as? HTTPURLResponse {
+                print("EventsVC:\(httpResponse.statusCode)")
                 
                 if httpResponse.statusCode == 200 {
                     do {
@@ -139,11 +140,11 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
         var numberOfEvents = 0
         
         switch (segmentedControl.selectedSegmentIndex) {
-        case 1:
+        case 0:
            numberOfEvents = firstEvents.count
-        case 2:
+        case 1:
             numberOfEvents = secondEvents.count
-        case 3:
+        case 2:
             numberOfEvents = thirdEvents.count
         default:
             break
@@ -162,6 +163,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.aboutTextView.text = allEvent.eventDesc
             cell.hostLabel.text = allEvent.eventHost
             cell.nameLabel.text = allEvent.eventName
+            cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
             cell.detailView.backgroundColor = UserInterfaceDesign.artCategory
@@ -175,6 +177,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.hostLabel.text = allEvent.eventHost
             cell.nameLabel.text = allEvent.eventName
             cell.titleView.backgroundColor = UserInterfaceDesign.discussionCategory
+            cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
             cell.detailView.backgroundColor = UserInterfaceDesign.discussionCategory
@@ -186,6 +189,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.hostLabel.text = allEvent.eventHost
             cell.nameLabel.text = allEvent.eventName
             cell.titleView.backgroundColor = UserInterfaceDesign.foodCategory
+            cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
             cell.detailView.backgroundColor = UserInterfaceDesign.foodCategory
@@ -200,13 +204,24 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func cellOpened() {
-        isExpanded = !isExpanded
         guard let rowIndex = selectedIndex else {return}
         tableView.reloadRows(at: [rowIndex], with: .fade)
         tableView.scrollToRow(at: rowIndex, at: .bottom, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        isExpanded = !isExpanded
+        let cell = tableView.dequeueReusableCell(withIdentifier: StackTableViewCell.cellIdentifier, for: indexPath) as! StackTableViewCell
+        if isExpanded == true {
+            UIView.animate(withDuration: 0.3, animations: {
+                cell.detailView.alpha = 0.95
+            })
+        } else {
+            UIView.animate(withDuration: 0.3, animations: {
+                cell.detailView.alpha = 0
+            })
+        }
         self.selectedIndex = indexPath
         cellOpened()
         

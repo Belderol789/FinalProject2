@@ -160,7 +160,21 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ejp-Vu-st0">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                 <items>
-                                    <navigationItem title="Events" id="RLs-ab-7IF"/>
+                                    <navigationItem id="RLs-ab-7IF">
+                                        <nil key="title"/>
+                                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="koW-Aw-HHH">
+                                            <rect key="frame" x="49" y="28" width="278" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="Category1"/>
+                                                <segment title="Category2"/>
+                                                <segment title="Category3"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="segmentedControlTapped:" destination="9Q1-rr-fu4" eventType="valueChanged" id="lVJ-ml-5OU"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -185,25 +199,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="kJx-9R-Jfp">
                         <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="83m-hv-XQm">
-                            <rect key="frame" x="48.5" y="5.5" width="278" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="koW-Aw-HHH">
-                                    <rect key="frame" x="0.0" y="3" width="278" height="29"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <segments>
-                                        <segment title="Category1"/>
-                                        <segment title="Category2"/>
-                                        <segment title="Category3"/>
-                                    </segments>
-                                    <connections>
-                                        <action selector="segmentedControlTapped:" destination="9Q1-rr-fu4" eventType="valueChanged" id="lVJ-ml-5OU"/>
-                                    </connections>
-                                </segmentedControl>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
                     </navigationItem>
                     <connections>
                         <outlet property="eventsBarButton" destination="zge-OW-TSe" id="f6s-fa-O3x"/>
@@ -237,7 +232,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="pageIndicatorTintColor" red="0.87058823529999996" green="0.20784313730000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                             </pageControl>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please enter your Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fU6-gB-jUx">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fU6-gB-jUx" customClass="CustomTextField" customModule="FinalProject2" customModuleProvider="target">
                                 <rect key="frame" x="16" y="503" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
@@ -253,7 +248,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your company Email here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="99n-Wr-mVH">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="99n-Wr-mVH" customClass="CustomTextField" customModule="FinalProject2" customModuleProvider="target">
                                 <rect key="frame" x="16" y="465" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>

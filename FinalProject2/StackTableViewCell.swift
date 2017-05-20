@@ -13,7 +13,7 @@ class StackTableViewCell: UITableViewCell {
     
     @IBOutlet weak var labelPlace: UILabel!
     @IBOutlet weak var labelDateAndTime: UILabel!
-    @IBOutlet weak var labelHostedBy: UILabel!
+    
     
     @IBOutlet weak var dateLabel: UILabel!{
         didSet{
@@ -76,21 +76,21 @@ class StackTableViewCell: UITableViewCell {
         
     }
     
-//    func animate(duration:Double, c: @escaping () -> Void) {
-//        UIView.animateKeyframes(withDuration: duration, delay: 0, options: .calculationModePaced, animations: {
-//            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: duration, animations: {
-//                
-//                self.stuffView.isHidden = !self.stuffView.isHidden
-//                if self.stuffView.alpha == 1 {
-//                    self.stuffView.alpha = 0.5
-//                } else {
-//                    self.stuffView.alpha = 1
-//                }
-//                
-//            })
-//        }, completion: {  (finished: Bool) in
-//            print("animation complete")
-//            c()
-//        })
-//    }
+    func stringToDate(_ date: String) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-mm-yyyy"
+        guard let date = dateFormatter.date(from: date) else {return}
+        print(date)
+        
+        dateToString(date)
+    }
+    
+    func dateToString(_ date: Date) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM dd, yyyy"
+        let newDate = dateFormatter.string(from: date)
+        print(newDate)
+    }
+    
+
 }

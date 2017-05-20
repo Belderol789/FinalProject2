@@ -169,38 +169,39 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
         cell.hostLabel.text = event.eventHost
         cell.nameLabel.text = event.eventName
         cell.titleView.backgroundColor = event.eventColor
+        cell.stringToDate(event.eventDate)
         cell.dateLabel.text = event.eventDate
         cell.placeLabel.text = event.eventVenue
         cell.detailView.backgroundColor = event.eventColor
         cell.iconImageView.image = event.categoryLogo
         
- 
-        
-        
-//        UIView.animate(withDuration: 0.3) {
-//            cell.contentView.layoutIfNeeded()
-//        }
         
         return cell
     }
     
     func cellOpened() {
-        isExpanded = !isExpanded
         guard let rowIndex = selectedIndex else {return}
         tableView.reloadRows(at: [rowIndex], with: .fade)
-        
-        
-        
         tableView.scrollToRow(at: rowIndex, at: .bottom, animated: true)
+       
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        isExpanded = !isExpanded
+        let cell = tableView.dequeueReusableCell(withIdentifier: StackTableViewCell.cellIdentifier, for: indexPath) as! StackTableViewCell
+        if isExpanded == true {
+            UIView.animate(withDuration: 0.3, animations: {
+                cell.detailView.alpha = 0.95
+            })
+        } else {
+            UIView.animate(withDuration: 0.3, animations: {
+                cell.detailView.alpha = 0
+            })
+        }
         self.selectedIndex = indexPath
         cellOpened()
         
     }
     
-    
-    
-    
+
 }
