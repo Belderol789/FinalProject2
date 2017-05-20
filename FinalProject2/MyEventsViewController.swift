@@ -101,7 +101,9 @@ class MyEventsViewController: UIViewController {
     }
     
     func addBarButtonTapped () {
-        
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "AddEventViewController") as? AddEventViewController {
+            present(controller, animated: true, completion: nil)
+        }
     }
     
     func menuBarButtonTapped () {
