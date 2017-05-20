@@ -87,8 +87,13 @@ class MyEventsViewController: UIViewController {
     }
     
     func eventsBarButtonTapped () {
-        let controller = storyboard?.instantiateViewController(withIdentifier: "EventsViewController") as? EventsViewController
-        present(controller!, animated: true, completion: nil)
+//        if superclass == EventsViewController() {
+//            dismiss(animated: true, completion: nil)
+//        }
+//        else {
+            let controller = storyboard?.instantiateViewController(withIdentifier: "EventsViewController") as? EventsViewController
+            present(controller!, animated: true, completion: nil)
+//        }
     }
     
     func swipeRecognizer () {
