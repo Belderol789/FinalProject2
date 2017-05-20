@@ -23,7 +23,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    @IBOutlet weak var passwordTextField: CustomTextField! {
+    @IBOutlet weak var passwordTextField: SecondCustomTextField! {
         didSet {
             passwordTextField.placeholderText = "Password"
         }
