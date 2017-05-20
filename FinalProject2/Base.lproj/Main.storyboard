@@ -117,7 +117,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1152.8" y="-672.41379310344837"/>
+            <point key="canvasLocation" x="1153" y="-555"/>
         </scene>
         <!--Events View Controller-->
         <scene sceneID="cUD-xa-DW6">
@@ -209,7 +209,32 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xko-hz-QE1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1917.5999999999999" y="-671.51424287856082"/>
+            <point key="canvasLocation" x="1918" y="-553"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="OKF-Mx-pJd">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="j7Y-4d-ha8" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eM0-lV-7Ua"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hi5-dN-Pdu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="U6n-SS-q2d">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vKR-Sf-wZg">
+                                <rect key="frame" x="35" y="59" width="305" height="516"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.25045483732876711" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xWS-RO-mGB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2677.5999999999999" y="-553.67316341829087"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="n2T-fe-qVC">
