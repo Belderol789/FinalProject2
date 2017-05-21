@@ -30,6 +30,18 @@ public class UserInterfaceDesign : NSObject {
         static let discussionCategoryOverlay: UIColor = UserInterfaceDesign.discussionCategory.withAlpha(0.2)
         static let artCategory: UIColor = UIColor(red: 0.000, green: 0.117, blue: 1.000, alpha: 1.000)
         static let color: UIColor = UserInterfaceDesign.artCategory.withAlpha(0.3)
+        static var imageOfSportCategoryInSliderMenu: UIImage?
+        static var sportCategoryInSliderMenuTargets: [AnyObject]?
+        static var imageOfEntertainmentCategoryInSliderMenu: UIImage?
+        static var entertainmentCategoryInSliderMenuTargets: [AnyObject]?
+        static var imageOfVacationCategoryInSliderMenu: UIImage?
+        static var vacationCategoryInSliderMenuTargets: [AnyObject]?
+        static var imageOfArtCategoryInSliderMenu: UIImage?
+        static var artCategoryInSliderMenuTargets: [AnyObject]?
+        static var imageOfFoodCategoryInSliderMenu: UIImage?
+        static var foodCategoryInSliderMenuTargets: [AnyObject]?
+        static var imageOfDiscussionCategoryInSliderMenu: UIImage?
+        static var discussionCategoryInSliderMenuTargets: [AnyObject]?
     }
 
     //// Colors
@@ -1244,9 +1256,10 @@ public class UserInterfaceDesign : NSObject {
 
 
         //// Color Declarations
+        let gradientColor = UIColor(red: 0.928, green: 0.872, blue: 0.246, alpha: 0.911)
+        let color2 = UIColor(red: 0.956, green: 0.205, blue: 0.000, alpha: 0.777)
         let grey = UIColor(red: 0.734, green: 0.731, blue: 0.731, alpha: 1.000)
         let fillColor5 = UIColor(red: 0.886, green: 0.106, blue: 0.106, alpha: 1.000)
-        let fillColor6 = UIColor(red: 0.957, green: 0.133, blue: 0.133, alpha: 1.000)
         let fillColor7 = UIColor(red: 0.800, green: 0.800, blue: 0.800, alpha: 1.000)
         let fillColor8 = UIColor(red: 0.102, green: 0.090, blue: 0.094, alpha: 1.000)
         let fillColor9 = UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1.000)
@@ -1336,7 +1349,7 @@ public class UserInterfaceDesign : NSObject {
             //// myEvents.svg Group
             //// Rectangle Drawing
             let rectanglePath = UIBezierPath(rect: CGRect(x: 73.25, y: 10.74, width: 34.5, height: 27.26))
-            fillColor5.setFill()
+            fillColor7.setFill()
             rectanglePath.fill()
 
 
@@ -1355,13 +1368,13 @@ public class UserInterfaceDesign : NSObject {
             bezierPath.addLine(to: CGPoint(x: 76.04, y: 14.25))
             bezierPath.addLine(to: CGPoint(x: 76.04, y: 35.35))
             bezierPath.close()
-            fillColor6.setFill()
+            gradientColor.setFill()
             bezierPath.fill()
 
 
             //// Rectangle 2 Drawing
             let rectangle2Path = UIBezierPath(rect: CGRect(x: 73.25, y: 6.32, width: 34.5, height: 6.42))
-            fillColor7.setFill()
+            color2.setFill()
             rectangle2Path.fill()
 
 
@@ -1394,7 +1407,7 @@ public class UserInterfaceDesign : NSObject {
             bezier2Path.addLine(to: CGPoint(x: 93.44, y: 26.27))
             bezier2Path.addLine(to: CGPoint(x: 95.26, y: 31.8))
             bezier2Path.close()
-            fillColor9.setFill()
+            fillColor5.setFill()
             bezier2Path.fill()
 
 
@@ -1925,6 +1938,615 @@ public class UserInterfaceDesign : NSObject {
 
     }
 
+    public dynamic class func drawSportCategoryInSliderMenu(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 563, height: 563), resizing: ResizingBehavior = .aspectFit) {
+        //// General Declarations
+        let context = UIGraphicsGetCurrentContext()!
+        
+        //// Resize to Target Frame
+        context.saveGState()
+        let resizedFrame: CGRect = resizing.apply(rect: CGRect(x: 0, y: 0, width: 563, height: 563), target: targetFrame)
+        context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
+        context.scaleBy(x: resizedFrame.width / 563, y: resizedFrame.height / 563)
+
+
+        //// Color Declarations
+        let white = UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1.000)
+
+        //// Image Declarations
+        let sportBlackAndWhite = UIImage(named: "sportBlackAndWhite.jpg")!
+
+        //// Picture Drawing
+        let picturePath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 563, height: 563))
+        context.saveGState()
+        picturePath.addClip()
+        context.translateBy(x: 0, y: 0)
+        context.scaleBy(x: 1, y: -1)
+        context.translateBy(x: 0, y: -sportBlackAndWhite.size.height)
+        context.draw(sportBlackAndWhite.cgImage!, in: CGRect(x: 0, y: 0, width: sportBlackAndWhite.size.width, height: sportBlackAndWhite.size.height))
+        context.restoreGState()
+
+
+        //// Rectangle Drawing
+        let rectanglePath = UIBezierPath(rect: CGRect(x: 0, y: -3, width: 563, height: 281.5))
+        UserInterfaceDesign.sportCategoryOverlay.setFill()
+        rectanglePath.fill()
+
+
+        //// Text Drawing
+        let textRect = CGRect(x: 31, y: 44, width: 502, height: 187)
+        let textTextContent = "SPORT"
+        let textStyle = NSMutableParagraphStyle()
+        textStyle.alignment = .center
+        let textFontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 135), NSForegroundColorAttributeName: white, NSParagraphStyleAttributeName: textStyle]
+
+        let textTextHeight: CGFloat = textTextContent.boundingRect(with: CGSize(width: textRect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: textFontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: textRect)
+        textTextContent.draw(in: CGRect(x: textRect.minX, y: textRect.minY + (textRect.height - textTextHeight) / 2, width: textRect.width, height: textTextHeight), withAttributes: textFontAttributes)
+        context.restoreGState()
+        
+        context.restoreGState()
+
+    }
+
+    public dynamic class func drawEntertainmentCategoryInSliderMenu(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 768, height: 768), resizing: ResizingBehavior = .aspectFit) {
+        //// General Declarations
+        let context = UIGraphicsGetCurrentContext()!
+        
+        //// Resize to Target Frame
+        context.saveGState()
+        let resizedFrame: CGRect = resizing.apply(rect: CGRect(x: 0, y: 0, width: 768, height: 768), target: targetFrame)
+        context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
+        context.scaleBy(x: resizedFrame.width / 768, y: resizedFrame.height / 768)
+
+
+        //// Color Declarations
+        let white = UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1.000)
+
+        //// Image Declarations
+        let entertaintmentBlackAndWhite = UIImage(named: "entertaintmentBlackAndWhite.jpg")!
+
+        //// Picture Drawing
+        let picturePath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 768, height: 768))
+        context.saveGState()
+        picturePath.addClip()
+        context.translateBy(x: 0, y: 0)
+        context.scaleBy(x: 1, y: -1)
+        context.translateBy(x: 0, y: -entertaintmentBlackAndWhite.size.height)
+        context.draw(entertaintmentBlackAndWhite.cgImage!, in: CGRect(x: 0, y: 0, width: entertaintmentBlackAndWhite.size.width, height: entertaintmentBlackAndWhite.size.height))
+        context.restoreGState()
+
+
+        //// Rectangle 2 Drawing
+        let rectangle2Path = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 768, height: 384))
+        UserInterfaceDesign.entertainmentCategoryOverlay.setFill()
+        rectangle2Path.fill()
+
+
+        //// Group 4
+        //// Group 3
+        //// Text Drawing
+        let textRect = CGRect(x: 43, y: -38, width: 157, height: 203)
+        let textTextContent = "E"
+        let textStyle = NSMutableParagraphStyle()
+        textStyle.alignment = .center
+        let textFontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 160), NSForegroundColorAttributeName: white, NSParagraphStyleAttributeName: textStyle]
+
+        let textTextHeight: CGFloat = textTextContent.boundingRect(with: CGSize(width: textRect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: textFontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: textRect)
+        textTextContent.draw(in: CGRect(x: textRect.minX, y: textRect.minY + (textRect.height - textTextHeight) / 2, width: textRect.width, height: textTextHeight), withAttributes: textFontAttributes)
+        context.restoreGState()
+
+
+        //// Text 2 Drawing
+        let text2Rect = CGRect(x: 563, y: -38, width: 157, height: 203)
+        let text2TextContent = "R"
+        let text2Style = NSMutableParagraphStyle()
+        text2Style.alignment = .center
+        let text2FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 160), NSForegroundColorAttributeName: white, NSParagraphStyleAttributeName: text2Style]
+
+        let text2TextHeight: CGFloat = text2TextContent.boundingRect(with: CGSize(width: text2Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text2FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text2Rect)
+        text2TextContent.draw(in: CGRect(x: text2Rect.minX, y: text2Rect.minY + (text2Rect.height - text2TextHeight) / 2, width: text2Rect.width, height: text2TextHeight), withAttributes: text2FontAttributes)
+        context.restoreGState()
+
+
+        //// Text 4 Drawing
+        let text4Rect = CGRect(x: 178, y: -38, width: 149, height: 203)
+        let text4TextContent = "N"
+        let text4Style = NSMutableParagraphStyle()
+        text4Style.alignment = .center
+        let text4FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 160), NSForegroundColorAttributeName: white, NSParagraphStyleAttributeName: text4Style]
+
+        let text4TextHeight: CGFloat = text4TextContent.boundingRect(with: CGSize(width: text4Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text4FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text4Rect)
+        text4TextContent.draw(in: CGRect(x: text4Rect.minX, y: text4Rect.minY + (text4Rect.height - text4TextHeight) / 2, width: text4Rect.width, height: text4TextHeight), withAttributes: text4FontAttributes)
+        context.restoreGState()
+
+
+        //// Text 5 Drawing
+        let text5Rect = CGRect(x: 322, y: -38, width: 149, height: 203)
+        let text5TextContent = "T"
+        let text5Style = NSMutableParagraphStyle()
+        text5Style.alignment = .center
+        let text5FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 160), NSForegroundColorAttributeName: white, NSParagraphStyleAttributeName: text5Style]
+
+        let text5TextHeight: CGFloat = text5TextContent.boundingRect(with: CGSize(width: text5Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text5FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text5Rect)
+        text5TextContent.draw(in: CGRect(x: text5Rect.minX, y: text5Rect.minY + (text5Rect.height - text5TextHeight) / 2, width: text5Rect.width, height: text5TextHeight), withAttributes: text5FontAttributes)
+        context.restoreGState()
+
+
+        //// Text 6 Drawing
+        let text6Rect = CGRect(x: 446, y: -38, width: 149, height: 203)
+        let text6TextContent = "E"
+        let text6Style = NSMutableParagraphStyle()
+        text6Style.alignment = .center
+        let text6FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 160), NSForegroundColorAttributeName: white, NSParagraphStyleAttributeName: text6Style]
+
+        let text6TextHeight: CGFloat = text6TextContent.boundingRect(with: CGSize(width: text6Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text6FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text6Rect)
+        text6TextContent.draw(in: CGRect(x: text6Rect.minX, y: text6Rect.minY + (text6Rect.height - text6TextHeight) / 2, width: text6Rect.width, height: text6TextHeight), withAttributes: text6FontAttributes)
+        context.restoreGState()
+
+
+
+
+        //// Group 2
+        //// Text 7 Drawing
+        let text7Rect = CGRect(x: 43, y: 85, width: 175, height: 203)
+        let text7TextContent = "T"
+        let text7Style = NSMutableParagraphStyle()
+        text7Style.alignment = .center
+        let text7FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 160), NSForegroundColorAttributeName: white, NSParagraphStyleAttributeName: text7Style]
+
+        let text7TextHeight: CGFloat = text7TextContent.boundingRect(with: CGSize(width: text7Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text7FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text7Rect)
+        text7TextContent.draw(in: CGRect(x: text7Rect.minX, y: text7Rect.minY + (text7Rect.height - text7TextHeight) / 2, width: text7Rect.width, height: text7TextHeight), withAttributes: text7FontAttributes)
+        context.restoreGState()
+
+
+        //// Text 8 Drawing
+        let text8Rect = CGRect(x: 229, y: 85, width: 157, height: 203)
+        let text8TextContent = "A"
+        let text8Style = NSMutableParagraphStyle()
+        text8Style.alignment = .center
+        let text8FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 160), NSForegroundColorAttributeName: white, NSParagraphStyleAttributeName: text8Style]
+
+        let text8TextHeight: CGFloat = text8TextContent.boundingRect(with: CGSize(width: text8Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text8FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text8Rect)
+        text8TextContent.draw(in: CGRect(x: text8Rect.minX, y: text8Rect.minY + (text8Rect.height - text8TextHeight) / 2, width: text8Rect.width, height: text8TextHeight), withAttributes: text8FontAttributes)
+        context.restoreGState()
+
+
+        //// Text 9 Drawing
+        let text9Rect = CGRect(x: 393, y: 85, width: 157, height: 203)
+        let text9TextContent = "I"
+        let text9Style = NSMutableParagraphStyle()
+        text9Style.alignment = .center
+        let text9FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 160), NSForegroundColorAttributeName: white, NSParagraphStyleAttributeName: text9Style]
+
+        let text9TextHeight: CGFloat = text9TextContent.boundingRect(with: CGSize(width: text9Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text9FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text9Rect)
+        text9TextContent.draw(in: CGRect(x: text9Rect.minX, y: text9Rect.minY + (text9Rect.height - text9TextHeight) / 2, width: text9Rect.width, height: text9TextHeight), withAttributes: text9FontAttributes)
+        context.restoreGState()
+
+
+        //// Text 10 Drawing
+        let text10Rect = CGRect(x: 563, y: 85, width: 157, height: 203)
+        let text10TextContent = "N"
+        let text10Style = NSMutableParagraphStyle()
+        text10Style.alignment = .center
+        let text10FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 160), NSForegroundColorAttributeName: white, NSParagraphStyleAttributeName: text10Style]
+
+        let text10TextHeight: CGFloat = text10TextContent.boundingRect(with: CGSize(width: text10Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text10FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text10Rect)
+        text10TextContent.draw(in: CGRect(x: text10Rect.minX, y: text10Rect.minY + (text10Rect.height - text10TextHeight) / 2, width: text10Rect.width, height: text10TextHeight), withAttributes: text10FontAttributes)
+        context.restoreGState()
+
+
+
+
+        //// Group
+        //// Text 3 Drawing
+        let text3Rect = CGRect(x: 62, y: 207, width: 175, height: 203)
+        let text3TextContent = "M"
+        let text3Style = NSMutableParagraphStyle()
+        text3Style.alignment = .center
+        let text3FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 160), NSForegroundColorAttributeName: white, NSParagraphStyleAttributeName: text3Style]
+
+        let text3TextHeight: CGFloat = text3TextContent.boundingRect(with: CGSize(width: text3Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text3FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text3Rect)
+        text3TextContent.draw(in: CGRect(x: text3Rect.minX, y: text3Rect.minY + (text3Rect.height - text3TextHeight) / 2, width: text3Rect.width, height: text3TextHeight), withAttributes: text3FontAttributes)
+        context.restoreGState()
+
+
+        //// Text 11 Drawing
+        let text11Rect = CGRect(x: 237, y: 207, width: 157, height: 203)
+        let text11TextContent = "E"
+        let text11Style = NSMutableParagraphStyle()
+        text11Style.alignment = .center
+        let text11FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 160), NSForegroundColorAttributeName: white, NSParagraphStyleAttributeName: text11Style]
+
+        let text11TextHeight: CGFloat = text11TextContent.boundingRect(with: CGSize(width: text11Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text11FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text11Rect)
+        text11TextContent.draw(in: CGRect(x: text11Rect.minX, y: text11Rect.minY + (text11Rect.height - text11TextHeight) / 2, width: text11Rect.width, height: text11TextHeight), withAttributes: text11FontAttributes)
+        context.restoreGState()
+
+
+        //// Text 12 Drawing
+        let text12Rect = CGRect(x: 400, y: 207, width: 157, height: 203)
+        let text12TextContent = "N"
+        let text12Style = NSMutableParagraphStyle()
+        text12Style.alignment = .center
+        let text12FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 160), NSForegroundColorAttributeName: white, NSParagraphStyleAttributeName: text12Style]
+
+        let text12TextHeight: CGFloat = text12TextContent.boundingRect(with: CGSize(width: text12Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text12FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text12Rect)
+        text12TextContent.draw(in: CGRect(x: text12Rect.minX, y: text12Rect.minY + (text12Rect.height - text12TextHeight) / 2, width: text12Rect.width, height: text12TextHeight), withAttributes: text12FontAttributes)
+        context.restoreGState()
+
+
+        //// Text 13 Drawing
+        let text13Rect = CGRect(x: 565, y: 207, width: 157, height: 203)
+        let text13TextContent = "T"
+        let text13Style = NSMutableParagraphStyle()
+        text13Style.alignment = .center
+        let text13FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 160), NSForegroundColorAttributeName: white, NSParagraphStyleAttributeName: text13Style]
+
+        let text13TextHeight: CGFloat = text13TextContent.boundingRect(with: CGSize(width: text13Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text13FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text13Rect)
+        text13TextContent.draw(in: CGRect(x: text13Rect.minX, y: text13Rect.minY + (text13Rect.height - text13TextHeight) / 2, width: text13Rect.width, height: text13TextHeight), withAttributes: text13FontAttributes)
+        context.restoreGState()
+        
+        context.restoreGState()
+
+    }
+
+    public dynamic class func drawVacationCategoryInSliderMenu(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 564, height: 564), resizing: ResizingBehavior = .aspectFit) {
+        //// General Declarations
+        let context = UIGraphicsGetCurrentContext()!
+        
+        //// Resize to Target Frame
+        context.saveGState()
+        let resizedFrame: CGRect = resizing.apply(rect: CGRect(x: 0, y: 0, width: 564, height: 564), target: targetFrame)
+        context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
+        context.scaleBy(x: resizedFrame.width / 564, y: resizedFrame.height / 564)
+
+
+        //// Color Declarations
+        let black = UIColor(red: 0.102, green: 0.102, blue: 0.102, alpha: 1.000)
+
+        //// Image Declarations
+        let vacationBlackAndWhite = UIImage(named: "vacationBlackAndWhite.jpg")!
+
+        //// Picture Drawing
+        let picturePath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 564, height: 564))
+        context.saveGState()
+        picturePath.addClip()
+        context.translateBy(x: 0, y: 0)
+        context.scaleBy(x: 1, y: -1)
+        context.translateBy(x: 0, y: -vacationBlackAndWhite.size.height)
+        context.draw(vacationBlackAndWhite.cgImage!, in: CGRect(x: 0, y: 0, width: vacationBlackAndWhite.size.width, height: vacationBlackAndWhite.size.height))
+        context.restoreGState()
+
+
+        //// Rectangle 2 Drawing
+        let rectangle2Path = UIBezierPath(rect: CGRect(x: 2, y: 1, width: 563, height: 282))
+        UserInterfaceDesign.vacationCategoryOverlay.setFill()
+        rectangle2Path.fill()
+
+
+        //// Text 3 Drawing
+        let text3Rect = CGRect(x: 33, y: 41, width: 502, height: 202)
+        let text3TextContent = "VACATION"
+        let text3Style = NSMutableParagraphStyle()
+        text3Style.alignment = .left
+        let text3FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 108), NSForegroundColorAttributeName: black, NSParagraphStyleAttributeName: text3Style]
+
+        let text3TextHeight: CGFloat = text3TextContent.boundingRect(with: CGSize(width: text3Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text3FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text3Rect)
+        text3TextContent.draw(in: CGRect(x: text3Rect.minX, y: text3Rect.minY + (text3Rect.height - text3TextHeight) / 2, width: text3Rect.width, height: text3TextHeight), withAttributes: text3FontAttributes)
+        context.restoreGState()
+        
+        context.restoreGState()
+
+    }
+
+    public dynamic class func drawArtCategoryInSliderMenu(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 768, height: 768), resizing: ResizingBehavior = .aspectFit) {
+        //// General Declarations
+        let context = UIGraphicsGetCurrentContext()!
+        
+        //// Resize to Target Frame
+        context.saveGState()
+        let resizedFrame: CGRect = resizing.apply(rect: CGRect(x: 0, y: 0, width: 768, height: 768), target: targetFrame)
+        context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
+        context.scaleBy(x: resizedFrame.width / 768, y: resizedFrame.height / 768)
+
+
+        //// Color Declarations
+        let white = UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1.000)
+
+        //// Image Declarations
+        let artBlackAndWhite = UIImage(named: "artBlackAndWhite.jpg")!
+
+        //// Picture Drawing
+        let picturePath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 768, height: 768))
+        context.saveGState()
+        picturePath.addClip()
+        context.translateBy(x: 0, y: 0)
+        context.scaleBy(x: 1, y: -1)
+        context.translateBy(x: 0, y: -artBlackAndWhite.size.height)
+        context.draw(artBlackAndWhite.cgImage!, in: CGRect(x: 0, y: 0, width: artBlackAndWhite.size.width, height: artBlackAndWhite.size.height))
+        context.restoreGState()
+
+
+        //// Rectangle Drawing
+        let rectanglePath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 768, height: 384))
+        UserInterfaceDesign.color.setFill()
+        rectanglePath.fill()
+
+
+        //// Text 2 Drawing
+        let text2Rect = CGRect(x: 50, y: 60, width: 669, height: 264)
+        let text2TextContent = "ART"
+        let text2Style = NSMutableParagraphStyle()
+        text2Style.alignment = .center
+        let text2FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 200), NSForegroundColorAttributeName: white, NSParagraphStyleAttributeName: text2Style]
+
+        let text2TextHeight: CGFloat = text2TextContent.boundingRect(with: CGSize(width: text2Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text2FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text2Rect)
+        text2TextContent.draw(in: CGRect(x: text2Rect.minX, y: text2Rect.minY + (text2Rect.height - text2TextHeight) / 2, width: text2Rect.width, height: text2TextHeight), withAttributes: text2FontAttributes)
+        context.restoreGState()
+        
+        context.restoreGState()
+
+    }
+
+    public dynamic class func drawFoodCategoryInSliderMenu(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 800, height: 800), resizing: ResizingBehavior = .aspectFit) {
+        //// General Declarations
+        let context = UIGraphicsGetCurrentContext()!
+        
+        //// Resize to Target Frame
+        context.saveGState()
+        let resizedFrame: CGRect = resizing.apply(rect: CGRect(x: 0, y: 0, width: 800, height: 800), target: targetFrame)
+        context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
+        context.scaleBy(x: resizedFrame.width / 800, y: resizedFrame.height / 800)
+
+
+        //// Color Declarations
+        let black = UIColor(red: 0.102, green: 0.102, blue: 0.102, alpha: 1.000)
+
+        //// Image Declarations
+        let foodBlackAndWhite = UIImage(named: "foodBlackAndWhite.jpg")!
+
+        //// Picture Drawing
+        let picturePath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 800, height: 800))
+        context.saveGState()
+        picturePath.addClip()
+        context.translateBy(x: 0, y: 0)
+        context.scaleBy(x: 1, y: -1)
+        context.translateBy(x: 0, y: -foodBlackAndWhite.size.height)
+        context.draw(foodBlackAndWhite.cgImage!, in: CGRect(x: 0, y: 0, width: foodBlackAndWhite.size.width, height: foodBlackAndWhite.size.height))
+        context.restoreGState()
+
+
+        //// Rectangle Drawing
+        let rectanglePath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 800, height: 400))
+        UserInterfaceDesign.foodCategoryOverlay.setFill()
+        rectanglePath.fill()
+
+
+        //// Text Drawing
+        let textRect = CGRect(x: 66, y: 39, width: 669, height: 322)
+        let textTextContent = "FOOD"
+        let textStyle = NSMutableParagraphStyle()
+        textStyle.alignment = .center
+        let textFontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 202), NSForegroundColorAttributeName: black, NSParagraphStyleAttributeName: textStyle]
+
+        let textTextHeight: CGFloat = textTextContent.boundingRect(with: CGSize(width: textRect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: textFontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: textRect)
+        textTextContent.draw(in: CGRect(x: textRect.minX, y: textRect.minY + (textRect.height - textTextHeight) / 2, width: textRect.width, height: textTextHeight), withAttributes: textFontAttributes)
+        context.restoreGState()
+        
+        context.restoreGState()
+
+    }
+
+    public dynamic class func drawDiscussionCategoryInSliderMenu(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 533, height: 533), resizing: ResizingBehavior = .aspectFit) {
+        //// General Declarations
+        let context = UIGraphicsGetCurrentContext()!
+        
+        //// Resize to Target Frame
+        context.saveGState()
+        let resizedFrame: CGRect = resizing.apply(rect: CGRect(x: 0, y: 0, width: 533, height: 533), target: targetFrame)
+        context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
+        context.scaleBy(x: resizedFrame.width / 533, y: resizedFrame.height / 533)
+
+
+        //// Color Declarations
+        let black = UIColor(red: 0.102, green: 0.102, blue: 0.102, alpha: 1.000)
+
+        //// Image Declarations
+        let discussionBlackAndWhite = UIImage(named: "discussionBlackAndWhite.jpg")!
+
+        //// Picture Drawing
+        let picturePath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 533, height: 533))
+        context.saveGState()
+        picturePath.addClip()
+        context.translateBy(x: 0, y: 0)
+        context.scaleBy(x: 1, y: -1)
+        context.translateBy(x: 0, y: -discussionBlackAndWhite.size.height)
+        context.draw(discussionBlackAndWhite.cgImage!, in: CGRect(x: 0, y: 0, width: discussionBlackAndWhite.size.width, height: discussionBlackAndWhite.size.height))
+        context.restoreGState()
+
+
+        //// Rectangle Drawing
+        let rectanglePath = UIBezierPath(rect: CGRect(x: 0, y: -0, width: 533, height: 276.5))
+        UserInterfaceDesign.discussionCategoryOverlay.setFill()
+        rectanglePath.fill()
+
+
+        //// Group
+        //// Text 3 Drawing
+        let text3Rect = CGRect(x: 21, y: 16, width: 109, height: 158)
+        let text3TextContent = "D"
+        let text3Style = NSMutableParagraphStyle()
+        text3Style.alignment = .center
+        let text3FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 100), NSForegroundColorAttributeName: black, NSParagraphStyleAttributeName: text3Style]
+
+        let text3TextHeight: CGFloat = text3TextContent.boundingRect(with: CGSize(width: text3Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text3FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text3Rect)
+        text3TextContent.draw(in: CGRect(x: text3Rect.minX, y: text3Rect.minY + (text3Rect.height - text3TextHeight) / 2, width: text3Rect.width, height: text3TextHeight), withAttributes: text3FontAttributes)
+        context.restoreGState()
+
+
+        //// Text Drawing
+        let textRect = CGRect(x: 85, y: 16, width: 109, height: 158)
+        let textTextContent = "I"
+        let textStyle = NSMutableParagraphStyle()
+        textStyle.alignment = .center
+        let textFontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 100), NSForegroundColorAttributeName: black, NSParagraphStyleAttributeName: textStyle]
+
+        let textTextHeight: CGFloat = textTextContent.boundingRect(with: CGSize(width: textRect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: textFontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: textRect)
+        textTextContent.draw(in: CGRect(x: textRect.minX, y: textRect.minY + (textRect.height - textTextHeight) / 2, width: textRect.width, height: textTextHeight), withAttributes: textFontAttributes)
+        context.restoreGState()
+
+
+        //// Text 2 Drawing
+        let text2Rect = CGRect(x: 143, y: 16, width: 109, height: 158)
+        let text2TextContent = "S"
+        let text2Style = NSMutableParagraphStyle()
+        text2Style.alignment = .center
+        let text2FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 100), NSForegroundColorAttributeName: black, NSParagraphStyleAttributeName: text2Style]
+
+        let text2TextHeight: CGFloat = text2TextContent.boundingRect(with: CGSize(width: text2Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text2FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text2Rect)
+        text2TextContent.draw(in: CGRect(x: text2Rect.minX, y: text2Rect.minY + (text2Rect.height - text2TextHeight) / 2, width: text2Rect.width, height: text2TextHeight), withAttributes: text2FontAttributes)
+        context.restoreGState()
+
+
+        //// Text 4 Drawing
+        let text4Rect = CGRect(x: 230, y: 16, width: 109, height: 158)
+        let text4TextContent = "C"
+        let text4Style = NSMutableParagraphStyle()
+        text4Style.alignment = .center
+        let text4FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 100), NSForegroundColorAttributeName: black, NSParagraphStyleAttributeName: text4Style]
+
+        let text4TextHeight: CGFloat = text4TextContent.boundingRect(with: CGSize(width: text4Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text4FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text4Rect)
+        text4TextContent.draw(in: CGRect(x: text4Rect.minX, y: text4Rect.minY + (text4Rect.height - text4TextHeight) / 2, width: text4Rect.width, height: text4TextHeight), withAttributes: text4FontAttributes)
+        context.restoreGState()
+
+
+        //// Text 5 Drawing
+        let text5Rect = CGRect(x: 322, y: 16, width: 109, height: 158)
+        let text5TextContent = "U"
+        let text5Style = NSMutableParagraphStyle()
+        text5Style.alignment = .center
+        let text5FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 100), NSForegroundColorAttributeName: black, NSParagraphStyleAttributeName: text5Style]
+
+        let text5TextHeight: CGFloat = text5TextContent.boundingRect(with: CGSize(width: text5Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text5FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text5Rect)
+        text5TextContent.draw(in: CGRect(x: text5Rect.minX, y: text5Rect.minY + (text5Rect.height - text5TextHeight) / 2, width: text5Rect.width, height: text5TextHeight), withAttributes: text5FontAttributes)
+        context.restoreGState()
+
+
+        //// Text 6 Drawing
+        let text6Rect = CGRect(x: 404, y: 16, width: 109, height: 158)
+        let text6TextContent = "S"
+        let text6Style = NSMutableParagraphStyle()
+        text6Style.alignment = .center
+        let text6FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 100), NSForegroundColorAttributeName: black, NSParagraphStyleAttributeName: text6Style]
+
+        let text6TextHeight: CGFloat = text6TextContent.boundingRect(with: CGSize(width: text6Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text6FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text6Rect)
+        text6TextContent.draw(in: CGRect(x: text6Rect.minX, y: text6Rect.minY + (text6Rect.height - text6TextHeight) / 2, width: text6Rect.width, height: text6TextHeight), withAttributes: text6FontAttributes)
+        context.restoreGState()
+
+
+        //// Text 7 Drawing
+        let text7Rect = CGRect(x: 21, y: 103, width: 109, height: 158)
+        let text7TextContent = "S"
+        let text7Style = NSMutableParagraphStyle()
+        text7Style.alignment = .center
+        let text7FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 100), NSForegroundColorAttributeName: black, NSParagraphStyleAttributeName: text7Style]
+
+        let text7TextHeight: CGFloat = text7TextContent.boundingRect(with: CGSize(width: text7Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text7FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text7Rect)
+        text7TextContent.draw(in: CGRect(x: text7Rect.minX, y: text7Rect.minY + (text7Rect.height - text7TextHeight) / 2, width: text7Rect.width, height: text7TextHeight), withAttributes: text7FontAttributes)
+        context.restoreGState()
+
+
+        //// Text 8 Drawing
+        let text8Rect = CGRect(x: 139, y: 103, width: 109, height: 158)
+        let text8TextContent = "I"
+        let text8Style = NSMutableParagraphStyle()
+        text8Style.alignment = .center
+        let text8FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 100), NSForegroundColorAttributeName: black, NSParagraphStyleAttributeName: text8Style]
+
+        let text8TextHeight: CGFloat = text8TextContent.boundingRect(with: CGSize(width: text8Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text8FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text8Rect)
+        text8TextContent.draw(in: CGRect(x: text8Rect.minX, y: text8Rect.minY + (text8Rect.height - text8TextHeight) / 2, width: text8Rect.width, height: text8TextHeight), withAttributes: text8FontAttributes)
+        context.restoreGState()
+
+
+        //// Text 9 Drawing
+        let text9Rect = CGRect(x: 261, y: 103, width: 109, height: 158)
+        let text9TextContent = "O"
+        let text9Style = NSMutableParagraphStyle()
+        text9Style.alignment = .center
+        let text9FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 100), NSForegroundColorAttributeName: black, NSParagraphStyleAttributeName: text9Style]
+
+        let text9TextHeight: CGFloat = text9TextContent.boundingRect(with: CGSize(width: text9Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text9FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text9Rect)
+        text9TextContent.draw(in: CGRect(x: text9Rect.minX, y: text9Rect.minY + (text9Rect.height - text9TextHeight) / 2, width: text9Rect.width, height: text9TextHeight), withAttributes: text9FontAttributes)
+        context.restoreGState()
+
+
+        //// Text 10 Drawing
+        let text10Rect = CGRect(x: 404, y: 103, width: 109, height: 158)
+        let text10TextContent = "N"
+        let text10Style = NSMutableParagraphStyle()
+        text10Style.alignment = .center
+        let text10FontAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 100), NSForegroundColorAttributeName: black, NSParagraphStyleAttributeName: text10Style]
+
+        let text10TextHeight: CGFloat = text10TextContent.boundingRect(with: CGSize(width: text10Rect.width, height: CGFloat.infinity), options: .usesLineFragmentOrigin, attributes: text10FontAttributes, context: nil).height
+        context.saveGState()
+        context.clip(to: text10Rect)
+        text10TextContent.draw(in: CGRect(x: text10Rect.minX, y: text10Rect.minY + (text10Rect.height - text10TextHeight) / 2, width: text10Rect.width, height: text10TextHeight), withAttributes: text10FontAttributes)
+        context.restoreGState()
+        
+        context.restoreGState()
+
+    }
+
     public dynamic class func drawSliderMenu(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 202, height: 513), resizing: ResizingBehavior = .aspectFit) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()!
@@ -1976,6 +2598,80 @@ public class UserInterfaceDesign : NSObject {
         color5.setStroke()
         rectangle2Path.lineWidth = 1
         rectangle2Path.stroke()
+        
+        context.restoreGState()
+
+    }
+
+    public dynamic class func drawTheCount(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 500, height: 750), resizing: ResizingBehavior = .aspectFit) {
+        //// General Declarations
+        let context = UIGraphicsGetCurrentContext()!
+        
+        //// Resize to Target Frame
+        context.saveGState()
+        let resizedFrame: CGRect = resizing.apply(rect: CGRect(x: 0, y: 0, width: 500, height: 750), target: targetFrame)
+        context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
+        context.scaleBy(x: resizedFrame.width / 500, y: resizedFrame.height / 750)
+
+
+        //// Symbol Drawing
+        let symbolRect = CGRect(x: 0, y: 0, width: 250, height: 250)
+        context.saveGState()
+        context.clip(to: symbolRect)
+        context.translateBy(x: symbolRect.minX, y: symbolRect.minY)
+
+        UserInterfaceDesign.drawFoodCategoryInSliderMenu(frame: CGRect(origin: .zero, size: symbolRect.size), resizing: .stretch)
+        context.restoreGState()
+
+
+        //// Symbol 2 Drawing
+        let symbol2Rect = CGRect(x: 250, y: 0, width: 250, height: 250)
+        context.saveGState()
+        context.clip(to: symbol2Rect)
+        context.translateBy(x: symbol2Rect.minX, y: symbol2Rect.minY)
+
+        UserInterfaceDesign.drawSportCategoryInSliderMenu(frame: CGRect(origin: .zero, size: symbol2Rect.size), resizing: .stretch)
+        context.restoreGState()
+
+
+        //// Symbol 3 Drawing
+        let symbol3Rect = CGRect(x: 0, y: 250, width: 250, height: 250)
+        context.saveGState()
+        context.clip(to: symbol3Rect)
+        context.translateBy(x: symbol3Rect.minX, y: symbol3Rect.minY)
+
+        UserInterfaceDesign.drawEntertainmentCategoryInSliderMenu(frame: CGRect(origin: .zero, size: symbol3Rect.size), resizing: .stretch)
+        context.restoreGState()
+
+
+        //// Symbol 4 Drawing
+        let symbol4Rect = CGRect(x: 250, y: 250, width: 250, height: 250)
+        context.saveGState()
+        context.clip(to: symbol4Rect)
+        context.translateBy(x: symbol4Rect.minX, y: symbol4Rect.minY)
+
+        UserInterfaceDesign.drawDiscussionCategoryInSliderMenu(frame: CGRect(origin: .zero, size: symbol4Rect.size), resizing: .stretch)
+        context.restoreGState()
+
+
+        //// Symbol 5 Drawing
+        let symbol5Rect = CGRect(x: 250, y: 500, width: 250, height: 250)
+        context.saveGState()
+        context.clip(to: symbol5Rect)
+        context.translateBy(x: symbol5Rect.minX, y: symbol5Rect.minY)
+
+        UserInterfaceDesign.drawArtCategoryInSliderMenu(frame: CGRect(origin: .zero, size: symbol5Rect.size), resizing: .stretch)
+        context.restoreGState()
+
+
+        //// Symbol 6 Drawing
+        let symbol6Rect = CGRect(x: 0, y: 500, width: 250, height: 250)
+        context.saveGState()
+        context.clip(to: symbol6Rect)
+        context.translateBy(x: symbol6Rect.minX, y: symbol6Rect.minY)
+
+        UserInterfaceDesign.drawVacationCategoryInSliderMenu(frame: CGRect(origin: .zero, size: symbol6Rect.size), resizing: .stretch)
+        context.restoreGState()
         
         context.restoreGState()
 
@@ -2071,6 +2767,152 @@ public class UserInterfaceDesign : NSObject {
         UIGraphicsEndImageContext()
 
         return imageOfEvents
+    }
+
+    public dynamic class var imageOfSportCategoryInSliderMenu: UIImage {
+        if Cache.imageOfSportCategoryInSliderMenu != nil {
+            return Cache.imageOfSportCategoryInSliderMenu!
+        }
+
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 563, height: 563), false, 0)
+            UserInterfaceDesign.drawSportCategoryInSliderMenu()
+
+        Cache.imageOfSportCategoryInSliderMenu = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        return Cache.imageOfSportCategoryInSliderMenu!
+    }
+
+    public dynamic class var imageOfEntertainmentCategoryInSliderMenu: UIImage {
+        if Cache.imageOfEntertainmentCategoryInSliderMenu != nil {
+            return Cache.imageOfEntertainmentCategoryInSliderMenu!
+        }
+
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 768, height: 768), false, 0)
+            UserInterfaceDesign.drawEntertainmentCategoryInSliderMenu()
+
+        Cache.imageOfEntertainmentCategoryInSliderMenu = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        return Cache.imageOfEntertainmentCategoryInSliderMenu!
+    }
+
+    public dynamic class var imageOfVacationCategoryInSliderMenu: UIImage {
+        if Cache.imageOfVacationCategoryInSliderMenu != nil {
+            return Cache.imageOfVacationCategoryInSliderMenu!
+        }
+
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 564, height: 564), false, 0)
+            UserInterfaceDesign.drawVacationCategoryInSliderMenu()
+
+        Cache.imageOfVacationCategoryInSliderMenu = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        return Cache.imageOfVacationCategoryInSliderMenu!
+    }
+
+    public dynamic class var imageOfArtCategoryInSliderMenu: UIImage {
+        if Cache.imageOfArtCategoryInSliderMenu != nil {
+            return Cache.imageOfArtCategoryInSliderMenu!
+        }
+
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 768, height: 768), false, 0)
+            UserInterfaceDesign.drawArtCategoryInSliderMenu()
+
+        Cache.imageOfArtCategoryInSliderMenu = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        return Cache.imageOfArtCategoryInSliderMenu!
+    }
+
+    public dynamic class var imageOfFoodCategoryInSliderMenu: UIImage {
+        if Cache.imageOfFoodCategoryInSliderMenu != nil {
+            return Cache.imageOfFoodCategoryInSliderMenu!
+        }
+
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 800, height: 800), false, 0)
+            UserInterfaceDesign.drawFoodCategoryInSliderMenu()
+
+        Cache.imageOfFoodCategoryInSliderMenu = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        return Cache.imageOfFoodCategoryInSliderMenu!
+    }
+
+    public dynamic class var imageOfDiscussionCategoryInSliderMenu: UIImage {
+        if Cache.imageOfDiscussionCategoryInSliderMenu != nil {
+            return Cache.imageOfDiscussionCategoryInSliderMenu!
+        }
+
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 533, height: 533), false, 0)
+            UserInterfaceDesign.drawDiscussionCategoryInSliderMenu()
+
+        Cache.imageOfDiscussionCategoryInSliderMenu = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        return Cache.imageOfDiscussionCategoryInSliderMenu!
+    }
+
+    //// Customization Infrastructure
+
+    @IBOutlet dynamic var sportCategoryInSliderMenuTargets: [AnyObject]! {
+        get { return Cache.sportCategoryInSliderMenuTargets }
+        set {
+            Cache.sportCategoryInSliderMenuTargets = newValue
+            for target: AnyObject in newValue {
+                let _ = target.perform(NSSelectorFromString("setImage:"), with: UserInterfaceDesign.imageOfSportCategoryInSliderMenu)
+            }
+        }
+    }
+
+    @IBOutlet dynamic var entertainmentCategoryInSliderMenuTargets: [AnyObject]! {
+        get { return Cache.entertainmentCategoryInSliderMenuTargets }
+        set {
+            Cache.entertainmentCategoryInSliderMenuTargets = newValue
+            for target: AnyObject in newValue {
+                let _ = target.perform(NSSelectorFromString("setImage:"), with: UserInterfaceDesign.imageOfEntertainmentCategoryInSliderMenu)
+            }
+        }
+    }
+
+    @IBOutlet dynamic var vacationCategoryInSliderMenuTargets: [AnyObject]! {
+        get { return Cache.vacationCategoryInSliderMenuTargets }
+        set {
+            Cache.vacationCategoryInSliderMenuTargets = newValue
+            for target: AnyObject in newValue {
+                let _ = target.perform(NSSelectorFromString("setImage:"), with: UserInterfaceDesign.imageOfVacationCategoryInSliderMenu)
+            }
+        }
+    }
+
+    @IBOutlet dynamic var artCategoryInSliderMenuTargets: [AnyObject]! {
+        get { return Cache.artCategoryInSliderMenuTargets }
+        set {
+            Cache.artCategoryInSliderMenuTargets = newValue
+            for target: AnyObject in newValue {
+                let _ = target.perform(NSSelectorFromString("setImage:"), with: UserInterfaceDesign.imageOfArtCategoryInSliderMenu)
+            }
+        }
+    }
+
+    @IBOutlet dynamic var foodCategoryInSliderMenuTargets: [AnyObject]! {
+        get { return Cache.foodCategoryInSliderMenuTargets }
+        set {
+            Cache.foodCategoryInSliderMenuTargets = newValue
+            for target: AnyObject in newValue {
+                let _ = target.perform(NSSelectorFromString("setImage:"), with: UserInterfaceDesign.imageOfFoodCategoryInSliderMenu)
+            }
+        }
+    }
+
+    @IBOutlet dynamic var discussionCategoryInSliderMenuTargets: [AnyObject]! {
+        get { return Cache.discussionCategoryInSliderMenuTargets }
+        set {
+            Cache.discussionCategoryInSliderMenuTargets = newValue
+            for target: AnyObject in newValue {
+                let _ = target.perform(NSSelectorFromString("setImage:"), with: UserInterfaceDesign.imageOfDiscussionCategoryInSliderMenu)
+            }
+        }
     }
 
 

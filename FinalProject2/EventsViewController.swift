@@ -172,8 +172,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.placeLabel.text = allEvent.eventVenue
             cell.detailView.backgroundColor = UserInterfaceDesign.artCategory
             cell.titleView.backgroundColor = UserInterfaceDesign.artCategory
-       
-            
+    
             break
         case 1:
             let allEvent = secondEvents[indexPath.row]
