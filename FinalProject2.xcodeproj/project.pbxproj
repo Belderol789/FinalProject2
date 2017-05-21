@@ -23,6 +23,7 @@
 		3D3F37511ED0458300219D4C /* SecondCustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F37501ED0458300219D4C /* SecondCustomTextField.swift */; };
 		3D3F37531ED0515000219D4C /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F37521ED0515000219D4C /* AddEventViewController.swift */; };
 		3D3F37551ED162C200219D4C /* SliderMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F37541ED162C200219D4C /* SliderMenuView.swift */; };
+		3D3F37581ED17CB700219D4C /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F37571ED17CB700219D4C /* AddCategoryViewController.swift */; };
 		521305591ECF39C000D1CA8E /* CircularStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 521305581ECF39A200D1CA8E /* CircularStd-Bold.otf */; };
 		524185EF1ECC249C005882E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524185EE1ECC249C005882E0 /* AppDelegate.swift */; };
 		524185F41ECC249C005882E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 524185F21ECC249C005882E0 /* Main.storyboard */; };
@@ -55,6 +56,7 @@
 		3D3F37501ED0458300219D4C /* SecondCustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondCustomTextField.swift; sourceTree = "<group>"; };
 		3D3F37521ED0515000219D4C /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		3D3F37541ED162C200219D4C /* SliderMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderMenuView.swift; sourceTree = "<group>"; };
+		3D3F37571ED17CB700219D4C /* AddCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		521305581ECF39A200D1CA8E /* CircularStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Bold.otf"; sourceTree = "<group>"; };
 		524185EB1ECC249C005882E0 /* FinalProject2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProject2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		524185EE1ECC249C005882E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +122,14 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
+		3D3F37561ED17C6D00219D4C /* UnusedControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3D398E1C1ECC2C5B002E7BC7 /* MainViewController.swift */,
+			);
+			name = UnusedControllers;
+			sourceTree = "<group>";
+		};
 		524185E21ECC249C005882E0 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +151,7 @@
 		524185ED1ECC249C005882E0 /* FinalProject2 */ = {
 			isa = PBXGroup;
 			children = (
+				3D3F37561ED17C6D00219D4C /* UnusedControllers */,
 				524186011ECC2A8A005882E0 /* Controllers */,
 				3D398E221ECC2C73002E7BC7 /* Helpers */,
 				3D398E1B1ECC2C34002E7BC7 /* Views */,
@@ -167,10 +178,10 @@
 		524186011ECC2A8A005882E0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3D3F37571ED17CB700219D4C /* AddCategoryViewController.swift */,
 				3D3F37521ED0515000219D4C /* AddEventViewController.swift */,
 				3D398E231ECC385E002E7BC7 /* MyEventsViewController.swift */,
 				3D398E251ECC3879002E7BC7 /* EventsViewController.swift */,
-				3D398E1C1ECC2C5B002E7BC7 /* MainViewController.swift */,
 				3D398E1D1ECC2C5B002E7BC7 /* LoginViewController.swift */,
 			);
 			name = Controllers;
@@ -351,6 +362,7 @@
 				524186091ECC3012005882E0 /* Events.swift in Sources */,
 				3D398E1A1ECC2C21002E7BC7 /* EventsTableViewCell.swift in Sources */,
 				524186041ECC2AC0005882E0 /* CollectionViewCell.swift in Sources */,
+				3D3F37581ED17CB700219D4C /* AddCategoryViewController.swift in Sources */,
 				524186101ECC4429005882E0 /* StackTableViewCell.swift in Sources */,
 				3D398E261ECC3879002E7BC7 /* EventsViewController.swift in Sources */,
 				3D3F37551ED162C200219D4C /* SliderMenuView.swift in Sources */,

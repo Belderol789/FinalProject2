@@ -1937,7 +1937,7 @@ public class UserInterfaceDesign : NSObject {
 
 
         //// Color Declarations
-        let color4 = UIColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.784)
+        let color4 = UIColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.706)
         let color5 = UIColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.392)
 
         //// Image Declarations

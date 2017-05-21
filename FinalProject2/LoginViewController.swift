@@ -56,7 +56,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
         if UserDefaults.standard.value(forKeyPath: "AUTH_TOKEN") != nil {
             
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let goToMainPage = storyboard.instantiateViewController(withIdentifier: "MainViewController")
+            let goToMainPage = storyboard.instantiateViewController(withIdentifier: "MyEventsViewController")
             present(goToMainPage, animated: true, completion: nil)
             
         } else {
@@ -225,7 +225,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func displayClaims(){
-        let controller = storyboard?.instantiateViewController(withIdentifier: "EventsViewController") as? EventsViewController
+        let controller = storyboard?.instantiateViewController(withIdentifier: "MyEventsViewController") as? MyEventsViewController
         
         controller?.currentUserID = userID
         

@@ -15,6 +15,7 @@ class MyEventsViewController: UIViewController {
     var arrayOfCategories : [Int] = []
     var selectedIndex : IndexPath?
     var isExpanded : Bool = false
+    var currentUserID : Int = 0
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -25,10 +26,9 @@ class MyEventsViewController: UIViewController {
             tableView.dataSource = self
             tableView.isUserInteractionEnabled = true
             tableView.allowsSelection = true
-            
-            
         }
     }
+    
     @IBOutlet weak var navBar: UINavigationBar!
     
     @IBOutlet weak var addBarButton: UIBarButtonItem! {
@@ -81,6 +81,12 @@ class MyEventsViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var profileMenu: UIView! {
+        didSet {
+            profileMenu.isUserInteractionEnabled = true
+            //assign a tap gesture
+        }
+    }
     
     var menuViewShowing = false
     
@@ -105,7 +111,7 @@ class MyEventsViewController: UIViewController {
     }
     
     func addBarButtonTapped () {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "AddEventViewController") as? AddEventViewController {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "AddCategoryViewController") as? AddCategoryViewController {
             present(controller, animated: true, completion: nil)
         }
     }
