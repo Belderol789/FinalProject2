@@ -93,6 +93,7 @@ class MyEventsViewController: UIViewController {
     
     func eventsBarButtonTapped () {
             let controller = storyboard?.instantiateViewController(withIdentifier: "EventsViewController") as? EventsViewController
+        
             controller?.categoryIDs = self.arrayOfCategories
             present(controller!, animated: true, completion: nil)
     }

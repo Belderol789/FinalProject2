@@ -225,7 +225,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func displayClaims(){
-        let controller = storyboard?.instantiateViewController(withIdentifier: "MainViewController") as? MainViewController
+        let controller = storyboard?.instantiateViewController(withIdentifier: "EventsViewController") as? EventsViewController
         
         controller?.currentUserID = userID
         

@@ -101,6 +101,7 @@ class EventsViewController: UIViewController {
                         for each in validJSON {
                             
                             let newEvent = Event(dict: each)
+                            
                             if newEvent.categoryID == self.categoryIDs[0] {
                                 self.firstEvents.append(newEvent)
                             } else if newEvent.categoryID == self.categoryIDs[1] {
@@ -171,7 +172,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.placeLabel.text = allEvent.eventVenue
             cell.detailView.backgroundColor = UserInterfaceDesign.artCategory
             cell.titleView.backgroundColor = UserInterfaceDesign.artCategory
-            cell.iconImageView.image = allEvent.categoryLogo
+       
             
             break
         case 1:
@@ -184,7 +185,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
             cell.detailView.backgroundColor = UserInterfaceDesign.discussionCategory
-            cell.iconImageView.image = allEvent.categoryLogo
+
             break
         case 2:
             let allEvent = thirdEvents[indexPath.row]
@@ -196,7 +197,6 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
             cell.detailView.backgroundColor = UserInterfaceDesign.foodCategory
-            cell.iconImageView.image = allEvent.categoryLogo
             
             break
         default:
