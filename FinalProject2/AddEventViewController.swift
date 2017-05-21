@@ -10,13 +10,15 @@ import UIKit
 
 class AddEventViewController: UIViewController {
     var categoryID : Int = 0
+    var foodEvents : [UIImage] = []
+    var 
    
-    
+    @IBOutlet weak var displayView: iCarousel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var venueTextField: UITextField!
-    @IBOutlet weak var dateAndTimeTextField: UITextField!
     @IBOutlet weak var aboutTextView: UITextView!
  
+    @IBOutlet weak var dateAndTimePicker: UIPickerView!
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -102,4 +104,16 @@ class AddEventViewController: UIViewController {
         dataTask.resume()
     }
 
+}
+
+
+extension AddEventViewController : iCarouselDataSource, iCarouselDelegate {
+    
+  
+    
+    
+    
+    
+    
+    
 }
