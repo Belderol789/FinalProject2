@@ -234,59 +234,131 @@ extension MainViewController : UICollectionViewDataSource, UICollectionViewDeleg
         cell.isUserInteractionEnabled = true
         
         return cell
-        
     }
 }
 
-extension MainViewController : UICollectionViewDelegate {
+func -= ( left: inout [Int], right: Int){
+    left = left.filter{$0 != right}
+}
 
+extension MainViewController : UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             UIView.animate(withDuration: 0.3, animations: {
                 
                 self.doneButton.alpha = 1
-                
-                
             })
-
+        
         switch indexPath.row {
         case 0 : button1Pressed = !button1Pressed
-             self.chosenCategoriesIDs.append(1)
+        
+        if button1Pressed == false {
+            if chosenCategoriesIDs.count > 0 {
+                chosenCategoriesIDs -= 1
+            }
+        }
+    
+        if button1Pressed == true {
+            if chosenCategoriesIDs.count < 3 {
+                chosenCategoriesIDs.append(categoryIDs[indexPath.row])
+            }
+            else {
+                button1Pressed = !button1Pressed
+            }
+        }
+
         case 1 : button2Pressed = !button2Pressed
-            self.chosenCategoriesIDs.append(2)
+            
+        if button2Pressed == false {
+            if chosenCategoriesIDs.count > 0 {
+                chosenCategoriesIDs -= 2
+            }
+        }
+        
+        if button2Pressed == true {
+            if chosenCategoriesIDs.count < 3 {
+                chosenCategoriesIDs.append(categoryIDs[indexPath.row])
+            }
+            else {
+                button2Pressed = !button2Pressed
+            }
+        }
+            
         case 2 : button3Pressed = !button3Pressed
-            self.chosenCategoriesIDs.append(3)
+            
+        if button3Pressed == false {
+            if chosenCategoriesIDs.count > 0 {
+                chosenCategoriesIDs -= 3
+            }
+        }
+        
+        if button3Pressed == true {
+            if chosenCategoriesIDs.count < 3 {
+                chosenCategoriesIDs.append(categoryIDs[indexPath.row])
+            }
+            else {
+                button3Pressed = !button3Pressed
+            }
+        }
+            
         case 3 : button4Pressed = !button4Pressed
-            self.chosenCategoriesIDs.append(4)
+            
+        if button4Pressed == false {
+            if chosenCategoriesIDs.count > 0 {
+                chosenCategoriesIDs -= 4
+            }
+        }
+        
+        if button4Pressed == true {
+            if chosenCategoriesIDs.count < 3 {
+                chosenCategoriesIDs.append(categoryIDs[indexPath.row])
+            }
+            else {
+                button4Pressed = !button4Pressed
+            }
+        }
+   
         case 4 : button5Pressed = !button5Pressed
+            
+        if button5Pressed == false {
+            if chosenCategoriesIDs.count > 0 {
+                chosenCategoriesIDs -= 5
+            }
+        }
+        
+        if button5Pressed == true {
+            if chosenCategoriesIDs.count < 3 {
+                chosenCategoriesIDs.append(categoryIDs[indexPath.row])
+            }
+            else {
+                button5Pressed = !button5Pressed
+            }
+        }
+    
         case 5 : button6Pressed = !button6Pressed
+            
+        if button6Pressed == false {
+            if chosenCategoriesIDs.count > 0 {
+                chosenCategoriesIDs -= 6
+            }
+        }
+        
+        if button6Pressed == true {
+            if chosenCategoriesIDs.count < 3 {
+                chosenCategoriesIDs.append(categoryIDs[indexPath.row])
+            }
+            else {
+                button6Pressed = !button6Pressed
+            }
+        }
+    
         default : break
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         cell.imageView.setNeedsDisplay()
         
-      
-        if self.chosenCategoriesIDs.count < 3 {
-            self.chosenCategoriesIDs.append(categoryIDs[indexPath.row])
-        
-           
-        }
-        
         collectionView.reloadItems(at: [indexPath])
-    }
-   
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        switch indexPath.row {
-            
-        case 0 : button1Pressed = !button1Pressed
-        case 1 : button2Pressed = !button2Pressed
-        case 2 : button3Pressed = !button3Pressed
-        case 3 : button4Pressed = !button4Pressed
-        case 4 : button5Pressed = !button5Pressed
-        case 5 : button6Pressed = !button6Pressed
-        default : break
-        }
-          self.chosenCategoriesIDs.removeAll()
     }
 }
 
