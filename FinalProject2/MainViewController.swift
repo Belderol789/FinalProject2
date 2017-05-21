@@ -136,11 +136,9 @@ class MainViewController: UIViewController {
         
         if choosenCategories.count == 0 {
             print("choose up to 3 categories")
+            return
         }
         else if choosenCategories.count == 1 {
-            
-          
-            
             self.params = [
                 ["category_id" : choosenCategories[0],
                  "user_id" : UserDefaults.standard.value(forKey: "USER_ID") ?? 0]
@@ -238,24 +236,24 @@ extension MainViewController : UICollectionViewDataSource, UICollectionViewDeleg
 }
 
 extension MainViewController : UICollectionViewDelegate {
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        if self.chosenCategoriesIDs.count > 0 {
             UIView.animate(withDuration: 0.3, animations: {
+                
                 self.doneButton.alpha = 1
+                
+                
             })
-        } else {
-            self.doneButton.alpha = 0
-        }
-        
-        
-        
+
         switch indexPath.row {
         case 0 : button1Pressed = !button1Pressed
+             self.chosenCategoriesIDs.append(1)
         case 1 : button2Pressed = !button2Pressed
+            self.chosenCategoriesIDs.append(2)
         case 2 : button3Pressed = !button3Pressed
+            self.chosenCategoriesIDs.append(3)
         case 3 : button4Pressed = !button4Pressed
+            self.chosenCategoriesIDs.append(4)
         case 4 : button5Pressed = !button5Pressed
         case 5 : button6Pressed = !button6Pressed
         default : break
@@ -264,11 +262,28 @@ extension MainViewController : UICollectionViewDelegate {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         cell.imageView.setNeedsDisplay()
         
+      
         if self.chosenCategoriesIDs.count < 3 {
             self.chosenCategoriesIDs.append(categoryIDs[indexPath.row])
+        
+           
         }
         
         collectionView.reloadItems(at: [indexPath])
+    }
+   
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        switch indexPath.row {
+            
+        case 0 : button1Pressed = !button1Pressed
+        case 1 : button2Pressed = !button2Pressed
+        case 2 : button3Pressed = !button3Pressed
+        case 3 : button4Pressed = !button4Pressed
+        case 4 : button5Pressed = !button5Pressed
+        case 5 : button6Pressed = !button6Pressed
+        default : break
+        }
+          self.chosenCategoriesIDs.removeAll()
     }
 }
 

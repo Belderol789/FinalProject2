@@ -29,6 +29,7 @@ class MyEventsViewController: UIViewController {
             
         }
     }
+    @IBOutlet weak var navBar: UINavigationBar!
     
     @IBOutlet weak var addBarButton: UIBarButtonItem! {
         didSet {
@@ -68,6 +69,7 @@ class MyEventsViewController: UIViewController {
     @IBOutlet weak var myEventsBarButton: UIButton! {
         didSet {
             myEventsBarButton.setBackgroundImage(UserInterfaceDesign.imageOfMyEvents(pressed: true), for: .normal)
+          
         }
     }
     
@@ -75,6 +77,7 @@ class MyEventsViewController: UIViewController {
         didSet {
             eventsBarButton.setBackgroundImage(UserInterfaceDesign.imageOfEvents(pressed: false), for: .normal)
             eventsBarButton.addTarget(self, action: #selector(eventsBarButtonTapped), for: .touchUpInside)
+
         }
     }
     
@@ -105,7 +108,6 @@ class MyEventsViewController: UIViewController {
             present(controller, animated: true, completion: nil)
         }
     }
-    
     func menuBarButtonTapped () {
         
         if menuViewShowing {
@@ -170,12 +172,11 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
         cell.aboutTextView.text = event.eventDesc
         cell.hostLabel.text = event.eventHost
         cell.nameLabel.text = event.eventName
-        cell.titleView.backgroundColor = event.eventColor
         cell.stringToDate(event.eventDate)
         cell.dateLabel.text = event.eventDate
         cell.placeLabel.text = event.eventVenue
+        cell.titleView.backgroundColor = event.eventColor
         cell.detailView.backgroundColor = event.eventColor
-        cell.iconImageView.image = event.categoryLogo
         
         
         return cell
@@ -190,14 +191,16 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         isExpanded = !isExpanded
+
         let cell = tableView.dequeueReusableCell(withIdentifier: StackTableViewCell.cellIdentifier, for: indexPath) as! StackTableViewCell
         if isExpanded == true {
             UIView.animate(withDuration: 0.3, animations: {
                 cell.detailView.alpha = 0.95
             })
         } else {
-            UIView.animate(withDuration: 0.3, animations: {
+            UIView.animate(withDuration: 0.5, animations: {
                 cell.detailView.alpha = 0
+                
             })
         }
         self.selectedIndex = indexPath
