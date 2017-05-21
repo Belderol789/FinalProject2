@@ -200,7 +200,10 @@ class MainViewController: UIViewController {
                         
                         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                         let eventsPage = storyboard.instantiateViewController(withIdentifier: "MyEventsViewController") as! MyEventsViewController
-                        eventsPage.arrayOfCategories = choosenCategories
+                        
+                        let chosenCat = choosenCategories.sorted{ $0 < $1}
+                        
+                        eventsPage.arrayOfCategories = chosenCat
                         self.present(eventsPage, animated: true, completion: nil)
                     }
                 }
