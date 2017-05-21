@@ -24,6 +24,7 @@ class EventsViewController: UIViewController {
     var categories : [String] = []
     var categoryIDs : [Int] = []
     
+    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.register(StackTableViewCell.cellNib, forCellReuseIdentifier: StackTableViewCell.cellIdentifier)
@@ -31,7 +32,7 @@ class EventsViewController: UIViewController {
             self.tableView.dataSource = self
         }
     }
-    
+  
     @IBAction func segmentedControlTapped(_ sender: Any) {
         
         tableView.reloadData()
@@ -42,6 +43,7 @@ class EventsViewController: UIViewController {
         didSet {
             myEventsBarButton.setBackgroundImage(UserInterfaceDesign.imageOfMyEvents(pressed: false), for: .normal)
             myEventsBarButton.addTarget(self, action: #selector(myEventsBarButtonTapped), for: .touchUpInside)
+           
         }
     }
     
@@ -61,6 +63,8 @@ class EventsViewController: UIViewController {
         self.userToken = UserDefaults.standard.string(forKey: "AUTH_TOKEN")!
         getMyCategories()
     }
+    
+   
     
     func myEventsBarButtonTapped () {
         dismiss(animated: true, completion: nil)
@@ -97,7 +101,6 @@ class EventsViewController: UIViewController {
                         for each in validJSON {
                             
                             let newEvent = Event(dict: each)
-                            
                             if newEvent.categoryID == self.categoryIDs[0] {
                                 self.firstEvents.append(newEvent)
                             } else if newEvent.categoryID == self.categoryIDs[1] {
@@ -141,7 +144,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
         
         switch (segmentedControl.selectedSegmentIndex) {
         case 0:
-           numberOfEvents = firstEvents.count
+            numberOfEvents = firstEvents.count
         case 1:
             numberOfEvents = secondEvents.count
         case 2:
@@ -226,13 +229,6 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
         cellOpened()
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
 }
 

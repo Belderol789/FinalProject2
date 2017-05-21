@@ -244,7 +244,6 @@ extension MainViewController : UICollectionViewDelegate {
                 
                 
             })
-        
 
         switch indexPath.row {
         case 0 : button1Pressed = !button1Pressed

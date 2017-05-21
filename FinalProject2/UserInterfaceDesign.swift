@@ -20,15 +20,15 @@ public class UserInterfaceDesign : NSObject {
     private struct Cache {
         static let foodCategory: UIColor = UIColor(red: 1.000, green: 0.685, blue: 0.000, alpha: 1.000)
         static let foodCategoryOverlay: UIColor = UserInterfaceDesign.foodCategory.withAlpha(0.3)
-        static let entertainmentCategory: UIColor = UIColor(red: 0.710, green: 0.000, blue: 1.000, alpha: 1.000)
+        static let entertainmentCategory: UIColor = UIColor(red: 0/255.0, green: 88.0/255.0, blue: 175.0/255.0, alpha: 1.0)
         static let entertainmentCategoryOverlay: UIColor = UserInterfaceDesign.entertainmentCategory.withAlpha(0.2)
         static let sportCategory: UIColor = UIColor(red: 1.000, green: 0.000, blue: 0.000, alpha: 1.000)
         static let sportCategoryOverlay: UIColor = UserInterfaceDesign.sportCategory.withAlpha(0.2)
-        static let vacationCategory: UIColor = UIColor(red: 0.000, green: 0.999, blue: 1.000, alpha: 1.000)
+        static let vacationCategory: UIColor = UIColor(red: 116/255, green: 255/255, blue: 86/255, alpha: 1.000)
         static let vacationCategoryOverlay: UIColor = UserInterfaceDesign.vacationCategory.withAlpha(0.2)
-        static let discussionCategory: UIColor = UIColor(red: 0.000, green: 1.000, blue: 0.005, alpha: 1.000)
+        static let discussionCategory: UIColor = UIColor(red: 255/255, green: 167/255, blue: 50/255, alpha: 1.000)
         static let discussionCategoryOverlay: UIColor = UserInterfaceDesign.discussionCategory.withAlpha(0.2)
-        static let artCategory: UIColor = UIColor(red: 0.000, green: 0.117, blue: 1.000, alpha: 1.000)
+        static let artCategory: UIColor = UIColor (red: 0.710, green: 0.000, blue: 1.000, alpha: 1.000)
         static let color: UIColor = UserInterfaceDesign.artCategory.withAlpha(0.3)
     }
 
