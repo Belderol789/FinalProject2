@@ -149,9 +149,9 @@ class MyEventsViewController: UIViewController {
     }
     
     func addEvents() {
-        events.append(Event(name: "Dinner", venue: "Pedas pedas", date: "Tomorrow", host: "Changhui", desc: "Anyone want to go eat?", color: UserInterfaceDesign.foodCategory, id: 0, logo: #imageLiteral(resourceName: "restaurant-cutlery-circular-symbol-of-a-spoon-and-a-fork-in-a-circle")))
-        events.append(Event(name: "Football", venue: "xxxx", date: "Today", host: "Ad", desc: "Looking for a good game", color: UserInterfaceDesign.sportCategory, id: 1, logo: #imageLiteral(resourceName: "soccer-ball-variant")))
-        
+//        events.append(Event(name: "Dinner", venue: "Pedas pedas", date: "Tomorrow", host: "Changhui", desc: "Anyone want to go eat?", color: UserInterfaceDesign.foodCategory, id: 0, logo: #imageLiteral(resourceName: "restaurant-cutlery-circular-symbol-of-a-spoon-and-a-fork-in-a-circle")))
+//        events.append(Event(name: "Football", venue: "xxxx", date: "Today", host: "Ad", desc: "Looking for a good game", color: UserInterfaceDesign.sportCategory, id: 1, logo: #imageLiteral(resourceName: "soccer-ball-variant")))
+//        
     }
     
 }

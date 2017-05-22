@@ -9,6 +9,7 @@ target 'FinalProject2' do
 
 pod 'Firebase/Core'
 pod 'Firebase/Storage'
+pod 'IQKeyboardManager'
 
 
 

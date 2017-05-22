@@ -10,6 +10,7 @@ import UIKit
 
 class Event {
     
+    var eventID : Int = 0
     var eventName : String = ""
     var eventVenue : String = ""
     var eventDate : String = ""
@@ -19,7 +20,8 @@ class Event {
     var categoryID : Int = 0
     var categoryLogo : UIImage?
     
-    init(name : String, venue : String, date : String, host : String, desc : String, color : UIColor, id: Int, logo : UIImage) {
+    init(anEventID : Int, name : String, venue : String, date : String, host : String, desc : String, color : UIColor, id: Int, logo : UIImage) {
+        eventID = anEventID
         eventName = name
         eventVenue = venue
         eventDate = date
@@ -40,7 +42,7 @@ class Event {
         eventDate = dict["event_time"] as? String ?? "Default Time"
         eventDesc = dict["description"] as? String ?? "Default Description"
         categoryID = dict["category_id"] as? Int ?? 100
-        
+        eventID = dict["id"] as? Int ?? 100
     }
     
     

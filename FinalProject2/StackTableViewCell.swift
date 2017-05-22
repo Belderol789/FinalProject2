@@ -14,6 +14,7 @@ class StackTableViewCell: UITableViewCell {
     @IBOutlet weak var labelPlace: UILabel!
     @IBOutlet weak var labelDateAndTime: UILabel!
     
+    @IBOutlet weak var joinButton: UIButton!
     
     @IBOutlet weak var dateLabel: UILabel!{
         didSet{
