@@ -2453,6 +2453,35 @@ public class UserInterfaceDesign : NSObject {
 
     }
 
+    public dynamic class func drawTravelTableViewSymbol(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 497, height: 750), resizing: ResizingBehavior = .aspectFit) {
+        //// General Declarations
+        let context = UIGraphicsGetCurrentContext()!
+        
+        //// Resize to Target Frame
+        context.saveGState()
+        let resizedFrame: CGRect = resizing.apply(rect: CGRect(x: 0, y: 0, width: 497, height: 750), target: targetFrame)
+        context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
+        context.scaleBy(x: resizedFrame.width / 497, y: resizedFrame.height / 750)
+
+
+
+        //// Image Declarations
+        let travelTableViewColor = UIImage(named: "travelTableViewColor.jpg")!
+
+        //// Picture Drawing
+        let picturePath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 497, height: 750))
+        context.saveGState()
+        picturePath.addClip()
+        context.translateBy(x: 0, y: 0)
+        context.scaleBy(x: 1, y: -1)
+        context.translateBy(x: 0, y: -travelTableViewColor.size.height)
+        context.draw(travelTableViewColor.cgImage!, in: CGRect(x: 0, y: 0, width: travelTableViewColor.size.width, height: travelTableViewColor.size.height))
+        context.restoreGState()
+        
+        context.restoreGState()
+
+    }
+
     public dynamic class func drawSliderMenu(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 202, height: 513), resizing: ResizingBehavior = .aspectFit) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()!
@@ -2632,6 +2661,30 @@ public class UserInterfaceDesign : NSObject {
         let rectangle2Path = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 375, height: 511))
         blackOverlay.setFill()
         rectangle2Path.fill()
+        
+        context.restoreGState()
+
+    }
+
+    public dynamic class func drawTravelTableView(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 375, height: 511), resizing: ResizingBehavior = .aspectFit) {
+        //// General Declarations
+        let context = UIGraphicsGetCurrentContext()!
+        
+        //// Resize to Target Frame
+        context.saveGState()
+        let resizedFrame: CGRect = resizing.apply(rect: CGRect(x: 0, y: 0, width: 375, height: 511), target: targetFrame)
+        context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
+        context.scaleBy(x: resizedFrame.width / 375, y: resizedFrame.height / 511)
+
+
+        //// Symbol Drawing
+        let symbolRect = CGRect(x: 0, y: 0, width: 375, height: 511)
+        context.saveGState()
+        context.clip(to: symbolRect)
+        context.translateBy(x: symbolRect.minX, y: symbolRect.minY)
+
+        UserInterfaceDesign.drawTravelTableViewSymbol(frame: CGRect(origin: .zero, size: symbolRect.size), resizing: .stretch)
+        context.restoreGState()
         
         context.restoreGState()
 
