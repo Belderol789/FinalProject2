@@ -109,7 +109,8 @@ class MyEventsViewController: UIViewController {
         super.viewDidLoad()
         
         swipeRecognizer()
-        
+        addEvents()
+        tableView.tableFooterView = UIView()
     }
     
     func eventsBarButtonTapped () {
