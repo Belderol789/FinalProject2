@@ -11,7 +11,7 @@ import UIKit
 class FoodTableView: UIView {
 
     override func draw(_ rect: CGRect) {
-        UserInterfaceDesign.drawFoodTableView(frame: self.bounds, resizing: .stretch)
+        UserInterfaceDesign.drawTravelTableView(frame: self.bounds, resizing: .stretch)
     }
 
 }
