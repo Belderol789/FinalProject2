@@ -35,8 +35,6 @@ class EventsViewController: UIViewController {
             tableView.register(StackTableViewCell.cellNib, forCellReuseIdentifier: StackTableViewCell.cellIdentifier)
             self.tableView.delegate = self
             self.tableView.dataSource = self
-            
-            tableView.backgroundView = FoodTableView()
         }
     }
     
@@ -214,6 +212,8 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
         switch (segmentedControl.selectedSegmentIndex) {
         case 0:
             numberOfEvents = firstEvents.count
+            tableView.backgroundView = TableViewBackgrounds()
+            
         case 1:
             numberOfEvents = secondEvents.count
         case 2:
@@ -248,6 +248,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.placeLabel.text = allEvent.eventVenue
             //cell.detailView.backgroundColor = UserInterfaceDesign.foodCategory
 //            cell.titleView.backgroundColor = UserInterfaceDesign.foodCategory
+            
             break
         case 1:
             let allEvent = secondEvents[indexPath.row]

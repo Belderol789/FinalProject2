@@ -24,7 +24,7 @@
 		3D3F37551ED162C200219D4C /* SliderMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F37541ED162C200219D4C /* SliderMenuView.swift */; };
 		3D3F37581ED17CB700219D4C /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F37571ED17CB700219D4C /* AddCategoryViewController.swift */; };
 		3D3F375A1ED1B61B00219D4C /* CategoryViewInSliderMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F37591ED1B61B00219D4C /* CategoryViewInSliderMenu.swift */; };
-		3D3F375C1ED2CFEA00219D4C /* FoodTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F375B1ED2CFEA00219D4C /* FoodTableView.swift */; };
+		3D3F375E1ED3491C00219D4C /* TableViewBackgrounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F375D1ED3491C00219D4C /* TableViewBackgrounds.swift */; };
 		521305591ECF39C000D1CA8E /* CircularStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 521305581ECF39A200D1CA8E /* CircularStd-Bold.otf */; };
 		524185EF1ECC249C005882E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524185EE1ECC249C005882E0 /* AppDelegate.swift */; };
 		524185F41ECC249C005882E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 524185F21ECC249C005882E0 /* Main.storyboard */; };
@@ -59,7 +59,7 @@
 		3D3F37541ED162C200219D4C /* SliderMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderMenuView.swift; sourceTree = "<group>"; };
 		3D3F37571ED17CB700219D4C /* AddCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		3D3F37591ED1B61B00219D4C /* CategoryViewInSliderMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewInSliderMenu.swift; sourceTree = "<group>"; };
-		3D3F375B1ED2CFEA00219D4C /* FoodTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTableView.swift; sourceTree = "<group>"; };
+		3D3F375D1ED3491C00219D4C /* TableViewBackgrounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewBackgrounds.swift; sourceTree = "<group>"; };
 		521305581ECF39A200D1CA8E /* CircularStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Bold.otf"; sourceTree = "<group>"; };
 		524185EB1ECC249C005882E0 /* FinalProject2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProject2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		524185EE1ECC249C005882E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 		3D398E1B1ECC2C34002E7BC7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3D3F375B1ED2CFEA00219D4C /* FoodTableView.swift */,
+				3D3F375D1ED3491C00219D4C /* TableViewBackgrounds.swift */,
 				3D3F37591ED1B61B00219D4C /* CategoryViewInSliderMenu.swift */,
 				3D3F37541ED162C200219D4C /* SliderMenuView.swift */,
 				5241860F1ECC4429005882E0 /* StackTableViewCell.xib */,
@@ -347,7 +347,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -358,7 +358,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D398E1F1ECC2C5B002E7BC7 /* MainViewController.swift in Sources */,
-				3D3F375C1ED2CFEA00219D4C /* FoodTableView.swift in Sources */,
 				3D3F37451ECEADCF00219D4C /* Models.swift in Sources */,
 				3D398E211ECC2C5B002E7BC7 /* ListenToAPI.swift in Sources */,
 				524185EF1ECC249C005882E0 /* AppDelegate.swift in Sources */,
@@ -367,6 +366,7 @@
 				3D398E2E1ECD85DE002E7BC7 /* CustomTextField.swift in Sources */,
 				3D3F37531ED0515000219D4C /* AddEventViewController.swift in Sources */,
 				3D398E281ECD55CE002E7BC7 /* UserInterfaceDesign.swift in Sources */,
+				3D3F375E1ED3491C00219D4C /* TableViewBackgrounds.swift in Sources */,
 				3D398E241ECC385E002E7BC7 /* MyEventsViewController.swift in Sources */,
 				3D398E201ECC2C5B002E7BC7 /* LoginViewController.swift in Sources */,
 				5241860B1ECC3926005882E0 /* ChangeColor.swift in Sources */,
