@@ -57,9 +57,23 @@ class Event {
         if let guests = eventDict["guests"] as? [String : Any] {
             numberOfGuests = guests["fullname"] as? [String] ?? []
         }
-        
+    }
+}
+
+class User {
+    
+    var name : String = ""
+    var imageURL : String = ""
+    var position : String = ""
+    
+    init(aName : String, anImageURL : String, aPosition: String) {
+        name = aName
+        imageURL = anImageURL
+        position = aPosition
     }
     
-    
-    
+    init(dict : [String : Any]) {
+        name = dict["fullname"] as? String ?? "Default Name"
+        imageURL = dict["avatar"] as? String ?? "Default URL"
+    }
 }

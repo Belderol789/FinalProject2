@@ -13,6 +13,8 @@ class MyEventsViewController: UIViewController {
     
     var hostedEvents : [Event] = []
     var joinedEvents : [Event] = []
+    var userDetails : [User] = []
+    
     var arrayOfCategories : [Int] = []
     var selectedIndex : IndexPath?
     var isExpanded : Bool = false
@@ -21,11 +23,18 @@ class MyEventsViewController: UIViewController {
     var userID : Int = 0
     var numberOfEvents : Int = 0
     
+    @IBOutlet weak var avatarImageView: UIImageView! {
+        didSet {
+            avatarImageView.layer.cornerRadius = avatarImageView.frame.width/2
+            avatarImageView.layer.masksToBounds = true
+        }
+    }
     
-    
+    @IBOutlet weak var nameTextField: UILabel!
+    @IBOutlet weak var positionTextField: UILabel!
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    
+   
     @IBAction func segmentedControlTapped(_ sender: Any) {
         
         tableView.reloadData()
@@ -111,6 +120,7 @@ class MyEventsViewController: UIViewController {
         swipeRecognizer()
         getHostedEvents()
         getJoinedEvents()
+        getUserDetails()
         
         
         tableView.tableFooterView = UIView()
@@ -227,6 +237,62 @@ class MyEventsViewController: UIViewController {
     
     
     func getJoinedEvents() {
+    func getUserDetails () {
+        guard let userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") else {return}
+        
+        guard let url = URL(string: "http://192.168.1.116:3000/api/v1/users?remember_token=\(userToken)") else {return}
+        
+        var urlRequest = URLRequest(url: url)
+        
+        urlRequest.httpMethod = "GET"
+        
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-type")
+        
+        let urlSession = URLSession(configuration: URLSessionConfiguration.default)
+        let dataTask = urlSession.dataTask(with: urlRequest) { (data, response, error) in
+            
+            
+            if let validError = error {
+                print(validError.localizedDescription)
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                
+                print("Joined\(httpResponse.statusCode)")
+                
+                if httpResponse.statusCode == 200 {
+                    do {
+                        let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                        
+                        guard let validJSON = jsonResponse as? [[String:Any]] else { return }
+                        
+                        for each in validJSON {
+                            
+                            let userDetail = User(dict: each)
+                            
+                            print("\(userDetail.name)")
+                            print("\(userDetail.imageURL)")
+                            print("\(self.avatarImageView.frame)")
+                            
+                            self.nameTextField.text = userDetail.name
+                            
+                            guard let imageURL : String? = userDetail.imageURL
+                                else { return }
+                            
+                            self.avatarImageView.loadImageUsingCacheWithUrlString(urlString: imageURL!)
+                            
+//                            self.positionTextField.text = userDetail.position
+                        }
+                    } catch let jsonError as NSError {
+                        print(jsonError)
+                    }
+                }
+            }
+        }
+        dataTask.resume()
+    }
+
+    func getJoinedEvents (){
         
         guard let userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") else {return}
         
@@ -263,6 +329,17 @@ class MyEventsViewController: UIViewController {
                             
                             self.joinedEvents.append(joinedEvent)
                             
+                            for each in validJSON {
+                                
+                                let joinedEvent = Event(eventDict: each)
+                                
+                                self.joinedEvents.append(joinedEvent)
+                
+                            }
+                            //self.claims = validJSON
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
                             
                         }
                         //self.claims = validJSON
@@ -372,6 +449,36 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
         cellOpened()
         
     }
+}
+
+extension UIImageView {
     
-    
+    func loadImageUsingCacheWithUrlString(urlString: String) {
+        
+        self.image = nil
+        let imageCache = NSCache<AnyObject, AnyObject>()
+        
+        if let cachedImage = imageCache.object(forKey: urlString as NSString) {
+            self.image = cachedImage as? UIImage
+            return
+        }
+        
+
+        let url = URL(string: urlString)
+        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+            
+            if error != nil {
+                print(error!)
+                
+                return
+            }
+            DispatchQueue.main.async(execute: {
+                
+                if let downloadedImage = UIImage(data: data!) {
+                    imageCache.setObject(downloadedImage, forKey: urlString as NSString)
+                    self.image = downloadedImage
+                }
+            })
+        }).resume()
+    }
 }
