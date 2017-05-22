@@ -12,6 +12,8 @@ class EventsViewController: UIViewController {
     
     
     var userToken : String = ""
+    var userID : Int = 0
+    
     var params : [[String:Any]] = [[:]]
     var firstEvents : [Event] = []
     var secondEvents : [Event] = []
@@ -19,6 +21,7 @@ class EventsViewController: UIViewController {
     var fourthEvents : [Event] = []
     var fifthEvents : [Event] = []
     var sixthEvents : [Event] = []
+    
     var eventID : Int = 0
     var isExpanded : Bool = false
     var selectedIndex : IndexPath?
@@ -63,6 +66,7 @@ class EventsViewController: UIViewController {
         super.viewDidLoad()
         
         self.userToken = UserDefaults.standard.string(forKey: "AUTH_TOKEN")!
+        self.userID = UserDefaults.standard.integer(forKey: "USER_ID")
         getMyCategories()
     }
     
@@ -134,9 +138,56 @@ class EventsViewController: UIViewController {
         }
         
         dataTask.resume()
-        
     }
     
+    func joinButtonTapped () {
+       
+        let url = URL(string: "http://192.168.1.116:3000/api/v1/event_users?remember_token=\(self.userToken)")
+        var urlRequest = URLRequest(url: url!)
+        
+        urlRequest.httpMethod = "POST"
+        
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-type")
+    
+        self.params = [
+            ["event_id" : eventID,
+                "user_id" : userID]
+        ]
+        
+        var data: Data?
+        do {
+            data = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+            
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        
+        urlRequest.httpBody = data
+        
+        let urlSession = URLSession(configuration: URLSessionConfiguration.default)
+        
+        let dataTask = urlSession.dataTask(with: urlRequest) { (data, response, error) in
+            
+            if let validError = error {
+                print(validError.localizedDescription)
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                print(httpResponse.statusCode)
+                
+                if httpResponse.statusCode == 200 || httpResponse.statusCode == 204 {
+                    
+                    DispatchQueue.main.async {
+                        print("Data sent!")
+                    
+                        let eventsPage = self.storyboard?.instantiateViewController(withIdentifier: "MyEventsViewController") as! MyEventsViewController
+                        self.present(eventsPage, animated: true, completion: nil)
+                    }
+                }
+            }
+        }
+        dataTask.resume()
+    }
 }
 
 extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
@@ -188,7 +239,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.titleView.backgroundColor = UserInterfaceDesign.foodCategory
             break
         case 1:
-            let allEvent = firstEvents[indexPath.row]
+            let allEvent = secondEvents[indexPath.row]
             cell.aboutTextView.text = allEvent.eventDesc
             cell.hostLabel.text = allEvent.eventHost
             cell.nameLabel.text = allEvent.eventName
@@ -199,7 +250,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.titleView.backgroundColor = UserInterfaceDesign.sportCategory
             break
         case 2:
-            let allEvent = firstEvents[indexPath.row]
+            let allEvent = thirdEvents[indexPath.row]
             cell.aboutTextView.text = allEvent.eventDesc
             cell.hostLabel.text = allEvent.eventHost
             cell.nameLabel.text = allEvent.eventName
@@ -210,7 +261,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.titleView.backgroundColor = UserInterfaceDesign.entertainmentCategory
             break
         case 3:
-            let allEvent = firstEvents[indexPath.row]
+            let allEvent = fourthEvents[indexPath.row]
             cell.aboutTextView.text = allEvent.eventDesc
             cell.hostLabel.text = allEvent.eventHost
             cell.nameLabel.text = allEvent.eventName
@@ -221,7 +272,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.titleView.backgroundColor = UserInterfaceDesign.discussionCategory
             break
         case 4:
-            let allEvent = firstEvents[indexPath.row]
+            let allEvent = fifthEvents[indexPath.row]
             cell.aboutTextView.text = allEvent.eventDesc
             cell.hostLabel.text = allEvent.eventHost
             cell.nameLabel.text = allEvent.eventName
@@ -232,7 +283,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.titleView.backgroundColor = UserInterfaceDesign.artCategory
             break
         case 5:
-            let allEvent = firstEvents[indexPath.row]
+            let allEvent = sixthEvents[indexPath.row]
             cell.aboutTextView.text = allEvent.eventDesc
             cell.hostLabel.text = allEvent.eventHost
             cell.nameLabel.text = allEvent.eventName
@@ -253,7 +304,6 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
         guard let rowIndex = selectedIndex else {return}
         tableView.reloadRows(at: [rowIndex], with: .fade)
         tableView.scrollToRow(at: rowIndex, at: .bottom, animated: true)
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -269,8 +319,20 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             })
         }
         self.selectedIndex = indexPath
-        cellOpened()
         
+        switch (segmentedControl.selectedSegmentIndex) {
+        case 0: eventID = firstEvents[indexPath.row].eventID
+        case 1: eventID = secondEvents[indexPath.row].eventID
+        case 2: eventID = thirdEvents[indexPath.row].eventID
+        case 3: eventID = fourthEvents[indexPath.row].eventID
+        case 4: eventID = fifthEvents[indexPath.row].eventID
+        case 5: eventID = sixthEvents[indexPath.row].eventID
+        default:
+            break
+        }
+        
+        cell.joinButton.addTarget(self, action: #selector(joinButtonTapped), for: .touchUpInside)
+        cellOpened()
     }
 
 }

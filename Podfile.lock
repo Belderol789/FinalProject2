@@ -21,10 +21,12 @@ PODS:
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GTMSessionFetcher/Core (1.1.10)
+  - IQKeyboardManager (4.0.9)
 
 DEPENDENCIES:
   - Firebase/Core
   - Firebase/Storage
+  - IQKeyboardManager
 
 SPEC CHECKSUMS:
   Firebase: 284eea779b73fdff309791817da7c68bff8dd572
@@ -34,7 +36,8 @@ SPEC CHECKSUMS:
   FirebaseStorage: 8110a1ed2034c8fbfd83890d2acc9cdbbd99afec
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
+  IQKeyboardManager: 322c7405df3eb5f7e50dede32ea937bf3d4364e0
 
-PODFILE CHECKSUM: 149276e9434015a4281f6488a13c20bb06185b5e
+PODFILE CHECKSUM: 4765df3c3c77595ab6424a73a386e998e8d051af
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.2.0
