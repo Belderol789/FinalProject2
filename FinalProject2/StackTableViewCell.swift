@@ -49,12 +49,6 @@ class StackTableViewCell: UITableViewCell {
         }
     }
     
-    @IBOutlet weak var iconImageView: UIImageView!{
-        didSet{
-            iconImageView.layer.cornerRadius = iconImageView.frame.width/2
-            iconImageView.layer.masksToBounds = true
-        }
-    }
    
     @IBOutlet weak var detailView: UIView!
     

@@ -82,6 +82,7 @@ class EventsViewController: UIViewController {
     func getMyCategories() {
         
         let url = URL(string: "http://192.168.1.116:3000/api/v1/events?remember_token=\(self.userToken)")
+        
         var urlRequest = URLRequest(url: url!)
         
         urlRequest.httpMethod = "GET"
@@ -146,6 +147,7 @@ class EventsViewController: UIViewController {
     func joinButtonTapped () {
         
         let url = URL(string: "http://192.168.1.116:3000/api/v1/event_users?remember_token=\(self.userToken)")
+        
         var urlRequest = URLRequest(url: url!)
         
         urlRequest.httpMethod = "POST"
@@ -240,7 +242,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
-//            cell.detailView.backgroundColor = UserInterfaceDesign.foodCategory
+            //cell.detailView.backgroundColor = UserInterfaceDesign.foodCategory
 //            cell.titleView.backgroundColor = UserInterfaceDesign.foodCategory
             break
         case 1:
@@ -317,10 +319,12 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
         if isExpanded == true {
             UIView.animate(withDuration: 0.3, animations: {
                 cell.detailView.alpha = 0.95
+                
             })
         } else {
             UIView.animate(withDuration: 0.3, animations: {
                 cell.detailView.alpha = 0
+                
             })
         }
         self.selectedIndex = indexPath

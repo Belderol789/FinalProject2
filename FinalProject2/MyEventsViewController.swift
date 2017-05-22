@@ -25,11 +25,10 @@ class MyEventsViewController: UIViewController {
     
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+   
     @IBAction func segmentedControlTapped(_ sender: Any) {
-         tableView.reloadData()
-        self.getJoinedEvents(segment: segmentedControl.selectedSegmentIndex)
-        
-        
+        tableView.reloadData()
     }
     
     @IBOutlet weak var tableView: UITableView! {
@@ -109,7 +108,8 @@ class MyEventsViewController: UIViewController {
         super.viewDidLoad()
         
         swipeRecognizer()
-        addEvents()
+        getJoinedEvents()
+        
         tableView.tableFooterView = UIView()
     }
     
@@ -165,11 +165,13 @@ class MyEventsViewController: UIViewController {
         }
     }
     
-    func getJoinedEvents (segment : Int){
+    
+    
+    
+    func getJoinedEvents (){
+        
         guard let userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") else {return}
         
-        if segment == 1 {
-    
             guard let url = URL(string: "http://192.168.1.116:3000/api/v1/event_users?remember_token=\(userToken)") else {return}
             
             var urlRequest = URLRequest(url: url)
@@ -219,7 +221,7 @@ class MyEventsViewController: UIViewController {
             
             dataTask.resume()
 
-        }
+        
     }
     
 }
@@ -300,10 +302,12 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
         if isExpanded == true {
             UIView.animate(withDuration: 0.3, animations: {
                 cell.detailView.alpha = 0.95
+                cell.titleView.alpha = 0
             })
         } else {
             UIView.animate(withDuration: 0.5, animations: {
                 cell.detailView.alpha = 0
+                cell.titleView.alpha = 1
                 
             })
         }
