@@ -36,8 +36,10 @@ class MyEventsViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
    
     @IBAction func segmentedControlTapped(_ sender: Any) {
+        
         tableView.reloadData()
     }
+    
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -116,8 +118,10 @@ class MyEventsViewController: UIViewController {
         super.viewDidLoad()
         
         swipeRecognizer()
+        getHostedEvents()
         getJoinedEvents()
         getUserDetails()
+        
         
         tableView.tableFooterView = UIView()
     }
@@ -174,6 +178,65 @@ class MyEventsViewController: UIViewController {
         }
     }
     
+    
+    func getHostedEvents() {
+        
+        
+        guard let userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") else {return}
+        let userID = UserDefaults.standard.integer(forKey: "USER_ID")
+        
+        let url = URL(string: "http://192.168.1.116:3000/api/v1/events?remember_token=\(userToken)&host=\(userID)")
+        
+        var urlRequest = URLRequest(url: url!)
+        
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-type")
+        
+        let urlSession = URLSession(configuration: URLSessionConfiguration.default)
+        let dataTask = urlSession.dataTask(with: urlRequest) { (data, response, error) in
+            
+            if let validError = error {
+                print(validError.localizedDescription)
+            }
+            
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                print("Hosted\(httpResponse.statusCode)")
+                
+                if httpResponse.statusCode == 200 {
+                    do {
+                        let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                        
+                        
+                        guard let validJSON = jsonResponse as? [[String:Any]] else { return }
+                        
+                        for each in validJSON {
+                            
+                            let hostedEvent = Event(eventDict: each)
+                            
+                            self.hostedEvents.append(hostedEvent)
+                            
+                            
+                        }
+
+                        
+                        //self.claims = validJSON
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                        
+                    } catch let jsonError as NSError {
+                        print(jsonError)
+                    }
+                }
+            }
+        }
+        
+        dataTask.resume()
+    }
+    
+    
+    func getJoinedEvents() {
     func getUserDetails () {
         guard let userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") else {return}
         
@@ -233,32 +296,38 @@ class MyEventsViewController: UIViewController {
         
         guard let userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") else {return}
         
-            guard let url = URL(string: "http://192.168.1.116:3000/api/v1/event_users?remember_token=\(userToken)") else {return}
+        guard let url = URL(string: "http://192.168.1.116:3000/api/v1/event_users?remember_token=\(userToken)") else {return}
+        
+        var urlRequest = URLRequest(url: url)
+        
+        urlRequest.httpMethod = "GET"
+        
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-type")
+        
+        let urlSession = URLSession(configuration: URLSessionConfiguration.default)
+        let dataTask = urlSession.dataTask(with: urlRequest) { (data, response, error) in
             
-            var urlRequest = URLRequest(url: url)
             
-            urlRequest.httpMethod = "GET"
+            if let validError = error {
+                print(validError.localizedDescription)
+            }
             
-            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-type")
-            
-            let urlSession = URLSession(configuration: URLSessionConfiguration.default)
-            let dataTask = urlSession.dataTask(with: urlRequest) { (data, response, error) in
+            if let httpResponse = response as? HTTPURLResponse {
                 
+                print("Joined\(httpResponse.statusCode)")
                 
-                if let validError = error {
-                    print(validError.localizedDescription)
-                }
-                
-                if let httpResponse = response as? HTTPURLResponse {
-                    
-                    print("Joined\(httpResponse.statusCode)")
-                    
-                    if httpResponse.statusCode == 200 {
-                        do {
-                            let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                if httpResponse.statusCode == 200 {
+                    do {
+                        let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                        
+                        
+                        guard let validJSON = jsonResponse as? [[String:Any]] else { return }
+                        
+                        for each in validJSON {
                             
+                            let joinedEvent = Event(eventDict: each)
                             
-                            guard let validJSON = jsonResponse as? [[String:Any]] else { return }
+                            self.joinedEvents.append(joinedEvent)
                             
                             for each in validJSON {
                                 
@@ -272,13 +341,21 @@ class MyEventsViewController: UIViewController {
                                 self.tableView.reloadData()
                             }
                             
-                        } catch let jsonError as NSError {
-                            print(jsonError)
                         }
+                        //self.claims = validJSON
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                        
+                    } catch let jsonError as NSError {
+                        print(jsonError)
                     }
                 }
             }
-            dataTask.resume()
+        }
+        
+        dataTask.resume()
+        
     }
     
 }
@@ -295,7 +372,7 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-      
+        
         switch (segmentedControl.selectedSegmentIndex) {
         case 0:
             self.numberOfEvents = hostedEvents.count
@@ -306,7 +383,7 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
         }
         
         return self.numberOfEvents
-     
+        
     }
     
     
