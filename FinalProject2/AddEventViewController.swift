@@ -41,8 +41,6 @@ class AddEventViewController: UIViewController {
         
         setupImageArrays(categoryID)
         displayView.reloadData()
-       
-        
     }
     
     func setupImageArrays(_ categoryID : Int) {

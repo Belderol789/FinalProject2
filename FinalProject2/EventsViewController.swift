@@ -68,6 +68,7 @@ class EventsViewController: UIViewController {
         self.userToken = UserDefaults.standard.string(forKey: "AUTH_TOKEN")!
         self.userID = UserDefaults.standard.integer(forKey: "USER_ID")
         getMyCategories()
+        tableView.tableFooterView = UIView()
     }
     
    
