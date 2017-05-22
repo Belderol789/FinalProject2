@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dGQ-e3-m7K">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dGQ-e3-m7K">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -51,6 +51,32 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H1A-Z6-b7p">
                                         <rect key="frame" x="0.0" y="0.0" width="265" height="202"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Badminton" translatesAutoresizingMaskIntoConstraints="NO" id="5Ff-cN-igB">
+                                                <rect key="frame" x="82" y="15" width="117" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="msI-iV-cbf">
+                                                <rect key="frame" x="33" y="149" width="200" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Position" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5UY-UU-nqF">
+                                                <rect key="frame" x="33" y="174.5" width="200" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="msI-iV-cbf" secondAttribute="trailing" constant="32.5" id="Awe-eh-tHv"/>
+                                            <constraint firstAttribute="trailing" secondItem="5UY-UU-nqF" secondAttribute="trailing" constant="32.5" id="Kar-6A-JLD"/>
+                                            <constraint firstItem="5UY-UU-nqF" firstAttribute="top" secondItem="msI-iV-cbf" secondAttribute="bottom" constant="5" id="MYU-9T-atW"/>
+                                            <constraint firstItem="msI-iV-cbf" firstAttribute="leading" secondItem="H1A-Z6-b7p" secondAttribute="leading" constant="32.5" id="dqx-WM-LM2"/>
+                                            <constraint firstAttribute="bottom" secondItem="5UY-UU-nqF" secondAttribute="bottom" constant="7" id="ffh-Is-S0v"/>
+                                            <constraint firstItem="5UY-UU-nqF" firstAttribute="leading" secondItem="H1A-Z6-b7p" secondAttribute="leading" constant="32.5" id="w2l-Qn-J09"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -79,7 +105,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="76"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="umh-to-iG8" id="eSX-5v-OhL">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="75.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -172,12 +198,15 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addBarButton" destination="UiW-yD-rRR" id="zBO-9h-iTP"/>
+                        <outlet property="avatarImageView" destination="5Ff-cN-igB" id="YsA-CH-oUZ"/>
                         <outlet property="eventsBarButton" destination="ds1-Ee-JM6" id="woN-6o-NJc"/>
                         <outlet property="menuBarButton" destination="rYU-eR-SH4" id="INX-Qt-W7h"/>
                         <outlet property="menuView" destination="kcR-AK-hpA" id="u6l-lb-Zvt"/>
                         <outlet property="menuViewLeadingSpaceConstraint" destination="jK5-N0-wd9" id="yPg-WR-PXu"/>
                         <outlet property="myEventsBarButton" destination="DDz-0q-L1o" id="S7Q-vB-3jS"/>
+                        <outlet property="nameTextField" destination="msI-iV-cbf" id="UQL-xN-neE"/>
                         <outlet property="navBar" destination="u8j-CW-PCZ" id="Kh6-Jf-irf"/>
+                        <outlet property="positionTextField" destination="5UY-UU-nqF" id="XNb-Qh-qux"/>
                         <outlet property="profileMenu" destination="H1A-Z6-b7p" id="iFZ-ci-3qV"/>
                         <outlet property="segmentedControl" destination="rDS-tJ-tq8" id="Jgn-X0-Tu3"/>
                         <outlet property="tableView" destination="6R9-I0-Dc0" id="bbF-SB-MLD"/>
@@ -213,7 +242,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="87"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qiZ-NP-syx" id="OGB-qT-Si8">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="86.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -587,6 +616,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Badminton" width="1280" height="621"/>
         <image name="add" width="24" height="24"/>
         <image name="air-transport" width="64" height="64"/>
         <image name="care" width="64" height="64"/>
