@@ -40,6 +40,7 @@ class AddCategoryViewController: UIViewController {
         super.viewDidLoad()
         setupCollectionView()
         self.userToken = UserDefaults.standard.string(forKey: "AUTH_TOKEN")!
+        self.currentUserID = UserDefaults.standard.integer(forKey: "USER_ID")
         getCategories()
     }
     
@@ -50,7 +51,6 @@ class AddCategoryViewController: UIViewController {
     }
     
     func getCategories() {
-        
         let url = URL(string: "http://192.168.1.116:3000/api/v1/categories?remember_token=\(self.userToken)")
         var urlRequest = URLRequest(url: url!)
         
@@ -144,6 +144,10 @@ extension AddCategoryViewController : UICollectionViewDelegate {
         
         let controller = storyboard?.instantiateViewController(withIdentifier: "AddEventViewController") as! AddEventViewController
         controller.categoryID = chosenCategoriesID
+        
+        controller.userToken = userToken
+        
+        controller.currentUserID = currentUserID
         
         present(controller, animated: true, completion: nil)
     }
