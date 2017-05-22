@@ -13,14 +13,12 @@ class EventsViewController: UIViewController {
     
     var userToken : String = ""
     var params : [[String:Any]] = [[:]]
-    
     var firstEvents : [Event] = []
     var secondEvents : [Event] = []
     var thirdEvents : [Event] = []
     var fourthEvents : [Event] = []
     var fifthEvents : [Event] = []
     var sixthEvents : [Event] = []
-    
     var eventID : Int = 0
     var isExpanded : Bool = false
     var selectedIndex : IndexPath?
@@ -116,7 +114,7 @@ class EventsViewController: UIViewController {
                                 self.fourthEvents.append(newEvent)
                             } else if newEvent.categoryID == 5 {
                                 self.fifthEvents.append(newEvent)
-                            } else if newEvent.categoryID == 6 {
+                            } else {
                                 self.sixthEvents.append(newEvent)
                             }
                             
@@ -154,12 +152,18 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
         var numberOfEvents = 0
         
         switch (segmentedControl.selectedSegmentIndex) {
-        case 0: numberOfEvents = firstEvents.count
-        case 1: numberOfEvents = secondEvents.count
-        case 2: numberOfEvents = thirdEvents.count
-        case 3: numberOfEvents = fourthEvents.count
-        case 4: numberOfEvents = fifthEvents.count
-        case 5: numberOfEvents = sixthEvents.count
+        case 0:
+            numberOfEvents = firstEvents.count
+        case 1:
+            numberOfEvents = secondEvents.count
+        case 2:
+            numberOfEvents = thirdEvents.count
+        case 3:
+            numberOfEvents = fourthEvents.count
+        case 4:
+            numberOfEvents = fifthEvents.count
+        case 5:
+            numberOfEvents = sixthEvents.count
         default:
             break
         }
@@ -180,33 +184,63 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
-            cell.detailView.backgroundColor = UserInterfaceDesign.artCategory
-            cell.titleView.backgroundColor = UserInterfaceDesign.artCategory
-    
+            cell.detailView.backgroundColor = UserInterfaceDesign.foodCategory
+            cell.titleView.backgroundColor = UserInterfaceDesign.foodCategory
             break
         case 1:
-            let allEvent = secondEvents[indexPath.row]
+            let allEvent = firstEvents[indexPath.row]
             cell.aboutTextView.text = allEvent.eventDesc
             cell.hostLabel.text = allEvent.eventHost
             cell.nameLabel.text = allEvent.eventName
-            cell.titleView.backgroundColor = UserInterfaceDesign.discussionCategory
+            cell.stringToDate(allEvent.eventDate)
+            cell.dateLabel.text = allEvent.eventDate
+            cell.placeLabel.text = allEvent.eventVenue
+            cell.detailView.backgroundColor = UserInterfaceDesign.sportCategory
+            cell.titleView.backgroundColor = UserInterfaceDesign.sportCategory
+            break
+        case 2:
+            let allEvent = firstEvents[indexPath.row]
+            cell.aboutTextView.text = allEvent.eventDesc
+            cell.hostLabel.text = allEvent.eventHost
+            cell.nameLabel.text = allEvent.eventName
+            cell.stringToDate(allEvent.eventDate)
+            cell.dateLabel.text = allEvent.eventDate
+            cell.placeLabel.text = allEvent.eventVenue
+            cell.detailView.backgroundColor = UserInterfaceDesign.entertainmentCategory
+            cell.titleView.backgroundColor = UserInterfaceDesign.entertainmentCategory
+            break
+        case 3:
+            let allEvent = firstEvents[indexPath.row]
+            cell.aboutTextView.text = allEvent.eventDesc
+            cell.hostLabel.text = allEvent.eventHost
+            cell.nameLabel.text = allEvent.eventName
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
             cell.detailView.backgroundColor = UserInterfaceDesign.discussionCategory
-
+            cell.titleView.backgroundColor = UserInterfaceDesign.discussionCategory
             break
-        case 2:
-            let allEvent = thirdEvents[indexPath.row]
+        case 4:
+            let allEvent = firstEvents[indexPath.row]
             cell.aboutTextView.text = allEvent.eventDesc
             cell.hostLabel.text = allEvent.eventHost
             cell.nameLabel.text = allEvent.eventName
-            cell.titleView.backgroundColor = UserInterfaceDesign.foodCategory
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
-            cell.detailView.backgroundColor = UserInterfaceDesign.foodCategory
-            
+            cell.detailView.backgroundColor = UserInterfaceDesign.artCategory
+            cell.titleView.backgroundColor = UserInterfaceDesign.artCategory
+            break
+        case 5:
+            let allEvent = firstEvents[indexPath.row]
+            cell.aboutTextView.text = allEvent.eventDesc
+            cell.hostLabel.text = allEvent.eventHost
+            cell.nameLabel.text = allEvent.eventName
+            cell.stringToDate(allEvent.eventDate)
+            cell.dateLabel.text = allEvent.eventDate
+            cell.placeLabel.text = allEvent.eventVenue
+            cell.detailView.backgroundColor = UserInterfaceDesign.vacationCategory
+            cell.titleView.backgroundColor = UserInterfaceDesign.vacationCategory
             break
         default:
             break
