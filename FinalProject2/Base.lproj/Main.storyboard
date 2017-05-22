@@ -135,6 +135,7 @@
                                 </segments>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <action selector="segmentedControlTapped:" destination="dGQ-e3-m7K" eventType="valueChanged" id="aMS-u2-Bul"/>
                                     <action selector="segmentedControlTapped:" destination="dGQ-e3-m7K" eventType="touchUpInside" id="xgt-57-EAS"/>
                                 </connections>
                             </segmentedControl>

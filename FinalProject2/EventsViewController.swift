@@ -79,6 +79,10 @@ class EventsViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    func getHostedCategories() {
+        
+    }
+    
     func getMyCategories() {
         
         let url = URL(string: "http://192.168.1.116:3000/api/v1/events?remember_token=\(self.userToken)")
