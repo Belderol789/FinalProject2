@@ -11,11 +11,26 @@ import UIKit
 
 class MyEventsViewController: UIViewController {
     
-    var events : [Event] = []
+    var hostedEvents : [Event] = []
+    var joinedEvents : [Event] = []
     var arrayOfCategories : [Int] = []
     var selectedIndex : IndexPath?
     var isExpanded : Bool = false
     var currentUserID : Int = 0
+    var eventID : Int = 0
+    var userID : Int = 0
+    var numberOfEvents : Int = 0
+    
+    
+    
+    
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBAction func segmentedControlTapped(_ sender: Any) {
+         tableView.reloadData()
+        self.getJoinedEvents(segment: segmentedControl.selectedSegmentIndex)
+        
+        
+    }
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -69,7 +84,7 @@ class MyEventsViewController: UIViewController {
     @IBOutlet weak var myEventsBarButton: UIButton! {
         didSet {
             myEventsBarButton.setBackgroundImage(UserInterfaceDesign.imageOfMyEvents(pressed: true), for: .normal)
-          
+            
         }
     }
     
@@ -77,7 +92,7 @@ class MyEventsViewController: UIViewController {
         didSet {
             eventsBarButton.setBackgroundImage(UserInterfaceDesign.imageOfEvents(pressed: false), for: .normal)
             eventsBarButton.addTarget(self, action: #selector(eventsBarButtonTapped), for: .touchUpInside)
-
+            
         }
     }
     
@@ -99,10 +114,10 @@ class MyEventsViewController: UIViewController {
     }
     
     func eventsBarButtonTapped () {
-            let controller = storyboard?.instantiateViewController(withIdentifier: "EventsViewController") as? EventsViewController
+        let controller = storyboard?.instantiateViewController(withIdentifier: "EventsViewController") as? EventsViewController
         
-            controller?.categoryIDs = self.arrayOfCategories
-            present(controller!, animated: true, completion: nil)
+        controller?.categoryIDs = self.arrayOfCategories
+        present(controller!, animated: true, completion: nil)
     }
     
     func swipeRecognizer () {
@@ -150,10 +165,61 @@ class MyEventsViewController: UIViewController {
         }
     }
     
-    func addEvents() {
-//        events.append(Event(name: "Dinner", venue: "Pedas pedas", date: "Tomorrow", host: "Changhui", desc: "Anyone want to go eat?", color: UserInterfaceDesign.foodCategory, id: 0, logo: #imageLiteral(resourceName: "restaurant-cutlery-circular-symbol-of-a-spoon-and-a-fork-in-a-circle")))
-//        events.append(Event(name: "Football", venue: "xxxx", date: "Today", host: "Ad", desc: "Looking for a good game", color: UserInterfaceDesign.sportCategory, id: 1, logo: #imageLiteral(resourceName: "soccer-ball-variant")))
-//        
+    func getJoinedEvents (segment : Int){
+        guard let userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") else {return}
+        
+        if segment == 1 {
+    
+            guard let url = URL(string: "http://192.168.1.116:3000/api/v1/event_users?remember_token=\(userToken)") else {return}
+            
+            var urlRequest = URLRequest(url: url)
+            
+            urlRequest.httpMethod = "GET"
+            
+            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-type")
+            
+            let urlSession = URLSession(configuration: URLSessionConfiguration.default)
+            let dataTask = urlSession.dataTask(with: urlRequest) { (data, response, error) in
+                
+                
+                if let validError = error {
+                    print(validError.localizedDescription)
+                }
+                
+                if let httpResponse = response as? HTTPURLResponse {
+                    
+                    print("Joined\(httpResponse.statusCode)")
+                    
+                    if httpResponse.statusCode == 200 {
+                        do {
+                            let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                            
+                            
+                            guard let validJSON = jsonResponse as? [[String:Any]] else { return }
+                            
+                            for each in validJSON {
+                                
+                                let joinedEvent = Event(eventDict: each)
+                                
+                                self.joinedEvents.append(joinedEvent)
+                                
+                                
+                            }
+                            //self.claims = validJSON
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                            
+                        } catch let jsonError as NSError {
+                            print(jsonError)
+                        }
+                    }
+                }
+            }
+            
+            dataTask.resume()
+
+        }
     }
     
 }
@@ -169,25 +235,54 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return events.count
+        
+      
+        switch (segmentedControl.selectedSegmentIndex) {
+        case 0:
+            self.numberOfEvents = hostedEvents.count
+        case 1:
+            self.numberOfEvents =  joinedEvents.count
+        default:
+            break
+        }
+        
+        return self.numberOfEvents
+     
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: StackTableViewCell.cellIdentifier, for: indexPath) as! StackTableViewCell
-        let event = events[indexPath.row]
         
-        
-        cell.aboutTextView.text = event.eventDesc
-        cell.hostLabel.text = event.eventHost
-        cell.nameLabel.text = event.eventName
-        cell.stringToDate(event.eventDate)
-        cell.dateLabel.text = event.eventDate
-        cell.placeLabel.text = event.eventVenue
-        cell.titleView.backgroundColor = event.eventColor
-        cell.detailView.backgroundColor = event.eventColor
-        
-        
+        switch (segmentedControl.selectedSegmentIndex) {
+            
+        case 0:
+            let event = hostedEvents[indexPath.row]
+            cell.aboutTextView.text = event.eventDesc
+            cell.hostLabel.text = event.eventHost
+            cell.nameLabel.text = event.eventName
+            cell.stringToDate(event.eventDate)
+            cell.dateLabel.text = event.eventDate
+            cell.placeLabel.text = event.eventVenue
+            cell.titleView.backgroundColor = event.eventColor
+            cell.detailView.backgroundColor = event.eventColor
+            break
+        case 1:
+            
+            let event = joinedEvents[indexPath.row]
+            cell.aboutTextView.text = event.eventDesc
+            cell.hostLabel.text = event.eventHost
+            cell.nameLabel.text = event.eventName
+            cell.stringToDate(event.eventDate)
+            cell.dateLabel.text = event.eventDate
+            cell.placeLabel.text = event.eventVenue
+            cell.titleView.backgroundColor = .yellow
+            cell.detailView.backgroundColor = .yellow
+            
+            break
+        default:
+            break
+        }
         return cell
     }
     
@@ -195,12 +290,12 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
         guard let rowIndex = selectedIndex else {return}
         tableView.reloadRows(at: [rowIndex], with: .fade)
         tableView.scrollToRow(at: rowIndex, at: .bottom, animated: true)
-       
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         isExpanded = !isExpanded
-
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: StackTableViewCell.cellIdentifier, for: indexPath) as! StackTableViewCell
         if isExpanded == true {
             UIView.animate(withDuration: 0.3, animations: {
@@ -217,5 +312,5 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
         
     }
     
-
+    
 }

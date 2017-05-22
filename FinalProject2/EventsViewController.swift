@@ -39,7 +39,7 @@ class EventsViewController: UIViewController {
             tableView.backgroundView = FoodTableView()
         }
     }
-  
+    
     @IBAction func segmentedControlTapped(_ sender: Any) {
         
         tableView.reloadData()
@@ -50,7 +50,7 @@ class EventsViewController: UIViewController {
         didSet {
             myEventsBarButton.setBackgroundImage(UserInterfaceDesign.imageOfMyEvents(pressed: false), for: .normal)
             myEventsBarButton.addTarget(self, action: #selector(myEventsBarButtonTapped), for: .touchUpInside)
-           
+            
         }
     }
     
@@ -73,7 +73,7 @@ class EventsViewController: UIViewController {
         tableView.tableFooterView = UIView()
     }
     
-   
+    
     
     func myEventsBarButtonTapped () {
         dismiss(animated: true, completion: nil)
@@ -144,17 +144,17 @@ class EventsViewController: UIViewController {
     }
     
     func joinButtonTapped () {
-       
+        
         let url = URL(string: "http://192.168.1.116:3000/api/v1/event_users?remember_token=\(self.userToken)")
         var urlRequest = URLRequest(url: url!)
         
         urlRequest.httpMethod = "POST"
         
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-type")
-    
+        
         self.params = [
             ["event_id" : eventID,
-                "user_id" : userID]
+             "user_id" : userID]
         ]
         
         var data: Data?
@@ -182,7 +182,7 @@ class EventsViewController: UIViewController {
                     
                     DispatchQueue.main.async {
                         print("Data sent!")
-                    
+                        
                         let eventsPage = self.storyboard?.instantiateViewController(withIdentifier: "MyEventsViewController") as! MyEventsViewController
                         self.present(eventsPage, animated: true, completion: nil)
                     }
@@ -339,6 +339,6 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
         cell.joinButton.addTarget(self, action: #selector(joinButtonTapped), for: .touchUpInside)
         cellOpened()
     }
-
+    
 }
 
