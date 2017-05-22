@@ -13,10 +13,14 @@ class EventsViewController: UIViewController {
     
     var userToken : String = ""
     var params : [[String:Any]] = [[:]]
+    
     var firstEvents : [Event] = []
     var secondEvents : [Event] = []
     var thirdEvents : [Event] = []
     var fourthEvents : [Event] = []
+    var fifthEvents : [Event] = []
+    var sixthEvents : [Event] = []
+    
     var eventID : Int = 0
     var isExpanded : Bool = false
     var selectedIndex : IndexPath?
@@ -102,12 +106,18 @@ class EventsViewController: UIViewController {
                             
                             let newEvent = Event(dict: each)
                             
-                            if newEvent.categoryID == self.categoryIDs[0] {
+                            if newEvent.categoryID == 1 {
                                 self.firstEvents.append(newEvent)
-                            } else if newEvent.categoryID == self.categoryIDs[1] {
+                            } else if newEvent.categoryID == 2 {
                                 self.secondEvents.append(newEvent)
-                            } else {
+                            } else if newEvent.categoryID == 3 {
                                 self.thirdEvents.append(newEvent)
+                            } else if newEvent.categoryID == 4 {
+                                self.fourthEvents.append(newEvent)
+                            } else if newEvent.categoryID == 5 {
+                                self.fifthEvents.append(newEvent)
+                            } else if newEvent.categoryID == 6 {
+                                self.sixthEvents.append(newEvent)
                             }
                             
                             self.eventID = newEvent.categoryID
@@ -144,12 +154,12 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
         var numberOfEvents = 0
         
         switch (segmentedControl.selectedSegmentIndex) {
-        case 0:
-            numberOfEvents = firstEvents.count
-        case 1:
-            numberOfEvents = secondEvents.count
-        case 2:
-            numberOfEvents = thirdEvents.count
+        case 0: numberOfEvents = firstEvents.count
+        case 1: numberOfEvents = secondEvents.count
+        case 2: numberOfEvents = thirdEvents.count
+        case 3: numberOfEvents = fourthEvents.count
+        case 4: numberOfEvents = fifthEvents.count
+        case 5: numberOfEvents = sixthEvents.count
         default:
             break
         }

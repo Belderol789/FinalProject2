@@ -11,7 +11,7 @@ import UIKit
 class AddEventViewController: UIViewController {
     var categoryID : Int = 0
     var foodEvents : [UIImage] = []
-    var 
+    var
    
     @IBOutlet weak var displayView: iCarousel!
     @IBOutlet weak var nameTextField: UITextField!
