@@ -121,6 +121,7 @@ class MyEventsViewController: UIViewController {
         getHostedEvents()
         getJoinedEvents()
         getUserDetails()
+        handleImage()
         
         
         tableView.tableFooterView = UIView()
@@ -132,6 +133,21 @@ class MyEventsViewController: UIViewController {
         controller?.categoryIDs = self.arrayOfCategories
         present(controller!, animated: true, completion: nil)
     }
+    
+    func chooseProfileImage(){
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
+    }
+    func handleImage() {
+        
+        avatarImageView.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(chooseProfileImage))
+        avatarImageView.addGestureRecognizer(tap)
+        
+    }
+    
     
     func swipeRecognizer () {
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft(_ :)))
@@ -217,6 +233,7 @@ class MyEventsViewController: UIViewController {
                             self.hostedEvents.append(hostedEvent)
                             
                             
+                            
                         }
 
                         
@@ -236,7 +253,7 @@ class MyEventsViewController: UIViewController {
     }
     
     
-    func getJoinedEvents() {
+ 
     func getUserDetails () {
         guard let userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") else {return}
         
@@ -482,3 +499,35 @@ extension UIImageView {
         }).resume()
     }
 }
+
+
+extension MyEventsViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
+    {
+        print("User canceled out of picker")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
+    {
+        var selectedImageFromPicker: UIImage?
+        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage
+        {
+            selectedImageFromPicker = editedImage
+            
+        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage
+        {
+            selectedImageFromPicker = originalImage
+        }
+        
+        if let selectedImage = selectedImageFromPicker
+        {
+           avatarImageView.image = selectedImage
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+}
+
