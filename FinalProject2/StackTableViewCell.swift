@@ -45,6 +45,7 @@ class StackTableViewCell: UITableViewCell {
         didSet {
             profileImageView.layer.cornerRadius = profileImageView.frame.width/2
             profileImageView.layer.masksToBounds = true
+           
         }
     }
     

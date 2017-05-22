@@ -30,6 +30,8 @@ public class UserInterfaceDesign : NSObject {
         static let discussionCategoryOverlay: UIColor = UserInterfaceDesign.discussionCategory.withAlpha(0.2)
         static let artCategory: UIColor = UIColor(red: 0.000, green: 0.117, blue: 1.000, alpha: 1.000)
         static let artCategoryOverlay: UIColor = UserInterfaceDesign.artCategory.withAlpha(0.3)
+        static var imageOfFoodTableView: UIImage?
+        static var foodTableViewTargets: [AnyObject]?
     }
 
     //// Colors
@@ -2572,6 +2574,69 @@ public class UserInterfaceDesign : NSObject {
 
     }
 
+    public dynamic class func drawFoodTableView(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 375, height: 511), resizing: ResizingBehavior = .aspectFit) {
+        //// General Declarations
+        let context = UIGraphicsGetCurrentContext()!
+        
+        //// Resize to Target Frame
+        context.saveGState()
+        let resizedFrame: CGRect = resizing.apply(rect: CGRect(x: 0, y: 0, width: 375, height: 511), target: targetFrame)
+        context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
+        context.scaleBy(x: resizedFrame.width / 375, y: resizedFrame.height / 511)
+        let resizedShadowScale: CGFloat = min(resizedFrame.width / 375, resizedFrame.height / 511)
+
+
+        //// Color Declarations
+        let gradientColor = UIColor(red: 0.928, green: 0.872, blue: 0.246, alpha: 0.911)
+        let color3 = UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1.000)
+        let gradientColor2 = UIColor(red: 1.000, green: 0.197, blue: 0.000, alpha: 0.847)
+        let blackOverlay = UIColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.275)
+
+        //// Gradient Declarations
+        let gradient = CGGradient(colorsSpace: nil, colors: [gradientColor2.cgColor, gradientColor2.blended(withFraction: 0.5, of: gradientColor).cgColor, gradientColor.cgColor] as CFArray, locations: [0, 0.4, 1])!
+
+        //// Shadow Declarations
+        let shadow = NSShadow()
+        shadow.shadowColor = color3.withAlphaComponent(0.28 * color3.cgColor.alpha)
+        shadow.shadowOffset = CGSize(width: -70, height: -68)
+        shadow.shadowBlurRadius = 50
+
+        //// Rectangle Drawing
+        let rectanglePath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 375, height: 511))
+        context.saveGState()
+        rectanglePath.addClip()
+        context.drawLinearGradient(gradient, start: CGPoint(x: 187.5, y: -0), end: CGPoint(x: 187.5, y: 511), options: [])
+        context.restoreGState()
+
+        ////// Rectangle Inner Shadow
+        context.saveGState()
+        context.clip(to: rectanglePath.bounds)
+        context.setShadow(offset: CGSize.zero, blur: 0)
+        context.setAlpha((shadow.shadowColor as! UIColor).cgColor.alpha)
+        context.beginTransparencyLayer(auxiliaryInfo: nil)
+        let rectangleOpaqueShadow = (shadow.shadowColor as! UIColor).withAlphaComponent(1)
+        context.setShadow(offset: CGSize(width: shadow.shadowOffset.width * resizedShadowScale, height: shadow.shadowOffset.height * resizedShadowScale), blur: shadow.shadowBlurRadius * resizedShadowScale, color: rectangleOpaqueShadow.cgColor)
+        context.setBlendMode(.sourceOut)
+        context.beginTransparencyLayer(auxiliaryInfo: nil)
+
+        rectangleOpaqueShadow.setFill()
+        rectanglePath.fill()
+
+        context.endTransparencyLayer()
+        context.endTransparencyLayer()
+        context.restoreGState()
+
+
+
+        //// Rectangle 2 Drawing
+        let rectangle2Path = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 375, height: 511))
+        blackOverlay.setFill()
+        rectangle2Path.fill()
+        
+        context.restoreGState()
+
+    }
+
     //// Generated Images
 
     public dynamic class func imageOfEntertainmentCategory(pressed: Bool = true) -> UIImage {
@@ -2664,6 +2729,32 @@ public class UserInterfaceDesign : NSObject {
         return imageOfEvents
     }
 
+    public dynamic class var imageOfFoodTableView: UIImage {
+        if Cache.imageOfFoodTableView != nil {
+            return Cache.imageOfFoodTableView!
+        }
+
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 375, height: 511), false, 0)
+            UserInterfaceDesign.drawFoodTableView()
+
+        Cache.imageOfFoodTableView = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        return Cache.imageOfFoodTableView!
+    }
+
+    //// Customization Infrastructure
+
+    @IBOutlet dynamic var foodTableViewTargets: [AnyObject]! {
+        get { return Cache.foodTableViewTargets }
+        set {
+            Cache.foodTableViewTargets = newValue
+            for target: AnyObject in newValue {
+                let _ = target.perform(NSSelectorFromString("setImage:"), with: UserInterfaceDesign.imageOfFoodTableView)
+            }
+        }
+    }
+
 
 
 
@@ -2739,5 +2830,17 @@ private extension UIColor {
         var red: CGFloat = 1, green: CGFloat = 1, blue: CGFloat = 1, alpha: CGFloat = 1
         self.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         return UIColor(red: red * (1-shadow), green: green * (1-shadow), blue: blue * (1-shadow), alpha: alpha * (1-shadow) + shadow)
+    }
+    func blended(withFraction fraction: CGFloat, of color: UIColor) -> UIColor {
+        var r1: CGFloat = 1, g1: CGFloat = 1, b1: CGFloat = 1, a1: CGFloat = 1
+        var r2: CGFloat = 1, g2: CGFloat = 1, b2: CGFloat = 1, a2: CGFloat = 1
+
+        self.getRed(&r1, green: &g1, blue: &b1, alpha: &a1)
+        color.getRed(&r2, green: &g2, blue: &b2, alpha: &a2)
+
+        return UIColor(red: r1 * (1 - fraction) + r2 * fraction,
+            green: g1 * (1 - fraction) + g2 * fraction,
+            blue: b1 * (1 - fraction) + b2 * fraction,
+            alpha: a1 * (1 - fraction) + a2 * fraction);
     }
 }

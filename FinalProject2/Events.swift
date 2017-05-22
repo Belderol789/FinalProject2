@@ -16,7 +16,7 @@ class Event {
     var eventDate : String = ""
     var eventHost : String = ""
     var eventDesc : String = ""
-    var eventColor : UIColor = .white
+    var eventColor : UIColor = .black
     var categoryID : Int = 0
     var categoryLogo : UIImage?
     

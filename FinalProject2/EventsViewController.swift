@@ -35,6 +35,8 @@ class EventsViewController: UIViewController {
             tableView.register(StackTableViewCell.cellNib, forCellReuseIdentifier: StackTableViewCell.cellIdentifier)
             self.tableView.delegate = self
             self.tableView.dataSource = self
+            
+            tableView.backgroundView = FoodTableView()
         }
     }
   
@@ -227,6 +229,8 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StackTableViewCell.cellIdentifier, for: indexPath) as? StackTableViewCell else {return UITableViewCell()}
         
+        cell.backgroundColor = UIColor.clear
+        
         switch (segmentedControl.selectedSegmentIndex) {
         case 0:
             let allEvent = firstEvents[indexPath.row]
@@ -236,8 +240,8 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
-            cell.detailView.backgroundColor = UserInterfaceDesign.foodCategory
-            cell.titleView.backgroundColor = UserInterfaceDesign.foodCategory
+//            cell.detailView.backgroundColor = UserInterfaceDesign.foodCategory
+//            cell.titleView.backgroundColor = UserInterfaceDesign.foodCategory
             break
         case 1:
             let allEvent = secondEvents[indexPath.row]
@@ -247,8 +251,8 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
-            cell.detailView.backgroundColor = UserInterfaceDesign.sportCategory
-            cell.titleView.backgroundColor = UserInterfaceDesign.sportCategory
+//            cell.detailView.backgroundColor = UserInterfaceDesign.sportCategory
+//            cell.titleView.backgroundColor = UserInterfaceDesign.sportCategory
             break
         case 2:
             let allEvent = thirdEvents[indexPath.row]
@@ -258,8 +262,8 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
-            cell.detailView.backgroundColor = UserInterfaceDesign.entertainmentCategory
-            cell.titleView.backgroundColor = UserInterfaceDesign.entertainmentCategory
+//            cell.detailView.backgroundColor = UserInterfaceDesign.entertainmentCategory
+//            cell.titleView.backgroundColor = UserInterfaceDesign.entertainmentCategory
             break
         case 3:
             let allEvent = fourthEvents[indexPath.row]
@@ -269,8 +273,8 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
-            cell.detailView.backgroundColor = UserInterfaceDesign.discussionCategory
-            cell.titleView.backgroundColor = UserInterfaceDesign.discussionCategory
+//            cell.detailView.backgroundColor = UserInterfaceDesign.discussionCategory
+//            cell.titleView.backgroundColor = UserInterfaceDesign.discussionCategory
             break
         case 4:
             let allEvent = fifthEvents[indexPath.row]
@@ -280,8 +284,8 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
-            cell.detailView.backgroundColor = UserInterfaceDesign.artCategory
-            cell.titleView.backgroundColor = UserInterfaceDesign.artCategory
+//            cell.detailView.backgroundColor = UserInterfaceDesign.artCategory
+//            cell.titleView.backgroundColor = UserInterfaceDesign.artCategory
             break
         case 5:
             let allEvent = sixthEvents[indexPath.row]
@@ -291,8 +295,8 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
-            cell.detailView.backgroundColor = UserInterfaceDesign.vacationCategory
-            cell.titleView.backgroundColor = UserInterfaceDesign.vacationCategory
+//            cell.detailView.backgroundColor = UserInterfaceDesign.vacationCategory
+//            cell.titleView.backgroundColor = UserInterfaceDesign.vacationCategory
             break
         default:
             break
