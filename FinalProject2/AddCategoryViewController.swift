@@ -79,7 +79,7 @@ class AddCategoryViewController: UIViewController {
                         for each in validJSON {
                             let id = each["id"] as? Int
                             let name = each["name"] as? String
-                            
+
                             self.categories.append(name!)
                             self.categoryIDs.append(id!)
                             
@@ -98,7 +98,6 @@ class AddCategoryViewController: UIViewController {
         }
         
         dataTask.resume()
-        
     }
 }
 
