@@ -58,6 +58,9 @@ class EventsViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var segmentedControlView: UIView!
+    @IBOutlet weak var leadingSegmentedControlConstraint: NSLayoutConstraint!
+    
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
     }
@@ -209,27 +212,42 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
         case 0:
             numberOfEvents = firstEvents.count
             tableView.backgroundView = FoodTableView()
+            leadingSegmentedControlConstraint.constant = 0
+            
         case 1:
             numberOfEvents = secondEvents.count
             tableView.backgroundView = SportTableView()
+            leadingSegmentedControlConstraint.constant = 0
+            
         case 2:
             numberOfEvents = thirdEvents.count
             tableView.backgroundView = EntertainmentTableView()
+            leadingSegmentedControlConstraint.constant = -73
+            
         case 3:
             numberOfEvents = fourthEvents.count
             tableView.backgroundView = WorkTableView()
+            leadingSegmentedControlConstraint.constant = -160
+            
         case 4:
             numberOfEvents = fifthEvents.count
             tableView.backgroundView = CharityTableView()
+            leadingSegmentedControlConstraint.constant = -230
+            
         case 5:
             numberOfEvents = sixthEvents.count
             tableView.backgroundView = TravelTableView()
+            leadingSegmentedControlConstraint.constant = -230
+            
         default:
             break
         }
         
-        return numberOfEvents
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.layoutSubviews()
+        })
         
+        return numberOfEvents
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -323,7 +341,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
         } else {
             UIView.animate(withDuration: 0.3, animations: {
                 cell.detailView.alpha = 0
-                
+            
             })
         }
         self.selectedIndex = indexPath
