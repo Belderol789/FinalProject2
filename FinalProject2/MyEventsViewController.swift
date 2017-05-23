@@ -111,6 +111,8 @@ class MyEventsViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var editProfileButton: UIButton!
+    
     var menuViewShowing = false
     
     override func viewDidLoad() {
