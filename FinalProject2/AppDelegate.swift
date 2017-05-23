@@ -17,17 +17,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-//        if UserDefaults.standard.string(forKey: "AUTH_TOKEN") != nil{
-//            
-//            let initController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
-//            window?.rootViewController = initController
-//            
-//        }else{
-//            let loginController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
-//            window?.rootViewController = loginController
-//        }
-//        self.window?.makeKeyAndVisible()
+        if UserDefaults.standard.string(forKey: "AUTH_TOKEN") != nil{
+            let initController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyEventsViewControler")
+            window?.rootViewController = initController
+        }
+        else{
+            let loginController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
+            window?.rootViewController = loginController
+        }
+        self.window?.makeKeyAndVisible()
+        
+        application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: nil))
+        UIApplication.shared.cancelAllLocalNotifications()
+        
         IQKeyboardManager.shared().isEnabled = true
+        
         FirebaseApp.configure()
         return true
     }
