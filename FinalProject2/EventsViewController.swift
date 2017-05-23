@@ -93,6 +93,7 @@ class EventsViewController: UIViewController {
         if segmentedControl.selectedSegmentIndex == index {
             if index < 6 {
                 segmentedControl.selectedSegmentIndex = index + 1
+                tableView.reloadData()
             }
         }
     }
@@ -101,8 +102,9 @@ class EventsViewController: UIViewController {
         
         let index = segmentedControl.selectedSegmentIndex
         if segmentedControl.selectedSegmentIndex == index {
-            if index > -1 {
-                segmentedControl.selectedSegmentIndex = index + 1
+            if index >  0 {
+                segmentedControl.selectedSegmentIndex = index - 1
+                tableView.reloadData()
             }
         }
     }
@@ -113,11 +115,7 @@ class EventsViewController: UIViewController {
     
     func getMyCategories() {
         
-<<<<<<< HEAD
-        let url = URL(string: "http://192.168.1.150:3000/api/v1/events?remember_token=\(self.userToken)")
-=======
         let url = URL(string: "http://192.168.1.50:3000/api/v1/events?remember_token=\(self.userToken)")
->>>>>>> d55f07b15773cfb6fd6d8dabefe59702d916872b
         
         var urlRequest = URLRequest(url: url!)
         
@@ -182,11 +180,7 @@ class EventsViewController: UIViewController {
     
     func joinButtonTapped () {
         
-<<<<<<< HEAD
-        let url = URL(string: "http://192.168.1.150:3000/api/v1/event_users?remember_token=\(self.userToken)")
-=======
         let url = URL(string: "http://192.168.1.50:3000/api/v1/event_users?remember_token=\(self.userToken)")
->>>>>>> d55f07b15773cfb6fd6d8dabefe59702d916872b
         
         var urlRequest = URLRequest(url: url!)
         
