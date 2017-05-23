@@ -615,7 +615,9 @@ extension UIImageView {
             self.image = cachedImage as? UIImage
             return
         }
+        
         let url = URL(string: urlString)
+        
         URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
             
             if error != nil {

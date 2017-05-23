@@ -16,10 +16,10 @@ class AddEventViewController: UIViewController {
     var events : [UIImage] = []
     var eventNames : [String] = []
     var userToken : String = ""
-    var dateAndTime : String = ""
-
+    var selectedDateTime = DateTime()
+    
     @IBOutlet weak var dateAndTimeLabel: UILabel!
-   
+    
     @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var monthPicker: UIPickerView!{
         didSet{
@@ -68,7 +68,7 @@ class AddEventViewController: UIViewController {
         }
     }
     
- 
+    
     @IBOutlet weak var dateAndTimePicker: UIPickerView!
     
     override func viewDidLoad() {
@@ -82,39 +82,40 @@ class AddEventViewController: UIViewController {
         
         
         if categoryID == 1 {
-            events = [#imageLiteral(resourceName: "Breakfast"), #imageLiteral(resourceName: "Brunch"), #imageLiteral(resourceName: "Lunch"), #imageLiteral(resourceName: "Tea"), #imageLiteral(resourceName: "Dinner")]
-            eventNames = [ "Breakfast","Brunch", "Lunch", "Tea", "Dinner"]
+            events = [#imageLiteral(resourceName: "breakfast"), #imageLiteral(resourceName: "brunch"), #imageLiteral(resourceName: "lunch"), #imageLiteral(resourceName: "tea"), #imageLiteral(resourceName: "dinner"), #imageLiteral(resourceName: "food-others")]
+            eventNames = [ "Breakfast","Brunch", "Lunch", "Tea", "Dinner", "Others"]
         } else if categoryID == 2 {
-            events = [#imageLiteral(resourceName: "Basketball"), #imageLiteral(resourceName: "Badminton"), #imageLiteral(resourceName: "Footsal"), #imageLiteral(resourceName: "Football"), #imageLiteral(resourceName: "Pingpong"), #imageLiteral(resourceName: "Jogging"), #imageLiteral(resourceName: "Cycling"), #imageLiteral(resourceName: "Trekking"), #imageLiteral(resourceName: "Yoga")]
-            eventNames = ["Basketball", "Badminton", "Futsal", "Football", "Pingpong", "Jogging", "Cycling", "Trekking", "Yoga"]
+            events = [#imageLiteral(resourceName: "basketball"), #imageLiteral(resourceName: "badminton"), #imageLiteral(resourceName: "football"), #imageLiteral(resourceName: "futsal"), #imageLiteral(resourceName: "pingpong"), #imageLiteral(resourceName: "jogging"), #imageLiteral(resourceName: "cycling"), #imageLiteral(resourceName: "trekking"), #imageLiteral(resourceName: "yoga"), #imageLiteral(resourceName: "sports-others")]
+            eventNames = ["Basketball", "Badminton", "Football", "Futsal", "Pingpong", "Jogging", "Cycling", "Trekking", "Yoga", "Others"]
         } else if categoryID == 3 {
-            events = [#imageLiteral(resourceName: "Nightout"), #imageLiteral(resourceName: "Movie"), #imageLiteral(resourceName: "Concert"), #imageLiteral(resourceName: "TheatrePlay"), #imageLiteral(resourceName: "Parties")]
+            events = [#imageLiteral(resourceName: "nightout"), #imageLiteral(resourceName: "movie"), #imageLiteral(resourceName: "concert"), #imageLiteral(resourceName: "theatreplay"), #imageLiteral(resourceName: "parties"), #imageLiteral(resourceName: "entertainment-others")]
             eventNames = ["Nightout", "Movie", "Concert", "Theatre Play", "Party"]
         } else if categoryID == 4 {
-            events = [#imageLiteral(resourceName: "Discussion")]
-            eventNames = ["Discussion"]
+            events = [#imageLiteral(resourceName: "discussion"), #imageLiteral(resourceName: "work-others")]
+            eventNames = ["Discussion", "Others"]
         } else if categoryID == 5 {
-            events = [#imageLiteral(resourceName: "Fundraiser")]
-            eventNames = ["Fundraiser"]
+            events = [#imageLiteral(resourceName: "fundraiser"), #imageLiteral(resourceName: "fundraiser-others")]
+            eventNames = ["Fundraiser", "Others"]
         } else {
-            events = [#imageLiteral(resourceName: "Leisure"), #imageLiteral(resourceName: "Business"), #imageLiteral(resourceName: "Backpacking")]
-            eventNames = ["Leisure", "Business", "Backpacking"]
+            events = [#imageLiteral(resourceName: "leisure"), #imageLiteral(resourceName: "business"), #imageLiteral(resourceName: "backpacking"), #imageLiteral(resourceName: "travel-others")]
+            eventNames = ["Leisure", "Business", "Backpacking", "Others"]
         }
         
         
         
         
     }
- 
+    
     func submitButtonTapped() {
         guard let name = nameTextField.text,
             let venue = venueTextField.text,
+            let dateAndTime = dateAndTimeLabel.text,
             let about = aboutTextView.text else {return}
         
         
-        sendToDatabase(name: name, venue: venue, dateAndTime: self.dateAndTime, about: about, categoryID : categoryID, eventID : eventID, currentUserID : currentUserID)
+        sendToDatabase(name: name, venue: venue, dateAndTime: dateAndTime, about: about, categoryID : categoryID, eventID : eventID, currentUserID : currentUserID)
     }
- 
+    
     func sendToDatabase(name: String, venue : String, dateAndTime : String, about : String, categoryID : Int, eventID : Int, currentUserID: Int) {
         
         let url = URL(string: "http://192.168.1.116:3000/api/v1/events?remember_token=\(self.userToken)")
@@ -126,12 +127,12 @@ class AddEventViewController: UIViewController {
         
         let params :[[String: Any]] = [
             ["name" : name,
-            "venue" : venue,
-            //"event_time" : dateAndTime,
-            "description" : about,
-            "category_id" : categoryID,
-            "subcategory_id" : eventID,
-            "user_id" : currentUserID]
+             "venue" : venue,
+             "event_time" : dateAndTime,
+             "description" : about,
+             "category_id" : categoryID,
+             "subcategory_id" : eventID,
+             "user_id" : currentUserID]
         ]
         
         var data: Data?
@@ -156,21 +157,22 @@ class AddEventViewController: UIViewController {
             
             
             if let httpResponse = response as? HTTPURLResponse {
-                print("Login:\(httpResponse.statusCode)")
+                print("Create Event:\(httpResponse.statusCode)")
                 
                 if httpResponse.statusCode == 200 || httpResponse.statusCode == 204 {
                     
+                    self.dismiss(animated: true, completion: nil)
+                    
                     do {
                         let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-
-                        guard let validJSON = jsonResponse as? [String:Any] else { return }
                         
-                       print(validJSON)
+                        guard let validJSON = jsonResponse as? [[String:Any]] else { return }
+                        
+                        print(validJSON)
                         
                         DispatchQueue.main.async {
                             print("Success")
                         }
-                        
                         print(jsonResponse)
                         
                     } catch let jsonError as NSError {
@@ -183,9 +185,9 @@ class AddEventViewController: UIViewController {
         }
         
         dataTask.resume()
-
+        
     }
-
+    
 }
 
 extension AddEventViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -194,7 +196,7 @@ extension AddEventViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-
+        
         if pickerView.tag == 0 {
             return days.count
         } else if pickerView.tag == 1 {
@@ -202,7 +204,7 @@ extension AddEventViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         } else {
             return times.count
         }
-
+        
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
@@ -221,8 +223,19 @@ extension AddEventViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        self.dateAndTime = days[row] + months[row] + times[row]
- 
+        switch pickerView.tag {
+        case 0:
+            selectedDateTime.day = days[row]
+        case 1:
+            selectedDateTime.month = months[row]
+        case 2:
+            selectedDateTime.time = times[row]
+        default:
+            break
+        }
+        
+        self.dateAndTimeLabel.text = selectedDateTime.toString()
+        
     }
     
     
@@ -246,25 +259,113 @@ extension AddEventViewController : iCarouselDataSource, iCarouselDelegate {
         }
         
         imageView.image = events[index]
-        print("Image: \(index)")
-//        self.eventName.text = eventNames[index]
-        print("Name: \(index)")
         
-        self.eventID = index
-        print(eventID)
-        return imageView
-    }
-    
-    func numberOfItems(in carousel: iCarousel) -> Int {
-        return events.count
-    }
-    
-    func carouselCurrentItemIndexDidChange(_ carousel: iCarousel) {
-        let index = carousel.currentItemIndex
-        if index != -1 {
-        self.eventName.text = eventNames[index]
+        
+        
+        
+            print(eventID)
+            
+            return imageView
         }
+        
+        func numberOfItems(in carousel: iCarousel) -> Int {
+            return events.count
+        }
+        
+        func carouselCurrentItemIndexDidChange(_ carousel: iCarousel) {
+            let index = carousel.currentItemIndex
+            if index != -1 {
+                self.eventName.text = eventNames[index]
+            }
+            
+          
+            print("Name: \(index)")
+            
+            if categoryID == 1 {
+                if index ==  0 {
+                    self.eventID = 1
+                } else if index ==  1  {
+                    self.eventID = 2
+                }  else if index ==  2  {
+                    self.eventID = 3
+                }  else if index ==  3   {
+                    self.eventID = 4
+                }  else if index ==  4  {
+                    self.eventID = 5
+                }  else if index ==  5   {
+                    self.eventID = 6
+                }
+            } else if categoryID == 2 {
+                if index ==  0 {
+                    self.eventID = 7
+                } else if index ==  1  {
+                    self.eventID = 8
+                }  else if index ==  2  {
+                    self.eventID = 9
+                }  else if index ==  3   {
+                    self.eventID = 10
+                }  else if index ==  4  {
+                    self.eventID = 11
+                }  else if index ==  5   {
+                    self.eventID = 12
+                } else if index == 6 {
+                    self.eventID = 13
+                } else if index == 7 {
+                    self.eventID = 14
+                } else if index == 8 {
+                    self.eventID = 15
+                } else if index == 9 {
+                    self.eventID = 16
+                }
+            } else if categoryID == 3 {
+                if index == 0 {
+                    self.eventID = 17
+                } else if index == 1 {
+                    self.eventID = 18
+                } else if index == 2 {
+                    self.eventID = 19
+                } else if index == 3 {
+                    self.eventID = 20
+                } else if index == 4 {
+                    self.eventID = 21
+                } else if index == 5 {
+                    self.eventID = 22
+                }
+            } else if categoryID == 4 {
+                if index == 0 {
+                    self.eventID = 23
+                } else if index == 1 {
+                    self.eventID = 24
+                }
+            } else if categoryID == 5 {
+                if index == 0 {
+                    self.eventID = 25
+                } else if index == 1 {
+                    self.eventID = 26
+                }
+            } else {
+                if index == 0 {
+                    self.eventID = 27
+                } else if index == 1 {
+                    self.eventID = 28
+                } else if index == 2 {
+                    self.eventID = 29
+                } else if index == 3 {
+                    self.eventID = 30
+                }
+            }
+ 
+        }
+        
     }
-
+    
+    
+    class DateTime {
+        var month = "January"
+        var day = "1"
+        var time = "00:00"
+        
+        func toString() -> String {
+            return "\(day) \(month) \(time)"
+        }
 }
-

@@ -20,8 +20,9 @@ class Event {
     var categoryID : Int = 0
     var categoryLogo : UIImage?
     var numberOfGuests : [String] = []
+    var userImage : String?
     
-    init(anEventID : Int, name : String, venue : String, date : String, host : String, desc : String, color : UIColor, id: Int, logo : UIImage) {
+    init(anEventID : Int, name : String, venue : String, date : String, host : String, desc : String, color : UIColor, id: Int, logo : UIImage, image : String) {
         eventID = anEventID
         eventName = name
         eventVenue = venue
@@ -31,6 +32,7 @@ class Event {
         eventColor = color
         categoryID = id
         categoryLogo = logo
+        userImage = image
         
     }
     
@@ -38,12 +40,14 @@ class Event {
         eventName = dict["name"] as? String ?? "Default Name"
         if let contact = dict["host"] as? [String : Any] {
             eventHost = contact["fullname"] as? String ?? ""
+            userImage = contact["avatar"] as? String ?? ""
         }
         eventVenue = dict["venue"] as? String ?? "Default Venue"
         eventDate = dict["event_time"] as? String ?? "Default Time"
         eventDesc = dict["description"] as? String ?? "Default Description"
         categoryID = dict["category_id"] as? Int ?? 100
         eventID = dict["id"] as? Int ?? 100
+        
     }
     
     init(eventDict: [String : Any]) {

@@ -246,6 +246,8 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
+            guard let image = allEvent.userImage else {return cell}
+             cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: image)
 
             
             break
@@ -257,6 +259,9 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
+            guard let image = allEvent.userImage else {return cell}
+            cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: image)
+    
 
             break
         case 2:
@@ -267,6 +272,8 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
+            guard let image = allEvent.userImage else {return cell}
+            cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: image)
 
             break
         case 3:
@@ -277,6 +284,8 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
+            guard let image = allEvent.userImage else {return cell}
+            cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: image)
 
             break
         case 4:
@@ -287,6 +296,8 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
+            guard let image = allEvent.userImage else {return cell}
+            cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: image)
 
             break
         case 5:
@@ -297,6 +308,8 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
+            guard let image = allEvent.userImage else {return cell}
+            cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: image)
 
             break
         default:
