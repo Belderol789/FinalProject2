@@ -82,7 +82,7 @@ class EventsViewController: UIViewController {
     
     func getMyCategories() {
         
-        let url = URL(string: "http://192.168.1.116:3000/api/v1/events?remember_token=\(self.userToken)")
+        let url = URL(string: "http://192.168.1.50:3000/api/v1/events?remember_token=\(self.userToken)")
         
         var urlRequest = URLRequest(url: url!)
         
@@ -147,7 +147,7 @@ class EventsViewController: UIViewController {
     
     func joinButtonTapped () {
         
-        let url = URL(string: "http://192.168.1.116:3000/api/v1/event_users?remember_token=\(self.userToken)")
+        let url = URL(string: "http://192.168.1.50:3000/api/v1/event_users?remember_token=\(self.userToken)")
         
         var urlRequest = URLRequest(url: url!)
         
@@ -253,8 +253,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StackTableViewCell.cellIdentifier, for: indexPath) as? StackTableViewCell else {return UITableViewCell()}
         
-        cell.backgroundColor = UIColor.clear
-        
+        cell.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         switch (segmentedControl.selectedSegmentIndex) {
         case 0:
             let allEvent = firstEvents[indexPath.row]
