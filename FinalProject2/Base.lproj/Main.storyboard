@@ -376,11 +376,23 @@
                         <outlet property="myEventsBarButton" destination="05u-Nt-zBN" id="eIT-dk-seX"/>
                         <outlet property="segmentedControl" destination="koW-Aw-HHH" id="vYH-hl-i5C"/>
                         <outlet property="segmentedControlView" destination="9k3-yu-6j5" id="aLH-QK-NCq"/>
+                        <outlet property="swipeGesture" destination="M7g-NT-YDC" id="TEn-AW-fTn"/>
+                        <outlet property="swipeLeftGesture" destination="M7g-NT-YDC" id="cDK-LW-sgd"/>
+                        <outlet property="swipeRightGesture" destination="yAd-le-XF2" id="alL-jC-2AJ"/>
                         <outlet property="tableView" destination="PNE-6H-M4M" id="7de-KK-aCT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xko-hz-QE1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="M7g-NT-YDC"/>
+                <swipeGestureRecognizer direction="right" id="M7g-NT-YDC">
+                    <connections>
+                        <action selector="swipeLeftGesture:" destination="9Q1-rr-fu4" id="nfn-9q-RW2"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="yAd-le-XF2">
+                    <connections>
+                        <action selector="swipeRightGesture:" destination="9Q1-rr-fu4" id="ud2-Sj-U5a"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1917.5999999999999" y="-553.67316341829087"/>
         </scene>

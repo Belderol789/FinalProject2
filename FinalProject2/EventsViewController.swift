@@ -71,10 +71,41 @@ class EventsViewController: UIViewController {
         self.userToken = UserDefaults.standard.string(forKey: "AUTH_TOKEN")!
         self.userID = UserDefaults.standard.integer(forKey: "USER_ID")
         getMyCategories()
+        swipeGestureRecognitor()
+        
+        
         tableView.tableFooterView = UIView()
     }
     
+    func swipeGestureRecognitor() {
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeftGesture(_ :)))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipeRightGesture(_ :)))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+    }
     
+    @IBAction func swipeLeftGesture(_ sender: Any) {
+        
+        let index = segmentedControl.selectedSegmentIndex
+        if segmentedControl.selectedSegmentIndex == index {
+            if index < 6 {
+                segmentedControl.selectedSegmentIndex = index + 1
+            }
+        }
+    }
+    
+    @IBAction func swipeRightGesture(_ sender: Any) {
+        
+        let index = segmentedControl.selectedSegmentIndex
+        if segmentedControl.selectedSegmentIndex == index {
+            if index > -1 {
+                segmentedControl.selectedSegmentIndex = index + 1
+            }
+        }
+    }
     
     func myEventsBarButtonTapped () {
         dismiss(animated: true, completion: nil)
@@ -82,7 +113,7 @@ class EventsViewController: UIViewController {
     
     func getMyCategories() {
         
-        let url = URL(string: "http://192.168.1.116:3000/api/v1/events?remember_token=\(self.userToken)")
+        let url = URL(string: "http://192.168.1.150:3000/api/v1/events?remember_token=\(self.userToken)")
         
         var urlRequest = URLRequest(url: url!)
         
@@ -147,7 +178,7 @@ class EventsViewController: UIViewController {
     
     func joinButtonTapped () {
         
-        let url = URL(string: "http://192.168.1.116:3000/api/v1/event_users?remember_token=\(self.userToken)")
+        let url = URL(string: "http://192.168.1.150:3000/api/v1/event_users?remember_token=\(self.userToken)")
         
         var urlRequest = URLRequest(url: url!)
         
