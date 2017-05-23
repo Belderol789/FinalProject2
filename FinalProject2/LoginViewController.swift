@@ -17,15 +17,15 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var mascotIcon: UIImageView! 
-    @IBOutlet weak var emailTextField: UITextField! {
+    @IBOutlet weak var emailTextField: CustomTextField! {
         didSet {
-            emailTextField.placeholderText = "Email"
+            emailTextField.placeHolderTextCustom = "Email"
         }
     }
     
-    @IBOutlet weak var passwordTextField: UITextField! {
+    @IBOutlet weak var passwordTextField: CustomTextField! {
         didSet {
-            passwordTextField.placeholderText = "Password"
+            passwordTextField.placeHolderTextCustom = "Password"
         }
     }
     
