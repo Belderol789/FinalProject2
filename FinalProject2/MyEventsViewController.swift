@@ -158,6 +158,7 @@ class MyEventsViewController: UIViewController {
     
     func saveImagePath(_ path: String) {
         
+        
         let profilePictureValue : [String: Any] = ["profileImageUrl": path]
         
         Database.database().reference().child("users").child("\(userID)").updateChildValues(profilePictureValue)
@@ -167,11 +168,9 @@ class MyEventsViewController: UIViewController {
     
     func listenToFirebase() {
         
-        Database.database().reference().child("users").child("\(userID)").observe(.value, with: { (snapshot) in
+        Database.database().reference().child("users").child("\(userID)").observe(.childAdded, with: { (snapshot) in
             
-            guard let dictionary = snapshot.value as? [String : Any] else {return}
-            
-            guard let profileImageUrl = dictionary["profileImageUrl"] as? String else {return}
+            guard let profileImageUrl = snapshot.value as? String else {return}
             
             self.sendUserAvatar(ImageUrl: profileImageUrl)
             
@@ -183,6 +182,74 @@ class MyEventsViewController: UIViewController {
         
         
     }
+    
+    func sendUserAvatar(ImageUrl : String) {
+        
+        let userID = UserDefaults.standard.integer(forKey: "USER_ID")
+        guard let userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") else {return}
+        
+        
+        let url = URL(string: "http://192.168.1.116:3000/api/v1/users?remember_token=\(userToken)&id=\(userID)")
+        var urlRequest = URLRequest(url: url!)
+        
+        urlRequest.httpMethod = "PUT"
+        
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-type")
+        
+        let params :[String: Any] = [
+            "avatar" : ImageUrl
+        ]
+        
+        var data: Data?
+        do {
+            data = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+            
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        
+        urlRequest.httpBody = data
+        
+        
+        let urlSession = URLSession(configuration: URLSessionConfiguration.default)
+        
+        let dataTask = urlSession.dataTask(with: urlRequest) { (data, response, error) in
+            
+            
+            if let validError = error {
+                print(validError.localizedDescription)
+            }
+            
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                print("Sending Image:\(httpResponse.statusCode)")
+                
+                if httpResponse.statusCode == 200 {
+                    
+                    do {
+                        let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                        
+                        
+                        guard let validJSON = jsonResponse as? [String:Any] else { return }
+                        print("Json\(validJSON)")
+                        
+                        DispatchQueue.main.async {
+                            
+                        }
+    
+                    } catch let jsonError as NSError {
+                        print("\(jsonError)")
+                    }
+                    
+                }
+            }
+            
+        }
+        
+        dataTask.resume()
+        
+    }
+
 
     
     func chooseProfileImage(){
@@ -341,7 +408,7 @@ class MyEventsViewController: UIViewController {
                             
                             self.avatarImageView.loadImageUsingCacheWithUrlString(urlString: self.imageURL)
                             
-                            //                            self.positionTextField.text = userDetail.position
+                           
                         }
                     } catch let jsonError as NSError {
                         print(jsonError)
@@ -613,8 +680,6 @@ extension UIImageView {
             self.image = cachedImage as? UIImage
             return
         }
-        
-        
         let url = URL(string: urlString)
         URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
             
@@ -660,10 +725,9 @@ extension MyEventsViewController : UIImagePickerControllerDelegate, UINavigation
         if let selectedImage = selectedImageFromPicker
         {
             avatarImageView.image = selectedImage
-            
+            uploadImage(selectedImage)
             
         }
-        
         dismiss(animated: true, completion: nil)
     }
     
