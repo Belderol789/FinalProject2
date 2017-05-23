@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class SliderMenuView: UIView {
 
     override func draw(_ rect: CGRect) {

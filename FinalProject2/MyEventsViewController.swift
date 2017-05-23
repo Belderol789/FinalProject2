@@ -56,19 +56,15 @@ class MyEventsViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var navBar: UINavigationBar!
-    
-    @IBOutlet weak var addBarButton: UIBarButtonItem! {
+    @IBOutlet weak var addButton: UIButton! {
         didSet {
-            addBarButton.target = self
-            addBarButton.action = #selector(addBarButtonTapped)
+            addButton.addTarget(self, action: #selector(addBarButtonTapped), for: .touchUpInside)
         }
     }
     
-    @IBOutlet weak var menuBarButton: UIBarButtonItem! {
+    @IBOutlet weak var menuButton: UIButton! {
         didSet {
-            menuBarButton.target = self
-            menuBarButton.action = #selector(menuBarButtonTapped)
+            menuButton.addTarget(self, action: #selector(menuBarButtonTapped), for: .touchUpInside)
         }
     }
     

@@ -115,7 +115,7 @@ extension AddCategoryViewController : UICollectionViewDataSource, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
-        var categoryImage : [UIImage] = [UserInterfaceDesign.imageOfFoodCategory(pressed: true), UserInterfaceDesign.imageOfSportCategory(pressed: true), UserInterfaceDesign.imageOfEntertainmentCategory(pressed: true), UserInterfaceDesign.imageOfDiscussionCategory(pressed: true), UserInterfaceDesign.imageOfVacationCategory(pressed: true), UserInterfaceDesign.imageOfArtCategory(pressed: true)]
+        var categoryImage : [UIImage] = [UserInterfaceDesign.imageOfFoodCategory(pressed: true), UserInterfaceDesign.imageOfSportCategory(pressed: true), UserInterfaceDesign.imageOfEntertainmentCategory(pressed: true), UserInterfaceDesign.imageOfDiscussionCategory(pressed: true), UserInterfaceDesign.imageOfArtCategory(pressed: true), UserInterfaceDesign.imageOfVacationCategory(pressed: true)]
         
         cell.imageView.image = categoryImage[indexPath.row]
         cell.isUserInteractionEnabled = true
