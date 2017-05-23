@@ -530,8 +530,10 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
         switch (segmentedControl.selectedSegmentIndex) {
         case 0:
             self.numberOfEvents = hostedEvents.count
+            tableView.backgroundView = HostedTableView()
         case 1:
             self.numberOfEvents =  joinedEvents.count
+            tableView.backgroundView = JoinedTableView()
         default:
             break
         }

@@ -315,7 +315,7 @@
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="koW-Aw-HHH">
                                         <rect key="frame" x="-2" y="5" width="610" height="41"/>
                                         <segments>
-                                            <segment title="     Food"/>
+                                            <segment title="Food"/>
                                             <segment title="Sport"/>
                                             <segment title="Entertainment"/>
                                             <segment title="Work"/>
