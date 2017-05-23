@@ -8,12 +8,14 @@
 //Cmon
 
 import UIKit
+import Firebase
 
 class MyEventsViewController: UIViewController {
     
     var hostedEvents : [Event] = []
     var joinedEvents : [Event] = []
     var userDetails : [User] = []
+    var imageURL : String = ""
     
     var arrayOfCategories : [Int] = []
     var selectedIndex : IndexPath?
@@ -34,7 +36,7 @@ class MyEventsViewController: UIViewController {
     @IBOutlet weak var positionTextField: UILabel!
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-   
+    
     @IBAction func segmentedControlTapped(_ sender: Any) {
         
         tableView.reloadData()
@@ -117,6 +119,8 @@ class MyEventsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         swipeRecognizer()
         getHostedEvents()
         getJoinedEvents()
@@ -134,12 +138,61 @@ class MyEventsViewController: UIViewController {
         present(controller!, animated: true, completion: nil)
     }
     
+    func uploadImage(_ image: UIImage) {
+       
+        let ref = Storage.storage().reference().child("profile_images").child("\(userID).jpg")
+        guard let imageData = UIImageJPEGRepresentation(image, 0.5) else {return}
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpeg"
+        ref.putData(imageData, metadata: nil, completion: { (meta, error) in
+            
+            if let downloadPath = meta?.downloadURL()?.absoluteString {
+                //save to firebase database
+                self.saveImagePath(downloadPath)
+            }
+            
+        })
+        
+        
+    }
+    
+    func saveImagePath(_ path: String) {
+        
+        let profilePictureValue : [String: Any] = ["profileImageUrl": path]
+        
+        Database.database().reference().child("users").child("\(userID)").updateChildValues(profilePictureValue)
+        
+        listenToFirebase()
+    }
+    
+    func listenToFirebase() {
+        
+        Database.database().reference().child("users").child("\(userID)").observe(.value, with: { (snapshot) in
+            
+            guard let dictionary = snapshot.value as? [String : Any] else {return}
+            
+            guard let profileImageUrl = dictionary["profileImageUrl"] as? String else {return}
+            
+            self.sendUserAvatar(ImageUrl: profileImageUrl)
+            
+            self.avatarImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
+            
+            
+        })
+        
+        
+        
+    }
+
+    
     func chooseProfileImage(){
+        
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.allowsEditing = true
         present(picker, animated: true, completion: nil)
     }
+    
     func handleImage() {
         
         avatarImageView.isUserInteractionEnabled = true
@@ -196,8 +249,6 @@ class MyEventsViewController: UIViewController {
     
     
     func getHostedEvents() {
-        
-        
         guard let userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") else {return}
         let userID = UserDefaults.standard.integer(forKey: "USER_ID")
         
@@ -232,10 +283,7 @@ class MyEventsViewController: UIViewController {
                             
                             self.hostedEvents.append(hostedEvent)
                             
-                            
-                            
                         }
-
                         
                         //self.claims = validJSON
                         DispatchQueue.main.async {
@@ -253,7 +301,7 @@ class MyEventsViewController: UIViewController {
     }
     
     
- 
+    
     func getUserDetails () {
         guard let userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") else {return}
         
@@ -287,18 +335,13 @@ class MyEventsViewController: UIViewController {
                             
                             let userDetail = User(dict: each)
                             
-                            print("\(userDetail.name)")
-                            print("\(userDetail.imageURL)")
-                            print("\(self.avatarImageView.frame)")
-                            
                             self.nameTextField.text = userDetail.name
                             
-                            guard let imageURL : String? = userDetail.imageURL
-                                else { return }
+                            self.imageURL = userDetail.imageURL
                             
-                            self.avatarImageView.loadImageUsingCacheWithUrlString(urlString: imageURL!)
+                            self.avatarImageView.loadImageUsingCacheWithUrlString(urlString: self.imageURL)
                             
-//                            self.positionTextField.text = userDetail.position
+                            //                            self.positionTextField.text = userDetail.position
                         }
                     } catch let jsonError as NSError {
                         print(jsonError)
@@ -308,7 +351,7 @@ class MyEventsViewController: UIViewController {
         }
         dataTask.resume()
     }
-
+    
     func getJoinedEvents (){
         
         guard let userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") else {return}
@@ -347,21 +390,15 @@ class MyEventsViewController: UIViewController {
                             self.joinedEvents.append(joinedEvent)
                             
                             for each in validJSON {
-                                
                                 let joinedEvent = Event(eventDict: each)
-                                
                                 self.joinedEvents.append(joinedEvent)
-                
+                                
                             }
                             //self.claims = validJSON
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
                             }
                             
-                        }
-                        //self.claims = validJSON
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
                         }
                         
                     } catch let jsonError as NSError {
@@ -374,6 +411,78 @@ class MyEventsViewController: UIViewController {
         dataTask.resume()
         
     }
+    
+    
+    func sendUserAvatar(ImageUrl : String) {
+        
+        let userID = UserDefaults.standard.integer(forKey: "USER_ID")
+        guard let userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") else {return}
+        
+        
+        let url = URL(string: "http://192.168.1.116:3000/api/v1/users?remember_token=\(userToken)&id=\(userID)")
+        var urlRequest = URLRequest(url: url!)
+        
+        urlRequest.httpMethod = "PUT"
+        
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-type")
+        
+        let params :[String: Any] = [
+            "avatar" : ImageUrl
+            
+        ]
+        
+        var data: Data?
+        do {
+            data = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+            
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        
+        urlRequest.httpBody = data
+        
+        
+        let urlSession = URLSession(configuration: URLSessionConfiguration.default)
+        
+        let dataTask = urlSession.dataTask(with: urlRequest) { (data, response, error) in
+            
+            
+            if let validError = error {
+                print(validError.localizedDescription)
+            }
+            
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                print("Sending Image:\(httpResponse.statusCode)")
+                
+                if httpResponse.statusCode == 200 {
+                    
+                    do {
+                        let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                        
+                        
+                        guard let validJSON = jsonResponse as? [String:Any] else { return }
+                        print("Json\(validJSON)")
+
+                        DispatchQueue.main.async {
+                            
+                        }
+                        
+                        
+                    } catch let jsonError as NSError {
+                        print("\(jsonError)")
+                    }
+                    
+                }
+            }
+            
+        }
+        
+        dataTask.resume()
+        
+    }
+    
+    
     
 }
 
@@ -480,7 +589,7 @@ extension UIImageView {
             return
         }
         
-
+        
         let url = URL(string: urlString)
         URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
             
@@ -515,15 +624,19 @@ extension MyEventsViewController : UIImagePickerControllerDelegate, UINavigation
         if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage
         {
             selectedImageFromPicker = editedImage
+          
             
         } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage
         {
             selectedImageFromPicker = originalImage
+            
         }
         
         if let selectedImage = selectedImageFromPicker
         {
-           avatarImageView.image = selectedImage
+            avatarImageView.image = selectedImage
+            
+            
         }
         
         dismiss(animated: true, completion: nil)

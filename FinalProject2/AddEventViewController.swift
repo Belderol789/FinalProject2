@@ -12,6 +12,7 @@ class AddEventViewController: UIViewController {
     var categoryID : Int = 0
     var eventID : Int = 0
     var currentUserID : Int = 1
+    var dateTime : [String] = []
     var events : [UIImage] = []
     var eventNames : [String] = []
     var userToken : String = ""
@@ -44,6 +45,7 @@ class AddEventViewController: UIViewController {
     }
     
     func setupImageArrays(_ categoryID : Int) {
+        
         
         if categoryID == 1 {
             events = [#imageLiteral(resourceName: "Breakfast"), #imageLiteral(resourceName: "Brunch"), #imageLiteral(resourceName: "Lunch"), #imageLiteral(resourceName: "Tea"), #imageLiteral(resourceName: "Dinner")]
@@ -151,6 +153,9 @@ class AddEventViewController: UIViewController {
     }
 
 }
+
+
+
 
 
 extension AddEventViewController : iCarouselDataSource, iCarouselDelegate {
