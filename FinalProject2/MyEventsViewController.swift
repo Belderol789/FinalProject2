@@ -13,9 +13,7 @@ import Firebase
 class MyEventsViewController: UIViewController {
     
     var hostedEvents : [Event] = []
-    
     var joinedEvents : [Event] = []
-    
     var userDetails : [User] = []
     var imageURL : String = ""
     var userToken : String = ""
@@ -182,6 +180,8 @@ class MyEventsViewController: UIViewController {
             self.sendUserAvatar(ImageUrl: profileImageUrl)
             
             self.avatarImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
+            
+            self.tableView.reloadData()
             
             
         })
@@ -413,7 +413,13 @@ class MyEventsViewController: UIViewController {
                             self.avatarImageView.loadImageUsingCacheWithUrlString(urlString: self.imageURL)
                             
                             
+                            
                         }
+                        
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                        
                     } catch let jsonError as NSError {
                         print(jsonError)
                     }
@@ -541,6 +547,7 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: MyEventsTableViewCell.cellIdentifier, for: indexPath) as! MyEventsTableViewCell
         
         cell.backgroundColor = UIColor.clear
+
         
         switch (segmentedControl.selectedSegmentIndex) {
             
