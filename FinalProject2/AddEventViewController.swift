@@ -25,8 +25,18 @@ class AddEventViewController: UIViewController {
             displayView.type = iCarouselType.invertedCylinder
         }
     }
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var venueTextField: UITextField!
+    @IBOutlet weak var nameTextField: CustomTextField! {
+        didSet {
+            nameTextField.placeHolderTextCustom = "Name"
+        }
+    }
+    
+    @IBOutlet weak var venueTextField: CustomTextField! {
+        didSet {
+            nameTextField.placeHolderTextCustom = "Venue"
+        }
+    }
+    
     @IBOutlet weak var aboutTextView: UITextView!
     @IBOutlet weak var addEventButton: UIButton!{
         didSet{
