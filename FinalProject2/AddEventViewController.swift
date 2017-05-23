@@ -16,6 +16,7 @@ class AddEventViewController: UIViewController {
     var events : [UIImage] = []
     var eventNames : [String] = []
     var userToken : String = ""
+    var dateAndTime : String = ""
 
    
     @IBOutlet weak var eventName: UILabel!
@@ -107,10 +108,10 @@ class AddEventViewController: UIViewController {
     func submitButtonTapped() {
         guard let name = nameTextField.text,
             let venue = venueTextField.text,
-            //let dateAndTime = dateAndTimeTextField.text,
             let about = aboutTextView.text else {return}
         
-        sendToDatabase(name: name, venue: venue, dateAndTime: "Tomorrow", about: about, categoryID : categoryID, eventID : eventID, currentUserID : currentUserID)
+        
+        sendToDatabase(name: name, venue: venue, dateAndTime: self.dateAndTime, about: about, categoryID : categoryID, eventID : eventID, currentUserID : currentUserID)
     }
  
     func sendToDatabase(name: String, venue : String, dateAndTime : String, about : String, categoryID : Int, eventID : Int, currentUserID: Int) {
@@ -218,6 +219,8 @@ extension AddEventViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        self.dateAndTime = days[row] + months[row] + times[row]
  
     }
     
