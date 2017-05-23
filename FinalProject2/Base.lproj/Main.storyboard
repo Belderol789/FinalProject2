@@ -401,10 +401,18 @@
                                     <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Cm-fb-xzB">
                                         <rect key="frame" x="8" y="162" width="106" height="84"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="j7Y-4d-ha8" id="Gl9-60-BNC"/>
+                                            <outlet property="delegate" destination="j7Y-4d-ha8" id="309-HC-BZ1"/>
+                                        </connections>
                                     </pickerView>
-                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m2g-Sg-Ina">
+                                    <pickerView tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m2g-Sg-Ina">
                                         <rect key="frame" x="228" y="162" width="115" height="84"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="j7Y-4d-ha8" id="t0Z-Vy-r65"/>
+                                            <outlet property="delegate" destination="j7Y-4d-ha8" id="b2g-2C-2TU"/>
+                                        </connections>
                                     </pickerView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What is this event about?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xos-AG-aY1">
                                         <rect key="frame" x="8" y="254" width="289" height="21"/>
@@ -413,9 +421,13 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ufp-2w-au7">
+                                    <pickerView tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ufp-2w-au7">
                                         <rect key="frame" x="122" y="162" width="98" height="84"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="j7Y-4d-ha8" id="Dzr-Yg-vwE"/>
+                                            <outlet property="delegate" destination="j7Y-4d-ha8" id="Msy-Qw-VPG"/>
+                                        </connections>
                                     </pickerView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

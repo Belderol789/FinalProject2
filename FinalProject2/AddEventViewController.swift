@@ -20,8 +20,11 @@ class AddEventViewController: UIViewController {
    
     @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var monthPicker: UIPickerView!
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     @IBOutlet weak var dayPicker: UIPickerView!
+    var days = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
     @IBOutlet weak var timePicker: UIPickerView!
+    var times = ["00:00", "00:30", "01:00", "01:30","02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30"]
     
     
     @IBOutlet weak var displayView: iCarousel!{
@@ -166,6 +169,40 @@ class AddEventViewController: UIViewController {
 
     }
 
+}
+
+extension AddEventViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        
+        
+        if pickerView == monthPicker {
+            return months.count
+        } else if pickerView == dayPicker {
+            return days.count
+        } else if pickerView == timePicker {
+            return times.count
+        }
+        
+        
+        
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+    }
+    
+    
 }
 
 

@@ -41,6 +41,7 @@
 		5241860B1ECC3926005882E0 /* ChangeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5241860A1ECC3926005882E0 /* ChangeColor.swift */; };
 		524186101ECC4429005882E0 /* StackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5241860E1ECC4429005882E0 /* StackTableViewCell.swift */; };
 		524186111ECC4429005882E0 /* StackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5241860F1ECC4429005882E0 /* StackTableViewCell.xib */; };
+		52A347871ED418B5005BE3E1 /* AddEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A347861ED418B5005BE3E1 /* AddEventVC.swift */; };
 		52F672ED1ECD6E7E00AA9167 /* KemStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52F672EC1ECD6E7E00AA9167 /* KemStoryboard.storyboard */; };
 		52FCE94D1ED19E750049D937 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FCE94C1ED19E750049D937 /* iCarousel.m */; };
 		D59B8864260E96709567AF9C /* Pods_FinalProject2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BDDCAB651D9C4262747EB9E /* Pods_FinalProject2.framework */; };
@@ -83,6 +84,7 @@
 		5241860A1ECC3926005882E0 /* ChangeColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeColor.swift; sourceTree = "<group>"; };
 		5241860E1ECC4429005882E0 /* StackTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackTableViewCell.swift; sourceTree = "<group>"; };
 		5241860F1ECC4429005882E0 /* StackTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StackTableViewCell.xib; sourceTree = "<group>"; };
+		52A347861ED418B5005BE3E1 /* AddEventVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventVC.swift; sourceTree = "<group>"; };
 		52F672EC1ECD6E7E00AA9167 /* KemStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = KemStoryboard.storyboard; sourceTree = "<group>"; };
 		52FCE94A1ED19E740049D937 /* FinalProject2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FinalProject2-Bridging-Header.h"; sourceTree = "<group>"; };
 		52FCE94B1ED19E750049D937 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				524186081ECC3012005882E0 /* Events.swift */,
 				5241860A1ECC3926005882E0 /* ChangeColor.swift */,
 				3D398E2D1ECD85DE002E7BC7 /* CustomTextField.swift */,
+				52A347861ED418B5005BE3E1 /* AddEventVC.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				3D398E1F1ECC2C5B002E7BC7 /* MainViewController.swift in Sources */,
 				3D3F37601ED3DB0B00219D4C /* FoodTableView.swift in Sources */,
 				3D3F37451ECEADCF00219D4C /* Models.swift in Sources */,
+				52A347871ED418B5005BE3E1 /* AddEventVC.swift in Sources */,
 				3D06D45D1ED3E003003052E0 /* EntertainmentTableView.swift in Sources */,
 				3D06D45F1ED3E04E003052E0 /* WorkTableView.swift in Sources */,
 				3D398E211ECC2C5B002E7BC7 /* ListenToAPI.swift in Sources */,
