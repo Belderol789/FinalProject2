@@ -345,6 +345,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.016748042019999999" green="0.016913864210000001" blue="0.016913864210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="zge-OW-TSe" firstAttribute="firstBaseline" secondItem="05u-Nt-zBN" secondAttribute="firstBaseline" id="2Dk-nc-yqO"/>
                             <constraint firstItem="PNE-6H-M4M" firstAttribute="top" secondItem="9k3-yu-6j5" secondAttribute="bottom" id="2VS-LK-mVh"/>
@@ -362,6 +363,9 @@
                             <constraint firstItem="zge-OW-TSe" firstAttribute="bottom" secondItem="tj5-tg-FYA" secondAttribute="top" id="wlM-NH-Lre"/>
                             <constraint firstItem="PNE-6H-M4M" firstAttribute="top" secondItem="ETU-RR-SLj" secondAttribute="top" constant="70" id="yjP-dk-pLc"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="M7g-NT-YDC" appends="YES" id="eKz-ya-gX2"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="kJx-9R-Jfp">
                         <nil key="title"/>
@@ -376,6 +380,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xko-hz-QE1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="M7g-NT-YDC"/>
             </objects>
             <point key="canvasLocation" x="1917.5999999999999" y="-553.67316341829087"/>
         </scene>
