@@ -51,7 +51,7 @@ class AddCategoryViewController: UIViewController {
     }
     
     func getCategories() {
-        let url = URL(string: "http://192.168.1.150:3000/api/v1/categories?remember_token=\(self.userToken)")
+        let url = URL(string: "http://192.168.1.50:3000/api/v1/categories?remember_token=\(self.userToken)")
         var urlRequest = URLRequest(url: url!)
         
         urlRequest.httpMethod = "GET"

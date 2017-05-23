@@ -19,7 +19,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="357" id="KGk-i7-Jjw" customClass="StackTableViewCell" customModule="FinalProject2" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="357" id="KGk-i7-Jjw" customClass="StackTableViewCell" customModule="FinalProject2" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="390" height="357"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -124,6 +124,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
+                        <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="L1h-FQ-NQ1" firstAttribute="leading" secondItem="jrv-uv-fPU" secondAttribute="leading" id="0HL-AL-EkK"/>
                             <constraint firstItem="Ucs-e6-7ju" firstAttribute="trailing" secondItem="L1h-FQ-NQ1" secondAttribute="trailing" id="2cI-YM-7a0"/>
@@ -169,6 +170,7 @@
                     <constraint firstItem="f74-1b-6lS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ZqN-9B-AII"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="aboutTextView" destination="tdi-gq-zK1" id="C8A-9S-IUT"/>
                 <outlet property="dateLabel" destination="jrv-uv-fPU" id="3sR-aB-0Lg"/>

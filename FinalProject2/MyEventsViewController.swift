@@ -192,7 +192,7 @@ class MyEventsViewController: UIViewController {
         guard let userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") else {return}
         
         
-        let url = URL(string: "http://192.168.1.150:3000/api/v1/users?remember_token=\(userToken)&id=\(userID)")
+        let url = URL(string: "http://192.168.1.116:3000/api/v1/users?remember_token=\(userToken)&id=\(userID)")
         var urlRequest = URLRequest(url: url!)
         
         urlRequest.httpMethod = "PUT"
@@ -320,7 +320,7 @@ class MyEventsViewController: UIViewController {
     
     func getHostedEvents() {
         
-        let url = URL(string: "http://192.168.1.150:3000/api/v1/events?remember_token=\(self.userToken)&host=\(self.userID)")
+        let url = URL(string: "http://192.168.1.116:3000/api/v1/events?remember_token=\(self.userToken)&host=\(self.userID)")
         
         var urlRequest = URLRequest(url: url!)
         
@@ -372,7 +372,7 @@ class MyEventsViewController: UIViewController {
     func getUserDetails () {
         guard let userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") else {return}
         
-        guard let url = URL(string: "http://192.168.1.150:3000/api/v1/users?remember_token=\(userToken)") else {return}
+        guard let url = URL(string: "http://192.168.1.116:3000/api/v1/users?remember_token=\(userToken)") else {return}
         
         var urlRequest = URLRequest(url: url)
         
@@ -427,7 +427,7 @@ class MyEventsViewController: UIViewController {
     
     func getJoinedEvents (){
         
-        guard let url = URL(string: "http://192.168.1.150:3000/api/v1/event_users?remember_token=\(userToken)") else {return}
+        guard let url = URL(string: "http://192.168.1.116:3000/api/v1/event_users?remember_token=\(userToken)") else {return}
         
         var urlRequest = URLRequest(url: url)
         
@@ -487,7 +487,7 @@ class MyEventsViewController: UIViewController {
         
         guard let userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") else {return}
         
-        guard let url = URL(string: "http://192.168.1.150:3000/api/v1/session?remember_token=\(userToken)") else {return}
+        guard let url = URL(string: "http://192.168.1.50:3000/api/v1/session?remember_token=\(userToken)") else {return}
         
         var urlRequest = URLRequest(url: url)
         
@@ -542,9 +542,7 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MyEventsTableViewCell.cellIdentifier, for: indexPath) as! MyEventsTableViewCell
         
-        cell.backgroundColor = UIColor.clear
-
-        
+        cell.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         switch (segmentedControl.selectedSegmentIndex) {
             
         case 0:
@@ -612,9 +610,9 @@ extension UIImageView {
             return
         }
         
-        let url = URL(string: urlString)
+        guard let url = URL(string: urlString) else {return}
         
-        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             
             if error != nil {
                 print(error!)
