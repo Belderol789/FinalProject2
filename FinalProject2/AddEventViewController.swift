@@ -18,6 +18,7 @@ class AddEventViewController: UIViewController {
     var userToken : String = ""
     var dateAndTime : String = ""
 
+    @IBOutlet weak var dateAndTimeLabel: UILabel!
    
     @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var monthPicker: UIPickerView!{
