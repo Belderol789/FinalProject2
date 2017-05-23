@@ -104,14 +104,14 @@ class AddEventViewController: UIViewController {
         
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-type")
         
-        let params :[String: Any] = [
-            "name" : name,
+        let params :[[String: Any]] = [
+            ["name" : name,
             "venue" : venue,
             //"event_time" : dateAndTime,
             "description" : about,
             "category_id" : categoryID,
             "subcategory_id" : eventID,
-            "user_id" : currentUserID
+            "user_id" : currentUserID]
         ]
         
         var data: Data?
