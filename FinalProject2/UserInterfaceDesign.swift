@@ -2464,7 +2464,7 @@ public class UserInterfaceDesign : NSObject {
 
 
         //// Image Declarations
-        let travelTableView2 = UIImage(named: "travelTableView2.jpg")!
+        let travelTableView2 = UIImage(named: "travelTableView.jpg")!
 
         //// Picture Drawing
         let picturePath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 564, height: 1055))

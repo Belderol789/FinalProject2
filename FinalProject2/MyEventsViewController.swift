@@ -482,8 +482,33 @@ class MyEventsViewController: UIViewController {
         
     }
     
-    
-    
+    @IBAction func logoutButtonTapped(_ sender: Any) {
+        
+        guard let userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") else {return}
+        
+        guard let url = URL(string: "http://192.168.1.116:3000/api/v1/session?remember_token=\(userToken)") else {return}
+        
+        var urlRequest = URLRequest(url: url)
+        
+        urlRequest.httpMethod = "DELETE"
+        
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-type")
+        
+        let urlSession = URLSession(configuration: URLSessionConfiguration.default)
+        let dataTask = urlSession.dataTask(with: urlRequest) { (data, response, error) in
+            
+            if let validError = error {
+                print(validError.localizedDescription)
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                print("Logout Status Code = \(httpResponse.statusCode)")
+                let controller = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
+                self.present(controller!, animated: true, completion: nil)
+            }
+        }
+        dataTask.resume()
+    }
 }
 
 extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
