@@ -19,7 +19,11 @@ class AddEventViewController: UIViewController {
 
    
     @IBOutlet weak var eventName: UILabel!
-    @IBOutlet weak var datePicker: UIPickerView!
+    @IBOutlet weak var monthPicker: UIPickerView!
+    @IBOutlet weak var dayPicker: UIPickerView!
+    @IBOutlet weak var timePicker: UIPickerView!
+    
+    
     @IBOutlet weak var displayView: iCarousel!{
         didSet{
             displayView.type = iCarouselType.invertedCylinder

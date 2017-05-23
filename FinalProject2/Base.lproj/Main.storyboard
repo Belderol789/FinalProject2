@@ -451,10 +451,12 @@
                     <connections>
                         <outlet property="aboutTextView" destination="yDj-oP-gWx" id="FI7-Xe-2bJ"/>
                         <outlet property="addEventButton" destination="p6e-tr-9NA" id="2Ka-MX-9uI"/>
-                        <outlet property="datePicker" destination="9Cm-fb-xzB" id="NPQ-WN-6cU"/>
+                        <outlet property="dayPicker" destination="ufp-2w-au7" id="iav-kk-48N"/>
                         <outlet property="displayView" destination="zsh-Cq-0g1" id="4II-wR-ij4"/>
                         <outlet property="eventName" destination="k96-Ty-HrH" id="gLS-yY-3ku"/>
+                        <outlet property="monthPicker" destination="9Cm-fb-xzB" id="KY5-0d-waa"/>
                         <outlet property="nameTextField" destination="Pxt-GQ-VCS" id="rmX-x4-nYu"/>
+                        <outlet property="timePicker" destination="m2g-Sg-Ina" id="dMd-Ze-RX2"/>
                         <outlet property="venueTextField" destination="N61-gb-Jny" id="0Ny-yy-rqi"/>
                     </connections>
                 </viewController>
