@@ -13,16 +13,19 @@ import Firebase
 class MyEventsViewController: UIViewController {
     
     var hostedEvents : [Event] = []
+    
     var joinedEvents : [Event] = []
+    
     var userDetails : [User] = []
     var imageURL : String = ""
+    var userToken : String = ""
+    var userID : Int = 1
     
     var arrayOfCategories : [Int] = []
     var selectedIndex : IndexPath?
     var isExpanded : Bool = false
     var currentUserID : Int = 0
     var eventID : Int = 0
-    var userID : Int = 0
     var numberOfEvents : Int = 0
     
     @IBOutlet weak var avatarImageView: UIImageView! {
@@ -45,7 +48,7 @@ class MyEventsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
-            tableView.register(StackTableViewCell.cellNib, forCellReuseIdentifier: StackTableViewCell.cellIdentifier)
+            tableView.register(MyEventsTableViewCell.cellNib, forCellReuseIdentifier: MyEventsTableViewCell.cellIdentifier)
             tableView.allowsSelection = false
             tableView.separatorStyle = .none
             tableView.delegate = self
@@ -118,12 +121,16 @@ class MyEventsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") as! String
+        self.userID = UserDefaults.standard.integer(forKey: "USER_ID")
         
         
         
         swipeRecognizer()
         getHostedEvents()
+        
         getJoinedEvents()
+        
         getUserDetails()
         handleImage()
         
@@ -139,7 +146,7 @@ class MyEventsViewController: UIViewController {
     }
     
     func uploadImage(_ image: UIImage) {
-       
+        
         let ref = Storage.storage().reference().child("profile_images").child("\(userID).jpg")
         guard let imageData = UIImageJPEGRepresentation(image, 0.5) else {return}
         let metaData = StorageMetadata()
@@ -224,7 +231,7 @@ class MyEventsViewController: UIViewController {
             if let httpResponse = response as? HTTPURLResponse {
                 print("Sending Image:\(httpResponse.statusCode)")
                 
-                if httpResponse.statusCode == 200 {
+                if httpResponse.statusCode == 200 || httpResponse.statusCode == 204 {
                     
                     do {
                         let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
@@ -236,7 +243,7 @@ class MyEventsViewController: UIViewController {
                         DispatchQueue.main.async {
                             
                         }
-    
+                        
                     } catch let jsonError as NSError {
                         print("\(jsonError)")
                     }
@@ -249,8 +256,8 @@ class MyEventsViewController: UIViewController {
         dataTask.resume()
         
     }
-
-
+    
+    
     
     func chooseProfileImage(){
         
@@ -316,14 +323,13 @@ class MyEventsViewController: UIViewController {
     
     
     func getHostedEvents() {
-        guard let userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") else {return}
-        let userID = UserDefaults.standard.integer(forKey: "USER_ID")
         
-        let url = URL(string: "http://192.168.1.116:3000/api/v1/events?remember_token=\(userToken)&host=\(userID)")
+        let url = URL(string: "http://192.168.1.116:3000/api/v1/events?remember_token=\(self.userToken)&host=\(self.userID)")
         
         var urlRequest = URLRequest(url: url!)
         
         urlRequest.httpMethod = "GET"
+        
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-type")
         
         let urlSession = URLSession(configuration: URLSessionConfiguration.default)
@@ -341,14 +347,14 @@ class MyEventsViewController: UIViewController {
                     do {
                         let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
                         
-                        
                         guard let validJSON = jsonResponse as? [[String:Any]] else { return }
                         
                         for each in validJSON {
                             
-                            let hostedEvent = Event(eventDict: each)
+                            let hostedEvent = Event(dict: each)
                             
                             self.hostedEvents.append(hostedEvent)
+                            
                             
                         }
                         
@@ -366,8 +372,6 @@ class MyEventsViewController: UIViewController {
         
         dataTask.resume()
     }
-    
-    
     
     func getUserDetails () {
         guard let userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") else {return}
@@ -390,7 +394,7 @@ class MyEventsViewController: UIViewController {
             
             if let httpResponse = response as? HTTPURLResponse {
                 
-                print("Joined\(httpResponse.statusCode)")
+                print("User Details\(httpResponse.statusCode)")
                 
                 if httpResponse.statusCode == 200 {
                     do {
@@ -408,7 +412,7 @@ class MyEventsViewController: UIViewController {
                             
                             self.avatarImageView.loadImageUsingCacheWithUrlString(urlString: self.imageURL)
                             
-                           
+                            
                         }
                     } catch let jsonError as NSError {
                         print(jsonError)
@@ -420,8 +424,6 @@ class MyEventsViewController: UIViewController {
     }
     
     func getJoinedEvents (){
-        
-        guard let userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") else {return}
         
         guard let url = URL(string: "http://192.168.1.116:3000/api/v1/event_users?remember_token=\(userToken)") else {return}
         
@@ -450,22 +452,21 @@ class MyEventsViewController: UIViewController {
                         
                         guard let validJSON = jsonResponse as? [[String:Any]] else { return }
                         
+                        
+                        
+                        // self.joinedEvents.removeAll()
+                        
+                        
                         for each in validJSON {
                             
                             let joinedEvent = Event(eventDict: each)
                             
                             self.joinedEvents.append(joinedEvent)
                             
-                            for each in validJSON {
-                                let joinedEvent = Event(eventDict: each)
-                                self.joinedEvents.append(joinedEvent)
-                                
-                            }
-                            //self.claims = validJSON
-                            DispatchQueue.main.async {
-                                self.tableView.reloadData()
-                            }
-                            
+                        }
+                        //self.claims = validJSON
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
                         }
                         
                     } catch let jsonError as NSError {
@@ -479,75 +480,6 @@ class MyEventsViewController: UIViewController {
         
     }
     
-    
-    func sendUserAvatar(ImageUrl : String) {
-        
-        let userID = UserDefaults.standard.integer(forKey: "USER_ID")
-        guard let userToken = UserDefaults.standard.value(forKey: "AUTH_TOKEN") else {return}
-        
-        
-        let url = URL(string: "http://192.168.1.116:3000/api/v1/users?remember_token=\(userToken)&id=\(userID)")
-        var urlRequest = URLRequest(url: url!)
-        
-        urlRequest.httpMethod = "PUT"
-        
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-type")
-        
-        let params :[String: Any] = [
-            "avatar" : ImageUrl
-            
-        ]
-        
-        var data: Data?
-        do {
-            data = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
-            
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
-        
-        urlRequest.httpBody = data
-        
-        
-        let urlSession = URLSession(configuration: URLSessionConfiguration.default)
-        
-        let dataTask = urlSession.dataTask(with: urlRequest) { (data, response, error) in
-            
-            
-            if let validError = error {
-                print(validError.localizedDescription)
-            }
-            
-            
-            if let httpResponse = response as? HTTPURLResponse {
-                print("Sending Image:\(httpResponse.statusCode)")
-                
-                if httpResponse.statusCode == 200 {
-                    
-                    do {
-                        let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-                        
-                        
-                        guard let validJSON = jsonResponse as? [String:Any] else { return }
-                        print("Json\(validJSON)")
-
-                        DispatchQueue.main.async {
-                            
-                        }
-                        
-                        
-                    } catch let jsonError as NSError {
-                        print("\(jsonError)")
-                    }
-                    
-                }
-            }
-            
-        }
-        
-        dataTask.resume()
-        
-    }
     
     @IBAction func logoutButtonTapped(_ sender: Any) {
         
@@ -606,33 +538,29 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: StackTableViewCell.cellIdentifier, for: indexPath) as! StackTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: MyEventsTableViewCell.cellIdentifier, for: indexPath) as! MyEventsTableViewCell
+        
+        cell.backgroundColor = UIColor.clear
         
         switch (segmentedControl.selectedSegmentIndex) {
             
         case 0:
             let event = hostedEvents[indexPath.row]
-            cell.aboutTextView.text = event.eventDesc
+            cell.aboutLabel.text = event.eventDesc
             cell.hostLabel.text = event.eventHost
             cell.nameLabel.text = event.eventName
             cell.stringToDate(event.eventDate)
-            cell.dateLabel.text = event.eventDate
-            cell.placeLabel.text = event.eventVenue
-            cell.titleView.backgroundColor = event.eventColor
-            cell.detailView.backgroundColor = event.eventColor
+            cell.dateAndTime.text = event.eventDate
+            cell.venueLabel.text = event.eventVenue
             break
         case 1:
-            
             let event = joinedEvents[indexPath.row]
-            cell.aboutTextView.text = event.eventDesc
+            cell.aboutLabel.text = event.eventDesc
             cell.hostLabel.text = event.eventHost
             cell.nameLabel.text = event.eventName
             cell.stringToDate(event.eventDate)
-            cell.dateLabel.text = event.eventDate
-            cell.placeLabel.text = event.eventVenue
-            cell.titleView.backgroundColor = .yellow
-            cell.detailView.backgroundColor = .yellow
-            
+            cell.dateAndTime.text = event.eventDate
+            cell.venueLabel.text = event.eventVenue
             break
         default:
             break
@@ -650,11 +578,11 @@ extension MyEventsViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         isExpanded = !isExpanded
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: StackTableViewCell.cellIdentifier, for: indexPath) as! StackTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: MyEventsTableViewCell.cellIdentifier, for: indexPath) as! MyEventsTableViewCell
         if isExpanded == true {
             UIView.animate(withDuration: 0.3, animations: {
                 cell.detailView.alpha = 0.95
-                cell.titleView.alpha = 0
+                cell.titleView.alpha = 1
             })
         } else {
             UIView.animate(withDuration: 0.5, animations: {
@@ -714,7 +642,7 @@ extension MyEventsViewController : UIImagePickerControllerDelegate, UINavigation
         if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage
         {
             selectedImageFromPicker = editedImage
-          
+            
             
         } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage
         {

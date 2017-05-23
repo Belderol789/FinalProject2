@@ -77,10 +77,6 @@ class EventsViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    func getHostedCategories() {
-        
-    }
-    
     func getMyCategories() {
         
         let url = URL(string: "http://192.168.1.116:3000/api/v1/events?remember_token=\(self.userToken)")
@@ -250,8 +246,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
-            //cell.detailView.backgroundColor = UserInterfaceDesign.foodCategory
-//            cell.titleView.backgroundColor = UserInterfaceDesign.foodCategory
+
             
             break
         case 1:
@@ -262,8 +257,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
-//            cell.detailView.backgroundColor = UserInterfaceDesign.sportCategory
-//            cell.titleView.backgroundColor = UserInterfaceDesign.sportCategory
+
             break
         case 2:
             let allEvent = thirdEvents[indexPath.row]
@@ -273,8 +267,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
-//            cell.detailView.backgroundColor = UserInterfaceDesign.entertainmentCategory
-//            cell.titleView.backgroundColor = UserInterfaceDesign.entertainmentCategory
+
             break
         case 3:
             let allEvent = fourthEvents[indexPath.row]
@@ -284,8 +277,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
-//            cell.detailView.backgroundColor = UserInterfaceDesign.discussionCategory
-//            cell.titleView.backgroundColor = UserInterfaceDesign.discussionCategory
+
             break
         case 4:
             let allEvent = fifthEvents[indexPath.row]
@@ -295,8 +287,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
-//            cell.detailView.backgroundColor = UserInterfaceDesign.artCategory
-//            cell.titleView.backgroundColor = UserInterfaceDesign.artCategory
+
             break
         case 5:
             let allEvent = sixthEvents[indexPath.row]
@@ -306,8 +297,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.stringToDate(allEvent.eventDate)
             cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
-//            cell.detailView.backgroundColor = UserInterfaceDesign.vacationCategory
-//            cell.titleView.backgroundColor = UserInterfaceDesign.vacationCategory
+
             break
         default:
             break
