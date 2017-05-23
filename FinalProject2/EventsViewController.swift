@@ -212,18 +212,22 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
         switch (segmentedControl.selectedSegmentIndex) {
         case 0:
             numberOfEvents = firstEvents.count
-            tableView.backgroundView = TableViewBackgrounds()
-            
+            tableView.backgroundView = FoodTableView()
         case 1:
             numberOfEvents = secondEvents.count
+            tableView.backgroundView = SportTableView()
         case 2:
             numberOfEvents = thirdEvents.count
+            tableView.backgroundView = EntertainmentTableView()
         case 3:
             numberOfEvents = fourthEvents.count
+            tableView.backgroundView = WorkTableView()
         case 4:
             numberOfEvents = fifthEvents.count
+            tableView.backgroundView = CharityTableView()
         case 5:
             numberOfEvents = sixthEvents.count
+            tableView.backgroundView = TravelTableView()
         default:
             break
         }

@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         if UserDefaults.standard.string(forKey: "AUTH_TOKEN") != nil{
-            let initController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyEventsViewControler")
+            let initController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyEventsViewController")
             window?.rootViewController = initController
         }
         else{
@@ -27,8 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         self.window?.makeKeyAndVisible()
         
-        application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: nil))
-        UIApplication.shared.cancelAllLocalNotifications()
+//        application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: nil))
+//        UIApplication.shared.cancelAllLocalNotifications()
         
         IQKeyboardManager.shared().isEnabled = true
         
