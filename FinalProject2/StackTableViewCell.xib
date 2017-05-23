@@ -124,7 +124,6 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="L1h-FQ-NQ1" firstAttribute="leading" secondItem="jrv-uv-fPU" secondAttribute="leading" id="0HL-AL-EkK"/>
                             <constraint firstItem="Ucs-e6-7ju" firstAttribute="trailing" secondItem="L1h-FQ-NQ1" secondAttribute="trailing" id="2cI-YM-7a0"/>

@@ -19,6 +19,13 @@ class AddEventViewController: UIViewController {
     var selectedDateTime = DateTime()
     
     @IBOutlet weak var dateAndTimeLabel: UILabel!
+    @IBOutlet weak var detailView: UIView!{
+        didSet{
+            detailView.layer.cornerRadius = 10
+            detailView.layer.masksToBounds = true
+            
+        }
+    }
     
     @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var monthPicker: UIPickerView!{
@@ -46,7 +53,7 @@ class AddEventViewController: UIViewController {
     
     @IBOutlet weak var displayView: iCarousel!{
         didSet{
-            displayView.type = iCarouselType.invertedCylinder
+            displayView.type = iCarouselType.coverFlow2
         }
     }
     @IBOutlet weak var nameTextField: CustomTextField!{
@@ -61,7 +68,12 @@ class AddEventViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var aboutTextView: UITextView!
+    @IBOutlet weak var aboutTextView: UITextView!{
+        didSet{
+            aboutTextView.layer.cornerRadius = 10
+            aboutTextView.layer.masksToBounds = true
+        }
+    }
     @IBOutlet weak var addEventButton: UIButton!{
         didSet{
             addEventButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
@@ -74,7 +86,6 @@ class AddEventViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBOutlet weak var dateAndTimePicker: UIPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -257,7 +268,7 @@ extension AddEventViewController : iCarouselDataSource, iCarouselDelegate {
         var imageView : UIImageView!
         
         if view == nil {
-            imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 250, height: 128))
+            imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 250, height: 130))
             imageView.contentMode = .scaleAspectFit
         } else {
             imageView = view as! UIImageView
