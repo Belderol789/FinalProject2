@@ -11,6 +11,8 @@
 		3D06D45F1ED3E04E003052E0 /* WorkTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D06D45E1ED3E04E003052E0 /* WorkTableView.swift */; };
 		3D06D4611ED3E21A003052E0 /* CharityTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D06D4601ED3E21A003052E0 /* CharityTableView.swift */; };
 		3D06D4631ED3E268003052E0 /* TravelTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D06D4621ED3E268003052E0 /* TravelTableView.swift */; };
+		3D06D4651ED4A8EE003052E0 /* HostedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D06D4641ED4A8EE003052E0 /* HostedTableView.swift */; };
+		3D06D4671ED4A929003052E0 /* JoinedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D06D4661ED4A929003052E0 /* JoinedTableView.swift */; };
 		3D398E171ECC2C21002E7BC7 /* MyEventsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D398E131ECC2C21002E7BC7 /* MyEventsTableViewCell.xib */; };
 		3D398E181ECC2C21002E7BC7 /* MyEventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D398E141ECC2C21002E7BC7 /* MyEventsTableViewCell.swift */; };
 		3D398E191ECC2C21002E7BC7 /* EventsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D398E151ECC2C21002E7BC7 /* EventsTableViewCell.xib */; };
@@ -52,6 +54,8 @@
 		3D06D45E1ED3E04E003052E0 /* WorkTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkTableView.swift; sourceTree = "<group>"; };
 		3D06D4601ED3E21A003052E0 /* CharityTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharityTableView.swift; sourceTree = "<group>"; };
 		3D06D4621ED3E268003052E0 /* TravelTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTableView.swift; sourceTree = "<group>"; };
+		3D06D4641ED4A8EE003052E0 /* HostedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostedTableView.swift; sourceTree = "<group>"; };
+		3D06D4661ED4A929003052E0 /* JoinedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinedTableView.swift; sourceTree = "<group>"; };
 		3D398E131ECC2C21002E7BC7 /* MyEventsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyEventsTableViewCell.xib; sourceTree = "<group>"; };
 		3D398E141ECC2C21002E7BC7 /* MyEventsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyEventsTableViewCell.swift; sourceTree = "<group>"; };
 		3D398E151ECC2C21002E7BC7 /* EventsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsTableViewCell.xib; sourceTree = "<group>"; };
@@ -117,6 +121,8 @@
 		3D398E1B1ECC2C34002E7BC7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3D06D4641ED4A8EE003052E0 /* HostedTableView.swift */,
+				3D06D4661ED4A929003052E0 /* JoinedTableView.swift */,
 				3D3F375F1ED3DB0B00219D4C /* FoodTableView.swift */,
 				3D3F37611ED3DB7200219D4C /* SportTableView.swift */,
 				3D06D45C1ED3E003003052E0 /* EntertainmentTableView.swift */,
@@ -279,7 +285,7 @@
 				TargetAttributes = {
 					524185EA1ECC249C005882E0 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = ZQ547JDPVM;
+						DevelopmentTeam = 3359K7D33H;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -365,7 +371,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -388,12 +394,14 @@
 				3D3F375A1ED1B61B00219D4C /* CategoryViewInSliderMenu.swift in Sources */,
 				3D398E2E1ECD85DE002E7BC7 /* CustomTextField.swift in Sources */,
 				3D3F37531ED0515000219D4C /* AddEventViewController.swift in Sources */,
+				3D06D4651ED4A8EE003052E0 /* HostedTableView.swift in Sources */,
 				3D398E281ECD55CE002E7BC7 /* UserInterfaceDesign.swift in Sources */,
 				3D06D4631ED3E268003052E0 /* TravelTableView.swift in Sources */,
 				3D3F37621ED3DB7200219D4C /* SportTableView.swift in Sources */,
 				3D398E241ECC385E002E7BC7 /* MyEventsViewController.swift in Sources */,
 				3D398E201ECC2C5B002E7BC7 /* LoginViewController.swift in Sources */,
 				5241860B1ECC3926005882E0 /* ChangeColor.swift in Sources */,
+				3D06D4671ED4A929003052E0 /* JoinedTableView.swift in Sources */,
 				52FCE94D1ED19E750049D937 /* iCarousel.m in Sources */,
 				3D398E181ECC2C21002E7BC7 /* MyEventsTableViewCell.swift in Sources */,
 				524186091ECC3012005882E0 /* Events.swift in Sources */,
@@ -527,7 +535,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = ZQ547JDPVM;
+				DEVELOPMENT_TEAM = 3359K7D33H;
 				INFOPLIST_FILE = FinalProject2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Burst.FinalProject2;
@@ -544,7 +552,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = ZQ547JDPVM;
+				DEVELOPMENT_TEAM = 3359K7D33H;
 				INFOPLIST_FILE = FinalProject2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Burst.FinalProject2;

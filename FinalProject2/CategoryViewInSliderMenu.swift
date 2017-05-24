@@ -10,8 +10,8 @@ import UIKit
 
 class CategoryViewInSliderMenu: UIView {
 
-    override func draw(_ rect: CGRect) {
-        UserInterfaceDesign.drawTheCount(frame: self.bounds, resizing: .stretch)
-    }
+   // override func draw(_ rect: CGRect) {
+        //UserInterfaceDesign.drawTheCount(frame: self.bounds, resizing: .stretch)
+   // }
 
 }
