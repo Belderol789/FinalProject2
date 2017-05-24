@@ -31,6 +31,7 @@
 		3D3F37601ED3DB0B00219D4C /* FoodTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F375F1ED3DB0B00219D4C /* FoodTableView.swift */; };
 		3D3F37621ED3DB7200219D4C /* SportTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F37611ED3DB7200219D4C /* SportTableView.swift */; };
 		521305591ECF39C000D1CA8E /* CircularStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 521305581ECF39A200D1CA8E /* CircularStd-Bold.otf */; };
+		523C2E701ED51CE30027BA34 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C2E6F1ED51CE30027BA34 /* SegmentedControl.swift */; };
 		524185EF1ECC249C005882E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524185EE1ECC249C005882E0 /* AppDelegate.swift */; };
 		524185F41ECC249C005882E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 524185F21ECC249C005882E0 /* Main.storyboard */; };
 		524185F61ECC249C005882E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 524185F51ECC249C005882E0 /* Assets.xcassets */; };
@@ -72,6 +73,7 @@
 		3D3F375F1ED3DB0B00219D4C /* FoodTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTableView.swift; sourceTree = "<group>"; };
 		3D3F37611ED3DB7200219D4C /* SportTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportTableView.swift; sourceTree = "<group>"; };
 		521305581ECF39A200D1CA8E /* CircularStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Bold.otf"; sourceTree = "<group>"; };
+		523C2E6F1ED51CE30027BA34 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		524185EB1ECC249C005882E0 /* FinalProject2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProject2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		524185EE1ECC249C005882E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		524185F31ECC249C005882E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				3D3F37441ECEADCF00219D4C /* Models.swift */,
 				524186031ECC2AC0005882E0 /* CollectionViewCell.swift */,
 				524186061ECC2B01005882E0 /* CustomFlowLayout.swift */,
+				523C2E6F1ED51CE30027BA34 /* SegmentedControl.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				524185EF1ECC249C005882E0 /* AppDelegate.swift in Sources */,
 				524186071ECC2B01005882E0 /* CustomFlowLayout.swift in Sources */,
 				3D3F375A1ED1B61B00219D4C /* CategoryViewInSliderMenu.swift in Sources */,
+				523C2E701ED51CE30027BA34 /* SegmentedControl.swift in Sources */,
 				3D398E2E1ECD85DE002E7BC7 /* CustomTextField.swift in Sources */,
 				3D3F37531ED0515000219D4C /* AddEventViewController.swift in Sources */,
 				3D398E281ECD55CE002E7BC7 /* UserInterfaceDesign.swift in Sources */,
