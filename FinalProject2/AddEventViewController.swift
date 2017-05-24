@@ -134,7 +134,7 @@ class AddEventViewController: UIViewController {
     
     func sendToDatabase(name: String, venue : String, dateAndTime : String, about : String, categoryID : Int, eventID : Int, currentUserID: Int) {
         
-        let url = URL(string: "http://192.168.1.50:3000/api/v1/events?remember_token=\(self.userToken)")
+        let url = URL(string: "http://192.168.1.116:3000/api/v1/events?remember_token=\(self.userToken)")
         var urlRequest = URLRequest(url: url!)
         
         urlRequest.httpMethod = "POST"
