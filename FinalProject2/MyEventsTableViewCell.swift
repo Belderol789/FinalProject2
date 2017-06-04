@@ -82,7 +82,7 @@ class MyEventsTableViewCell: UITableViewCell {
     
     func dateToString(_ date: Date) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd, MM, yyyy"
+        dateFormatter.dateFormat = "dd-MM-yyyy"
         let newDate = dateFormatter.string(from: date)
         dateAndTime.text = newDate
     }

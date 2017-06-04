@@ -72,21 +72,22 @@ class StackTableViewCell: UITableViewCell {
         
     }
     
-    func stringToDate(_ date: String) {
+    func stringToDate(_ railsdate: String) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-mm-yyyy"
-        guard let date = dateFormatter.date(from: date) else {return}
-        print(date)
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        guard let date = dateFormatter.date(from:railsdate) else {return}
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
+        let finalDate = calendar.date(from:components)
         
-        dateToString(date)
+        dateToString(finalDate!)
     }
     
     func dateToString(_ date: Date) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM dd, yyyy"
+        dateFormatter.dateFormat = "dd-MM-yyyy"
         let newDate = dateFormatter.string(from: date)
-        print(newDate)
+        labelDateAndTime.text = newDate
     }
-    
 
 }

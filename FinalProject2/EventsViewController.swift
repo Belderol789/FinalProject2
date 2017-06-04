@@ -294,7 +294,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.hostLabel.text = allEvent.eventHost
             cell.nameLabel.text = allEvent.eventName
             cell.stringToDate(allEvent.eventDate)
-            cell.dateLabel.text = allEvent.eventDate
+            //cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
             guard let image = allEvent.userImage else {return cell}
              cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: image)
@@ -307,7 +307,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.hostLabel.text = allEvent.eventHost
             cell.nameLabel.text = allEvent.eventName
             cell.stringToDate(allEvent.eventDate)
-            cell.dateLabel.text = allEvent.eventDate
+            //cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
             guard let image = allEvent.userImage else {return cell}
             cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: image)
@@ -320,7 +320,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.hostLabel.text = allEvent.eventHost
             cell.nameLabel.text = allEvent.eventName
             cell.stringToDate(allEvent.eventDate)
-            cell.dateLabel.text = allEvent.eventDate
+            //cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
             guard let image = allEvent.userImage else {return cell}
             cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: image)
@@ -332,7 +332,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.hostLabel.text = allEvent.eventHost
             cell.nameLabel.text = allEvent.eventName
             cell.stringToDate(allEvent.eventDate)
-            cell.dateLabel.text = allEvent.eventDate
+            //cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
             guard let image = allEvent.userImage else {return cell}
             cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: image)
@@ -344,7 +344,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.hostLabel.text = allEvent.eventHost
             cell.nameLabel.text = allEvent.eventName
             cell.stringToDate(allEvent.eventDate)
-            cell.dateLabel.text = allEvent.eventDate
+            //cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
             guard let image = allEvent.userImage else {return cell}
             cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: image)
@@ -356,7 +356,7 @@ extension EventsViewController : UITableViewDelegate, UITableViewDataSource {
             cell.hostLabel.text = allEvent.eventHost
             cell.nameLabel.text = allEvent.eventName
             cell.stringToDate(allEvent.eventDate)
-            cell.dateLabel.text = allEvent.eventDate
+            //cell.dateLabel.text = allEvent.eventDate
             cell.placeLabel.text = allEvent.eventVenue
             guard let image = allEvent.userImage else {return cell}
             cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: image)

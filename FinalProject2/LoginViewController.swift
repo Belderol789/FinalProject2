@@ -101,9 +101,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
             self.pageControl.currentPage = 0
         }
         self.scrollView.scrollRectToVisible(CGRect(x:slideToX, y:0, width:pageWidth, height:self.scrollView.frame.height), animated: true)
-        
         let currentPage = self.pageControl.currentPage
-        
         if Int(currentPage) == 0{
             titleLabel.text = "Company Culture"
             contentLabel.text = "is one of the key points for success"
@@ -132,17 +130,13 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
       
         self.pageControl.currentPage = Int(currentPage);
         if Int(currentPage) == 0{
-            titleLabel.text = "Company Culture"
-            contentLabel.text = "is one of the key points for success"
+            
         }else if Int(currentPage) == 1{
-            titleLabel.text = "Interests"
-            contentLabel.text = "connect people within a company"
+            
         }else if Int(currentPage) == 2{
-            titleLabel.text = "Find People"
-            contentLabel.text = "based on these interests"
+           
         }else{
-            titleLabel.text = "Create Events"
-            contentLabel.text = "for a healthier and happier Company Culture"
+            
         }
     }
     
